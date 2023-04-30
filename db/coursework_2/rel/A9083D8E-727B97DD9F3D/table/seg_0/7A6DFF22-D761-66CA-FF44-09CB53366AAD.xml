@@ -1,0 +1,60 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="7A6DFF22-D761-66CA-FF44-09CB53366AAD" name="TEAM">
+<createdBy>Good-</createdBy>
+<createdTime>2023-04-29 20:59:32 UTC</createdTime>
+<generatorID>EAE04AFD-60D8-2C8C-F393-AEB5766A8AF5</generatorID>
+<ownerDesignName>coursework_2</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ID" id="BF1EC491-1E5F-27A3-DE81-98CCC4A5AC42">
+<createdBy>Good-</createdBy>
+<createdTime>2023-04-29 20:59:32 UTC</createdTime>
+<generatorID>80D5FEC6-D68F-1301-1AE7-3770775CB06A</generatorID>
+<ownerDesignName>coursework_2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="NAME" id="F3D3A0EE-346D-CE41-579F-B718CC942606">
+<createdBy>Good-</createdBy>
+<createdTime>2023-04-29 20:59:32 UTC</createdTime>
+<generatorID>5448BD19-0613-856D-1D98-13D75A88C09C</generatorID>
+<ownerDesignName>coursework_2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30</dataTypeSize>
+<ownDataTypeParameters>30,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CREATE_DATE" id="FD436C80-4BF5-18CD-ACA2-43F7DCB0C2BC">
+<createdBy>Good-</createdBy>
+<createdTime>2023-04-29 20:59:32 UTC</createdTime>
+<generatorID>4FF5663A-17FB-ABD8-B57A-1F6A6AECAE48</generatorID>
+<ownerDesignName>coursework_2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT008</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="F0834E5F-A8FA-484E-1A22-8744DDF20834" name="TEAM_PK">
+<createdBy>Good-</createdBy>
+<createdTime>2023-04-29 20:59:32 UTC</createdTime>
+<generatorID>07B367CC-2440-9ADF-39F1-F47461DC0B05</generatorID>
+<ownerDesignName>coursework_2</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="BF1EC491-1E5F-27A3-DE81-98CCC4A5AC42"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

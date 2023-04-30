@@ -1,0 +1,21 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="EVENT PLACE EVENT FK" directorySegmentName="seg_0" id="22737C8E-27C3-91E2-69D2-FFF70F688F90">
+<createdBy>Good-</createdBy>
+<createdTime>2023-04-29 20:29:24 UTC</createdTime>
+<ownerDesignName>coursework_2</ownerDesignName>
+<engineerTo>
+<item key="A9083D8E-C123-0C2C-B83C-727B97DD9F3D" value="true"/>
+</engineerTo>
+<sourcePk>C773EE1F-0AE0-CFA6-D903-CD1819F5BC44</sourcePk>
+<identifying>true</identifying>
+<nameOnSource>HAS SEVERAL PLACE</nameOnSource>
+<nameOnTarget> </nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>CF8A5E53-8576-CF78-B071-AD29CB8BD30C</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>2C72D5C5-57CA-2A36-4C80-2B8C367B5C43</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

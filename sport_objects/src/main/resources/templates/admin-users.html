@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml" lang="ru">
+
+<!--<head th:insert="base :: html_head_p (~{::link})">-->
+<!--    <link rel="stylesheet" th:href="@{/css/admin}">-->
+<!--</head>-->
+
+<head th:replace="~{base :: html_head}">
+</head>
+
+<body class="d-flex flex-column justify-content-center align-items-center gap-3">
+<div th:replace="~{base :: header}">
+</div>
+
+<div class="container">
+    <div class="row d-flex justify-content-center align-items-center mb-3">
+        <h5 class="text-center">Поиск по любому критерию:</h5>
+        <form th:action="@{/admin/users}" class="d-flex justify-content-center align-items-center gap-3">
+            <input type="text" class="text-black" name="searchKeyword" id="searchKeyword" size="30" th:value="${searchKeyword}" required/>
+            <input type="submit" class="btn btn-success btn-sm" value="Поиск"/>
+            <a href="/admin/users" class="btn btn-danger btn-sm">Очистить</a>
+        </form>
+    </div>
+
+    <div class="row d-flex flex-column justify-content-center gap-2">
+        <div class="row">
+            <p class="text-white fw-bold row-count"></p>
+        </div>
+
+        <table id="1" class="table table-hover table-sm text-white">
+            <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Логин</th>
+                <th scope="col">Имя</th>
+                <th scope="col">Фамилия</th>
+                <th scope="col">Дата рождения</th>
+                <th scope="col">Телефон</th>
+                <th scope="col">Почта</th>
+                <th scope="col">Роли</th>
+                <td></td>
+            </tr>
+
+            <tr>
+                <th scope="col">
+                    <input type="button" class="btn btn-primary btn-sm sort" value="SORT"/>
+                </th>
+
+                <th scope="col">
+                    <input type="button" class="btn btn-primary btn-sm sort" value="SORT"/>
+                </th>
+
+                <th scope="col">
+                    <input type="button" class="btn btn-primary btn-sm sort" value="SORT"/>
+                </th>
+
+                <th scope="col">
+                    <input type="button" class="btn btn-primary btn-sm sort" value="SORT"/>
+                </th>
+
+                <th scope="col">
+                    <input type="button" class="btn btn-primary btn-sm sort" value="SORT"/>
+                </th>
+
+                <th scope="col">
+                    <input type="button" class="btn btn-primary btn-sm sort" value="SORT"/>
+                </th>
+
+                <th scope="col">
+                    <input type="button" class="btn btn-primary btn-sm sort" value="SORT"/>
+                </th>
+
+                <th scope="col">
+                    <input type="button" class="btn btn-primary btn-sm sort" value="SORT"/>
+                </th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr class="table-tr" th:each="user: ${userList}">
+                <th scope="row" class="table-th text-white" th:text="${user.id}">отстутсвует</th>
+                <th scope="row" class="table-th text-white" th:text="${user.username}">отстутсвует</th>
+                <th scope="row" class="table-th text-white" th:text="${user.firstName}">отстутсвует</th>
+                <th scope="row" class="table-th text-white" th:text="${user.lastName}">отстутсвует</th>
+                <th scope="row" class="table-th text-white" th:text="${user.birthday}">отстутсвует</th>
+                <th scope="row" class="table-th text-white" th:text="${user.phone}">отстутсвует</th>
+                <th scope="row" class="table-th text-white" th:text="${user.email}">отстутсвует</th>
+                <th scope="row" class="table-th text-white" th:text="${user.roles}">отстутсвует</th>
+                <td>
+                    <a th:href="@{'/admin/users/edit/'+${user.id}}">
+                        <button type="button" class="btn btn-warning">Редактировать</button>
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
+        <div class="container">
+            <canvas id="roles" width="600" height="400"></canvas>
+        </div>
+    </div>
+</div>
+</div>
+</body>
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.0.2/tablesort.min.js'></script>
+<script>
+    new Tablesort(document.getElementById('1'));
+</script>
+
+<script type="text/javascript">
+    let table = document.getElementById('1')
+    let tBody = table.querySelector('tbody')
+    const count = tBody.querySelectorAll('tr').length;
+    document.querySelector('.row-count').innerHTML = 'Количество пользователей: ' + count;
+</script>
+
+<script th:inline="javascript">
+    function getRandomInt(min, max) {
+        return Math.floor(Math.random() * (max - min)) + min;
+    }
+
+    labels = []
+    data = []
+    let tr = document.getElementsByClassName('table-tr');
+    for (let i = 0; i < tr.length; i++) {
+        let t = tr[i].getElementsByClassName('table-th')[7].textContent.split(' ')[0];
+
+        if (!labels.includes(t)) {
+            let ind = Math.max(labels.length, 0);
+            labels[ind] = t;
+            data[ind] = 1;
+        } else {
+            let ind = labels.indexOf(t);
+            data[ind] += 1;
+        }
+    }
+
+    let colors = [];
+    for (let i = 0; i < labels.length; i++) {
+        let temp = 'rgb(' + getRandomInt(0, 256) + ', ' + getRandomInt(0, 256) + ', ' + getRandomInt(0, 256) + ')';
+        while (colors.includes(temp)) {
+            temp = 'rgb(' + getRandomInt(0, 256) + ', ' + getRandomInt(0, 256) + ', ' + getRandomInt(0, 256) + ')';
+        }
+
+        colors[i] = temp;
+    }
+
+    let dataset = {
+        label: 'Количество пользователей',
+        data: data,
+        backgroundColor: colors,
+        borderWidth: 1,
+    }
+
+    Chart.defaults.global.defaultFontColor = 'white';
+
+    let ctx = document.getElementById('roles').getContext('2d');
+    let myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [dataset],
+        },
+        options: {
+            legend: {
+                display: false,
+            },
+            title: {
+                display: true,
+                text: 'Количество пользователей по ролям',
+                position: 'top',
+                fontSize: 24,
+                padding: 20,
+            },
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true,
+                        stepSize: 1,
+                    },
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Количество пользователей',
+                        fontSize: 18,
+                    },
+                }],
+                xAxes: [{
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Дата',
+                        fontSize: 18,
+                    },
+                }],
+            },
+        },
+    });
+</script>
+
+</html>

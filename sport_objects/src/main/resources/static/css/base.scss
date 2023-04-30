@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+$body_color: #23242A;
+
+*,
+*:before,
+*:after {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Montserrat', monospace;
+  color: #FFF;
+}
+
+body {
+  background: $body_color;
+}
+
+.nav {
+  a {
+    cursor: pointer;
+  }
+}

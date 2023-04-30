@@ -1,0 +1,90 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="1332932F-0803-2042-C9AE-A261D96DE82B" name="TEAM_SPORT_TYPE">
+<createdBy>Good-</createdBy>
+<createdTime>2023-04-29 20:59:32 UTC</createdTime>
+<generatorID>CE5768F6-AD36-01CB-592E-EE0CEEA628ED</generatorID>
+<ownerDesignName>coursework_2</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="TEAM_ID" id="93B63524-E603-5E77-6BDF-53A4C84A8916">
+<createdBy>Good-</createdBy>
+<createdTime>2023-04-29 20:59:32 UTC</createdTime>
+<generatorID>09FCB3A3-93F1-4529-FF9E-ED6B26E9E0E9</generatorID>
+<ownerDesignName>coursework_2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="FA9E3E32-00A2-657A-9DAD-FD778B609E4B" referredColumn="BF1EC491-1E5F-27A3-DE81-98CCC4A5AC42"/>
+</associations>
+</Column>
+<Column name="SPORT_TYPE_ID" id="2D2A2D02-35A5-463F-2E66-B1365D91C3F9">
+<createdBy>Good-</createdBy>
+<createdTime>2023-04-29 20:59:32 UTC</createdTime>
+<generatorID>EC192CBC-67F5-8C11-1530-AA18C8E568B8</generatorID>
+<ownerDesignName>coursework_2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="2E476162-511C-5BE6-9C50-85C859C3E380" referredColumn="70F880ED-F881-253D-88B6-A7813958C4CE"/>
+</associations>
+</Column>
+<Column name="CREATE_DATE" id="1D5100CA-4B85-7D8E-0722-C014B70F71A0">
+<createdBy>Good-</createdBy>
+<createdTime>2023-04-29 20:59:32 UTC</createdTime>
+<generatorID>12933D62-80AD-F73D-2206-A392B4A7D82A</generatorID>
+<ownerDesignName>coursework_2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="E5D271E2-A6E7-D774-BF58-8A9F36C41EB1" name="TEAM_SPORT_TYPE_PK">
+<createdBy>Good-</createdBy>
+<createdTime>2023-04-29 20:59:32 UTC</createdTime>
+<generatorID>4E7CA552-57B7-B02A-A744-E95AB76E0EF2</generatorID>
+<ownerDesignName>coursework_2</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="2D2A2D02-35A5-463F-2E66-B1365D91C3F9"/>
+<colUsage columnID="93B63524-E603-5E77-6BDF-53A4C84A8916"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="C140230B-A89D-C894-24EF-593CA166F548" name="TEAM_SPORT_TYPE_TEAM_FK">
+<createdBy>Good-</createdBy>
+<createdTime>2023-04-29 20:59:32 UTC</createdTime>
+<generatorID>9AE9A1EE-7001-6C3F-0052-AB80BAFFB5CE</generatorID>
+<ownerDesignName>coursework_2</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="93B63524-E603-5E77-6BDF-53A4C84A8916"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="18DFCC87-7AC8-85F5-6473-9D1CC24E163A" name="TEAM_SPORT_TYPE_SPORT_TYPE_FK">
+<createdBy>Good-</createdBy>
+<createdTime>2023-04-29 20:59:32 UTC</createdTime>
+<generatorID>2D2E5F01-AD97-B1B6-C5D1-60F31DB124D0</generatorID>
+<ownerDesignName>coursework_2</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="2D2A2D02-35A5-463F-2E66-B1365D91C3F9"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

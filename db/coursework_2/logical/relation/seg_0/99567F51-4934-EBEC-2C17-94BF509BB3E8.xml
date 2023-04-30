@@ -1,0 +1,21 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="USER TEAM USER FK" directorySegmentName="seg_0" id="99567F51-4934-EBEC-2C17-94BF509BB3E8">
+<createdBy>Good-</createdBy>
+<createdTime>2023-04-29 20:21:17 UTC</createdTime>
+<ownerDesignName>coursework_2</ownerDesignName>
+<engineerTo>
+<item key="A9083D8E-C123-0C2C-B83C-727B97DD9F3D" value="true"/>
+</engineerTo>
+<sourcePk>DCFDA52F-406E-6CC5-B1FD-BD0C04287D2F</sourcePk>
+<identifying>true</identifying>
+<nameOnSource>HAS SEVERAL TEAM</nameOnSource>
+<nameOnTarget> </nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>21BE2015-9DB7-AEDB-5593-0F25DE61A401</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>C362D199-70CE-ED69-82ED-E51F7719F68C</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

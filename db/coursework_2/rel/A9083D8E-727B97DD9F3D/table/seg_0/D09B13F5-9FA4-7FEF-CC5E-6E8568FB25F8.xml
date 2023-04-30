@@ -1,0 +1,102 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="D09B13F5-9FA4-7FEF-CC5E-6E8568FB25F8" name="EVENT_PLACE">
+<createdBy>Good-</createdBy>
+<createdTime>2023-04-29 20:59:32 UTC</createdTime>
+<generatorID>2C72D5C5-57CA-2A36-4C80-2B8C367B5C43</generatorID>
+<ownerDesignName>coursework_2</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="EVENT_ID" id="F20EC0E9-2665-8920-0396-E9C795CAB0BA">
+<createdBy>Good-</createdBy>
+<createdTime>2023-04-29 20:59:32 UTC</createdTime>
+<generatorID>45CF878E-C06B-A217-3056-927B8D6DE1C3</generatorID>
+<ownerDesignName>coursework_2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="EA64BE22-D71C-9984-779C-6DDF4B9324F8" referredColumn="3BBD3CE1-C52C-96C8-8A84-355DB7F7BA50"/>
+</associations>
+</Column>
+<Column name="PLACE_ID" id="2D3891F8-EBC4-4ABF-C92B-5E1DA964C123">
+<createdBy>Good-</createdBy>
+<createdTime>2023-04-29 20:59:32 UTC</createdTime>
+<generatorID>0750BFD7-9119-4A3B-F09D-A330F8720B74</generatorID>
+<ownerDesignName>coursework_2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="EF3E3391-87A8-9B39-060F-57F152D1DF91" referredColumn="B47E7C00-A9FB-A08F-F206-CA2ADAA5DEFD"/>
+</associations>
+</Column>
+<Column name="EVENT_DATE" id="D2F98BEB-5C50-64FD-3FAB-F0342A10E8AD">
+<createdBy>Good-</createdBy>
+<createdTime>2023-04-29 20:59:32 UTC</createdTime>
+<generatorID>85372D40-9B74-E8D3-EB89-B0B2938BECDD</generatorID>
+<ownerDesignName>coursework_2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT008</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DURATION" id="E1618E5A-3C08-0843-FC66-0938CD298EC2">
+<createdBy>Good-</createdBy>
+<createdTime>2023-04-29 20:59:32 UTC</createdTime>
+<generatorID>AAD60FF3-08CE-9863-F0F8-7ABF7A99949F</generatorID>
+<ownerDesignName>coursework_2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT014</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="ED4D7DA3-1438-A9FA-E44E-A8D1285BFDBE" name="EVENT_PLACE_PK">
+<createdBy>Good-</createdBy>
+<createdTime>2023-04-29 20:59:32 UTC</createdTime>
+<generatorID>47214518-F9B2-3A87-2D0A-3A946B0BE748</generatorID>
+<ownerDesignName>coursework_2</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="2D3891F8-EBC4-4ABF-C92B-5E1DA964C123"/>
+<colUsage columnID="F20EC0E9-2665-8920-0396-E9C795CAB0BA"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="32F2FACB-EA89-A21A-6675-4EB9A03B8899" name="EVENT_PLACE_PLACE_FK">
+<createdBy>Good-</createdBy>
+<createdTime>2023-04-29 20:59:32 UTC</createdTime>
+<generatorID>49F2B98E-0D05-5EFA-F0D4-D92662F09CB9</generatorID>
+<ownerDesignName>coursework_2</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="2D3891F8-EBC4-4ABF-C92B-5E1DA964C123"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="6A77077C-0907-F12C-259B-F5D95B36B8A8" name="EVENT_PLACE_EVENT_FK">
+<createdBy>Good-</createdBy>
+<createdTime>2023-04-29 20:59:32 UTC</createdTime>
+<generatorID>22737C8E-27C3-91E2-69D2-FFF70F688F90</generatorID>
+<ownerDesignName>coursework_2</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="F20EC0E9-2665-8920-0396-E9C795CAB0BA"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

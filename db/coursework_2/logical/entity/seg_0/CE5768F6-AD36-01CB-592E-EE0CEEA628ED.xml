@@ -1,0 +1,75 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="CE5768F6-AD36-01CB-592E-EE0CEEA628ED" name="TEAM SPORT TYPE">
+<createdBy>Good-</createdBy>
+<createdTime>2023-04-29 20:05:54 UTC</createdTime>
+<ownerDesignName>coursework_2</ownerDesignName>
+<engineerTo>
+<item key="A9083D8E-C123-0C2C-B83C-727B97DD9F3D" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="TEAM ID" id="09FCB3A3-93F1-4529-FF9E-ED6B26E9E0E9">
+<createdBy>Good-</createdBy>
+<createdTime>2023-04-29 20:07:37 UTC</createdTime>
+<generatorID>9AE9A1EE-7001-6C3F-0052-AB80BAFFB5CE</generatorID>
+<ownerDesignName>coursework_2</ownerDesignName>
+<engineerTo>
+<item key="A9083D8E-C123-0C2C-B83C-727B97DD9F3D" value="true"/>
+</engineerTo>
+<referedAttribute>80D5FEC6-D68F-1301-1AE7-3770775CB06A</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="SPORT TYPE ID" id="EC192CBC-67F5-8C11-1530-AA18C8E568B8">
+<createdBy>Good-</createdBy>
+<createdTime>2023-04-29 20:13:12 UTC</createdTime>
+<generatorID>2D2E5F01-AD97-B1B6-C5D1-60F31DB124D0</generatorID>
+<ownerDesignName>coursework_2</ownerDesignName>
+<engineerTo>
+<item key="A9083D8E-C123-0C2C-B83C-727B97DD9F3D" value="true"/>
+</engineerTo>
+<referedAttribute>F63ED709-69D4-8B9B-0B53-342177CB6C8E</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="CREATE DATE" id="12933D62-80AD-F73D-2206-A392B4A7D82A">
+<createdBy>Good-</createdBy>
+<createdTime>2023-04-29 20:06:18 UTC</createdTime>
+<ownerDesignName>coursework_2</ownerDesignName>
+<engineerTo>
+<item key="A9083D8E-C123-0C2C-B83C-727B97DD9F3D" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="4E7CA552-57B7-B02A-A744-E95AB76E0EF2" name="TEAM_SPORT_TYPE_PK">
+<createdBy>Good-</createdBy>
+<createdTime>2023-04-29 20:14:29 UTC</createdTime>
+<ownerDesignName>coursework_2</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="A9083D8E-C123-0C2C-B83C-727B97DD9F3D" value="false"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>EC192CBC-67F5-8C11-1530-AA18C8E568B8</attributeRef>
+<attributeRef>09FCB3A3-93F1-4529-FF9E-ED6B26E9E0E9</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

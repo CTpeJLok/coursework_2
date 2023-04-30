@@ -1,0 +1,20 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="EVENT_DISTRIBUTION_POSITION_FK" directorySegmentName="seg_0" id="A9730025-11EE-327E-B89B-0CA7B3231360">
+<createdBy>Good-</createdBy>
+<createdTime>2023-04-29 21:10:48 UTC</createdTime>
+<generatorID>C4E29EC5-7558-F753-B489-9FB8EE0DBFE3</generatorID>
+<ownerDesignName>coursework_2</ownerDesignName>
+<engineerTo>
+<item key="A9083D8E-C123-0C2C-B83C-727B97DD9F3D" value="true"/>
+</engineerTo>
+<sourcePk>0D3F2830-D88F-763A-30AD-18CD28522D9B</sourcePk>
+<identifying>false</identifying>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>06C1D322-5D32-0315-8D18-95982F6A8456</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>0C5812E2-7A88-FE67-63D6-0B76617E4167</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

@@ -1,0 +1,73 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="F85D669E-518D-C784-06A1-F0E527862F60" name="PLACE">
+<createdBy>Good-</createdBy>
+<createdTime>2023-04-29 19:31:01 UTC</createdTime>
+<ownerDesignName>coursework_2</ownerDesignName>
+<engineerTo>
+<item key="A9083D8E-C123-0C2C-B83C-727B97DD9F3D" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="ID" id="D010B72B-89C8-D63A-C50B-CCF31386177F">
+<createdBy>Good-</createdBy>
+<createdTime>2023-04-29 19:31:06 UTC</createdTime>
+<ownerDesignName>coursework_2</ownerDesignName>
+<engineerTo>
+<item key="A9083D8E-C123-0C2C-B83C-727B97DD9F3D" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="LOCATION" id="D34447BD-1BBD-6783-924E-ADEDCA2F63B9">
+<createdBy>Good-</createdBy>
+<createdTime>2023-04-29 19:34:38 UTC</createdTime>
+<ownerDesignName>coursework_2</ownerDesignName>
+<engineerTo>
+<item key="A9083D8E-C123-0C2C-B83C-727B97DD9F3D" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>19</dataTypeSize>
+<ownDataTypeParameters>19,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="DESCRIPTION" id="A411ADC9-5379-7DE5-CB36-8A1181B1B585">
+<createdBy>Good-</createdBy>
+<createdTime>2023-04-29 19:37:48 UTC</createdTime>
+<ownerDesignName>coursework_2</ownerDesignName>
+<engineerTo>
+<item key="A9083D8E-C123-0C2C-B83C-727B97DD9F3D" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100</dataTypeSize>
+<ownDataTypeParameters>100,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="09441921-89A3-6E5F-D73D-132BA51B6C47" name="PLACE PK">
+<createdBy>Good-</createdBy>
+<createdTime>2023-04-29 19:31:12 UTC</createdTime>
+<ownerDesignName>coursework_2</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="A9083D8E-C123-0C2C-B83C-727B97DD9F3D" value="false"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>D010B72B-89C8-D63A-C50B-CCF31386177F</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml" lang="ru">
+
+<head th:insert="~{base :: html_head_p (~{::link})}">
+    <link rel="stylesheet" th:href="@{/css/admin-edit-user.css}">
+</head>
+
+<body class="d-flex flex-column justify-content-center align-items-center gap-3">
+<div th:replace="~{base :: header}" class="container">
+</div>
+
+<div class="box">
+    <form action="#" th:action="@{/admin/users/save}" th:object="${user}" method="post" class="form">
+        <h2>Редактирование</h2>
+
+        <div class="inputs">
+            <div class="inputBox">
+                <input type="text" class="email" th:field="*{id}" tabindex="1" readonly>
+                <span>ID</span>
+                <i></i>
+            </div>
+
+            <div class="inputBox">
+                <input type="text" class="email" th:field="*{username}" tabindex="2" readonly>
+                <span>Логин</span>
+                <i></i>
+            </div>
+
+            <div class="inputBox">
+                <input type="text" th:field="*{firstName}" tabindex="3" required>
+                <span>Имя</span>
+                <i></i>
+            </div>
+
+            <div class="inputBox">
+                <input type="text" th:field="*{lastName}" tabindex="4" required>
+                <span>Фамилия</span>
+                <i></i>
+            </div>
+
+            <div class="inputBox">
+                <input type="text" class="phone" th:field="*{phone}" tabindex="5" pattern="\+7 \([0-9]{3}\) [0-9]{3}-[0-9]{2}-[0-9]{2}" maxlength="18" required>
+                <span>Телефон</span>
+                <i></i>
+            </div>
+
+            <div class="inputBox">
+                <input type="text" th:field="*{birthday}" tabindex="6" required onfocus="(this.type='date')" onblur="if(!this.value)this.type='text'">
+                <span>Дата рождения</span>
+                <i></i>
+            </div>
+
+            <div class="inputBox">
+                <input type="text" class="email-field" th:field="*{email}" maxlength="30" pattern="(.+@.+\..+|)" tabindex="7">
+                <span>Почта</span>
+                <i></i>
+            </div>
+
+            <div class="dropdownBox">
+                <select name="roles" th:selected="*{roles}">
+                    <option value="1">Пользователь</option>
+                    <option value="2">Администратор</option>
+                </select>
+                <span>Роли</span>
+            </div>
+        </div>
+
+        <div class="buttons d-flex justify-content-between align-items-center">
+            <a href="/admin/users" class="button btn-primary text-decoration-none back">Назад</a>
+            <input type="submit" value="Сохранить" class="go" autocomplete="off">
+        </div>
+    </form>
+</div>
+
+</body>
+
+<script>
+    let inp = document.querySelector('.phone');
+
+    inp.addEventListener('keydown', e => {
+        let l = inp.value.length;
+
+        if (e.key == 'Backspace') {
+            if (l < 5) {
+                inp.value = '+7 (';
+            } else if (l == 10) {
+                inp.value = inp.value.substring(0, inp.value.length - 3);
+            } else if (l == 14) {
+                inp.value = inp.value.substring(0, inp.value.length - 2);
+            } else if (l == 17) {
+                inp.value = inp.value.substring(0, inp.value.length - 2);
+            } else {
+                inp.value = inp.value.substring(0, inp.value.length - 1);
+            }
+        }
+        if(!/\d/.test(e.key))
+            e.preventDefault();
+        else {
+            if (l == 0) {
+                e.preventDefault();
+                inp.value = '+7 (';
+            } else if (l == 7) {
+                inp.value += ') ';
+            } else if (l == 12) {
+                inp.value += '-';
+            } else if (l == 15) {
+                inp.value += '-';
+            }
+        }
+    });
+
+    inp.addEventListener('focus', c => {
+        if (inp.value.length == 0)
+            inp.value = '+7 (';
+    })
+</script>
+
+<script>
+    let email = document.querySelector('.email-field');
+
+    if (email.value.length > 0)
+        email.classList.add('email');
+
+    email.addEventListener('focus', c => {
+        email.classList.add('email');
+    })
+
+    email.addEventListener('blur', e => {
+        if (email.value.length == 0)
+            email.classList.remove('email');
+    })
+</script>
+
+</html>

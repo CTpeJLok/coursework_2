@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Регистрация</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <link rel="stylesheet" th:href="@{/css/registr.css}">
+</head>
+
+<body class="d-flex flex-column justify-content-center align-items-center g-3">
+<div class="box">
+    <form class="form" th:action="@{/registration}" th:object="${useForm}" method="post">
+        <h2>Регистрация</h2>
+
+        <div class="inputs">
+            <div class="inputBox">
+                <input type="text" th:field="*{username}" tabindex="1" required>
+                <span>Логин *</span>
+                <i></i>
+            </div>
+
+            <div class="inputBox">
+                <input type="password" th:field="*{password}" tabindex="2" required>
+                <span>Пароль *</span>
+                <i></i>
+            </div>
+
+            <div class="inputBox">
+                <input type="text" th:field="*{firstName}" tabindex="4" required>
+                <span>Имя *</span>
+                <i></i>
+            </div>
+
+            <div class="inputBox">
+                <input type="password" th:field="*{passwordConfirm}" tabindex="3" required>
+                <span>Подтверждение пароля *</span>
+                <i></i>
+            </div>
+
+            <div class="inputBox">
+                <input type="text" th:field="*{lastName}" tabindex="5" required>
+                <span>Фамилия *</span>
+                <i></i>
+            </div>
+
+            <div class="inputBox">
+                <input type="text" class="phone" th:field="*{phone}" tabindex="6" pattern="\+7 \([0-9]{3}\) [0-9]{3}-[0-9]{2}-[0-9]{2}" maxlength="18" required>
+                <span>Телефон *</span>
+                <i></i>
+            </div>
+
+            <div class="inputBox">
+                <input type="text" th:field="*{birthday}" tabindex="7" required onfocus="(this.type='date')" onblur="if(!this.value)this.type='text'">
+                <span>Дата рождения *</span>
+                <i></i>
+            </div>
+
+            <div class="inputBox">
+                <input type="text" class="email-field" th:field="*{email}" maxlength="30" pattern="(.+@.+\..+|)" tabindex="8">
+                <span>Почта</span>
+                <i></i>
+            </div>
+        </div>
+
+        <div class="links">
+            <p>* - обязательное поле</p>
+            <a href="login">Авторизация</a>
+        </div>
+
+        <input type="submit" value="Зарегистрироваться" class="go" autocomplete="off">
+
+        <p th:text="${Error}" class="error"></p>
+    </form>
+</div>
+<!--    <h1>Авторизация1</h1>-->
+
+<!--    <form th:action="@{/login}" method="post">-->
+<!--        <table>-->
+<!--            <tr>-->
+<!--                <td>Логин</td>-->
+<!--                <td><input type="username" name="username" required>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--                <td>Пароль:</td>-->
+<!--                <td><input type="password" name="password" required>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--                <td>-->
+<!--                    <blockquote class="blockquote text-center text-white">-->
+<!--                        <button type="submit" class="btn btn-primary" data-tooggle="button" aria-pressed="false"-->
+<!--                                autocomplete="off">Войти-->
+<!--                        </button>-->
+<!--                    </blockquote>-->
+<!--                </td>-->
+<!--            </tr>-->
+<!--        </table>-->
+<!--    </form>-->
+</body>
+
+<script>
+    let inp = document.querySelector('.phone');
+
+    inp.addEventListener('keydown', e => {
+        let l = inp.value.length;
+
+        if (e.key == 'Backspace') {
+            if (l < 5) {
+                inp.value = '+7 (';
+            } else if (l == 10) {
+                inp.value = inp.value.substring(0, inp.value.length - 3);
+            } else if (l == 14) {
+                inp.value = inp.value.substring(0, inp.value.length - 2);
+            } else if (l == 17) {
+                inp.value = inp.value.substring(0, inp.value.length - 2);
+            } else {
+                inp.value = inp.value.substring(0, inp.value.length - 1);
+            }
+        }
+        if(!/\d/.test(e.key))
+            e.preventDefault();
+        else {
+            if (l == 0) {
+                e.preventDefault();
+                inp.value = '+7 (';
+            } else if (l == 7) {
+                inp.value += ') ';
+            } else if (l == 12) {
+                inp.value += '-';
+            } else if (l == 15) {
+                inp.value += '-';
+            }
+        }
+    });
+
+    inp.addEventListener('focus', c => {
+        if (inp.value.length == 0)
+            inp.value = '+7 (';
+    })
+</script>
+
+<script>
+    let email = document.querySelector('.email-field');
+
+    email.addEventListener('focus', c => {
+        email.classList.add('email');
+    })
+
+    email.addEventListener('blur', e => {
+        if (email.value.length == 0)
+            email.classList.remove('email');
+    })
+</script>
+
+</html>

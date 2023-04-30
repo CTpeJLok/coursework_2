@@ -1,0 +1,102 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="55D8F0D4-8313-E8FB-6EEF-7350F51D5F41" name="USER_TEAM">
+<createdBy>Good-</createdBy>
+<createdTime>2023-04-29 20:59:32 UTC</createdTime>
+<generatorID>C362D199-70CE-ED69-82ED-E51F7719F68C</generatorID>
+<ownerDesignName>coursework_2</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="USER_ID" id="94902F5E-CD75-AD8C-C8DF-43AEB6464ABF">
+<createdBy>Good-</createdBy>
+<createdTime>2023-04-29 20:59:32 UTC</createdTime>
+<generatorID>F021F950-93F5-723E-E772-DE99278CA721</generatorID>
+<ownerDesignName>coursework_2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="87C87D79-B880-D025-FF56-8FC394590DA3" referredColumn="C896845F-E1CF-A0E5-E9AE-6722FF37FDC5"/>
+</associations>
+</Column>
+<Column name="TEAM_ID" id="42A26456-FE35-5D36-71A2-2702B5949EF0">
+<createdBy>Good-</createdBy>
+<createdTime>2023-04-29 20:59:32 UTC</createdTime>
+<generatorID>2311A6DB-0202-E16B-DEDE-5E7DB9F1A74E</generatorID>
+<ownerDesignName>coursework_2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="AF5A7278-1B69-03F2-4EDF-3ABDA3F06F99" referredColumn="BF1EC491-1E5F-27A3-DE81-98CCC4A5AC42"/>
+</associations>
+</Column>
+<Column name="ENTRY_DATE" id="A1288B04-0078-6167-DB2A-C0E763FF63E1">
+<createdBy>Good-</createdBy>
+<createdTime>2023-04-29 20:59:32 UTC</createdTime>
+<generatorID>A65AA3AB-221B-B9AB-4AF8-88BEF3713D0C</generatorID>
+<ownerDesignName>coursework_2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="EXIT_DATE" id="235E8A29-9FC8-94F0-9C26-82C28E68CA63">
+<createdBy>Good-</createdBy>
+<createdTime>2023-04-29 20:59:32 UTC</createdTime>
+<generatorID>2A81BA38-01E5-C0DA-EF0D-C88493711E15</generatorID>
+<ownerDesignName>coursework_2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="9458D2EE-6513-284C-F2D4-500EF58F15A0" name="USER_TEAM_PK">
+<createdBy>Good-</createdBy>
+<createdTime>2023-04-29 20:59:32 UTC</createdTime>
+<generatorID>1FB79D9E-66F9-EE12-91C1-7B197641F69B</generatorID>
+<ownerDesignName>coursework_2</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="42A26456-FE35-5D36-71A2-2702B5949EF0"/>
+<colUsage columnID="94902F5E-CD75-AD8C-C8DF-43AEB6464ABF"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="AD394455-7EF5-D945-B62B-C9342753C15A" name="USER_TEAM_TEAM_FK">
+<createdBy>Good-</createdBy>
+<createdTime>2023-04-29 20:59:32 UTC</createdTime>
+<generatorID>8621131E-CF83-6276-CB53-D6F3CFC3EA57</generatorID>
+<ownerDesignName>coursework_2</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="42A26456-FE35-5D36-71A2-2702B5949EF0"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="25736CA1-2C02-0E0C-45FA-55B14846737D" name="USER_TEAM_USER_FK">
+<createdBy>Good-</createdBy>
+<createdTime>2023-04-29 20:59:32 UTC</createdTime>
+<generatorID>99567F51-4934-EBEC-2C17-94BF509BB3E8</generatorID>
+<ownerDesignName>coursework_2</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="94902F5E-CD75-AD8C-C8DF-43AEB6464ABF"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

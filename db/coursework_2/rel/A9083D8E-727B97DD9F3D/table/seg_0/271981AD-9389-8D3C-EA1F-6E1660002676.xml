@@ -1,0 +1,92 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="271981AD-9389-8D3C-EA1F-6E1660002676" name="PLACE_SPORT_TYPE">
+<createdBy>Good-</createdBy>
+<createdTime>2023-04-29 20:59:32 UTC</createdTime>
+<generatorID>5CC2055D-2940-3DCD-27F2-080D39E90F24</generatorID>
+<ownerDesignName>coursework_2</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="PLACE_ID" id="E49BC6FB-7469-2A82-9FE6-D346A581ECE3">
+<createdBy>Good-</createdBy>
+<createdTime>2023-04-29 20:59:32 UTC</createdTime>
+<generatorID>05BFD5B5-26F1-80A7-9FE5-70F38DF700C5</generatorID>
+<ownerDesignName>coursework_2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="0EC7756C-9147-79A2-1F00-CA132D62A3C8" referredColumn="B47E7C00-A9FB-A08F-F206-CA2ADAA5DEFD"/>
+</associations>
+</Column>
+<Column name="SPORT_TYPE_ID" id="27C00B64-2CEE-1F04-057D-A39CD4BB30F5">
+<createdBy>Good-</createdBy>
+<createdTime>2023-04-29 20:59:32 UTC</createdTime>
+<generatorID>81E8A730-7FF8-220A-A001-20AF0CF7E430</generatorID>
+<ownerDesignName>coursework_2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="0C767A8C-BC1F-723A-3F92-99726CBE74E1" referredColumn="70F880ED-F881-253D-88B6-A7813958C4CE"/>
+</associations>
+</Column>
+<Column name="SIZE" id="FF34CAE2-C38C-65D1-C188-532D35819997">
+<createdBy>Good-</createdBy>
+<createdTime>2023-04-29 20:59:32 UTC</createdTime>
+<generatorID>178F8984-D6F3-5B2B-2364-C8E1E3D6A8AC</generatorID>
+<ownerDesignName>coursework_2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="6825E1F9-457C-8937-9B88-43EA91071E9B" name="PLACE_SPORT_TYPE_PK">
+<createdBy>Good-</createdBy>
+<createdTime>2023-04-29 20:59:32 UTC</createdTime>
+<generatorID>FD75D2DD-B21C-944E-6BE0-3BC762F4A7AD</generatorID>
+<ownerDesignName>coursework_2</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="27C00B64-2CEE-1F04-057D-A39CD4BB30F5"/>
+<colUsage columnID="E49BC6FB-7469-2A82-9FE6-D346A581ECE3"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="C89525CD-8E61-6579-6605-AFADB9EF4A6F" name="PLACE_SPORT_TYPE_SPORT_TYPE_FK">
+<createdBy>Good-</createdBy>
+<createdTime>2023-04-29 20:59:32 UTC</createdTime>
+<generatorID>599FB11E-C71A-3CA7-4C4D-EBBC89B0D0BF</generatorID>
+<ownerDesignName>coursework_2</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="27C00B64-2CEE-1F04-057D-A39CD4BB30F5"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="A86B67AC-484E-3F73-7329-84261DF721B3" name="PLACE_SPORT_TYPE_PLACE_FK">
+<createdBy>Good-</createdBy>
+<createdTime>2023-04-29 20:59:32 UTC</createdTime>
+<generatorID>AFB1D50F-0E2E-B094-2B8D-CAD96426394E</generatorID>
+<ownerDesignName>coursework_2</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="E49BC6FB-7469-2A82-9FE6-D346A581ECE3"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

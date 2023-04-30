@@ -1,0 +1,144 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="516351C6-202C-5BAB-4CA2-E1421FAF3D3B" name="EVENT_DISTRIBUTION">
+<createdBy>Good-</createdBy>
+<createdTime>2023-04-29 21:12:02 UTC</createdTime>
+<generatorID>0C5812E2-7A88-FE67-63D6-0B76617E4167</generatorID>
+<ownerDesignName>coursework_2</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="EVENT_ID" id="BDB981B7-78A5-D155-D4FE-AB1E662FE421">
+<createdBy>Good-</createdBy>
+<createdTime>2023-04-29 21:12:02 UTC</createdTime>
+<generatorID>31588FE6-2D2D-B4CC-FBB0-2B8A8FD46795</generatorID>
+<ownerDesignName>coursework_2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="BA2A9C90-00A9-BCF1-3DC8-DE5D0DCC9489" referredColumn="3BBD3CE1-C52C-96C8-8A84-355DB7F7BA50"/>
+</associations>
+</Column>
+<Column name="TEAM_ID" id="5E0A4CB1-1A41-1056-8B7D-01B4EB6B5F50">
+<createdBy>Good-</createdBy>
+<createdTime>2023-04-29 21:12:02 UTC</createdTime>
+<generatorID>7AAF311C-8F7A-4B55-671D-9534BD242098</generatorID>
+<ownerDesignName>coursework_2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="B079D47D-6237-DB6B-D70D-A69A78C1413D" referredColumn="BF1EC491-1E5F-27A3-DE81-98CCC4A5AC42"/>
+</associations>
+</Column>
+<Column name="USER_ID" id="C7E6E0E2-4C92-7AC1-F008-48EC85E3608E">
+<createdBy>Good-</createdBy>
+<createdTime>2023-04-29 21:12:02 UTC</createdTime>
+<generatorID>7086A53F-7BB1-DAF8-0012-5D721BDA555A</generatorID>
+<ownerDesignName>coursework_2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="2C1CFAE8-EBB6-81DA-8FE7-C3E4CB097D1A" referredColumn="C896845F-E1CF-A0E5-E9AE-6722FF37FDC5"/>
+</associations>
+</Column>
+<Column name="POSITION_ID" id="464DADE7-1A17-D964-61BE-6DE55B4249D6">
+<createdBy>Good-</createdBy>
+<createdTime>2023-04-29 21:12:02 UTC</createdTime>
+<generatorID>54E2D1AC-A66D-B7DC-BCA6-4AF0E5CB8717</generatorID>
+<ownerDesignName>coursework_2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="374A8B6E-F638-0E29-9CF5-C646450C26AC" referredColumn="CBB85789-350E-4315-5E7A-92EB9B741D35"/>
+</associations>
+</Column>
+<Column name="PRIZE" id="B69B076E-2DC3-789F-0ABA-5D52B978B763">
+<createdBy>Good-</createdBy>
+<createdTime>2023-04-29 21:12:02 UTC</createdTime>
+<generatorID>44D0E6BE-82DF-D97D-1247-AF925003C48E</generatorID>
+<ownerDesignName>coursework_2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="27512226-56E7-78A5-F3B1-F6398AAC19B0" name="EVENT_DISTRIBUTION_PK">
+<createdBy>Good-</createdBy>
+<createdTime>2023-04-29 21:12:02 UTC</createdTime>
+<generatorID>0FCB88BB-4F7C-6D6E-2FDA-4D52A34583FF</generatorID>
+<ownerDesignName>coursework_2</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="BDB981B7-78A5-D155-D4FE-AB1E662FE421"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="82AE7CFE-0E62-174F-4692-417750D08899" name="EVENT_DISTRIBUTION_EVENT_FK">
+<createdBy>Good-</createdBy>
+<createdTime>2023-04-29 21:12:02 UTC</createdTime>
+<generatorID>2716CAFA-A58F-F256-F353-CB7E2301A415</generatorID>
+<ownerDesignName>coursework_2</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="BDB981B7-78A5-D155-D4FE-AB1E662FE421"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="A0E77134-938F-B3A0-698E-D38B2B943575" name="EVENT_DISTRIBUTION_POSITION_FK">
+<createdBy>Good-</createdBy>
+<createdTime>2023-04-29 21:12:02 UTC</createdTime>
+<generatorID>A9730025-11EE-327E-B89B-0CA7B3231360</generatorID>
+<ownerDesignName>coursework_2</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="464DADE7-1A17-D964-61BE-6DE55B4249D6"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="23C47C3C-6B76-FFD9-3096-9F4496E45CCE" name="EVENT_DISTRIBUTION_TEAM_FK">
+<createdBy>Good-</createdBy>
+<createdTime>2023-04-29 21:12:02 UTC</createdTime>
+<generatorID>37A7B26F-35DE-BBFE-47E6-615750B2AD5E</generatorID>
+<ownerDesignName>coursework_2</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="5E0A4CB1-1A41-1056-8B7D-01B4EB6B5F50"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="01185AAC-7D41-3508-05F6-FFB4FD63A61F" name="EVENT_DISTRIBUTION_USER_FK">
+<createdBy>Good-</createdBy>
+<createdTime>2023-04-29 21:12:02 UTC</createdTime>
+<generatorID>B8BFCD66-E630-F670-5667-C56E59095111</generatorID>
+<ownerDesignName>coursework_2</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="C7E6E0E2-4C92-7AC1-F008-48EC85E3608E"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

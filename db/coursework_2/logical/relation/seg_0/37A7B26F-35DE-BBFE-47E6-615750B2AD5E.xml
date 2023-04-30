@@ -1,0 +1,23 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="EVENT_DISTRIBUTION_TEAM_FK" directorySegmentName="seg_0" id="37A7B26F-35DE-BBFE-47E6-615750B2AD5E">
+<createdBy>Good-</createdBy>
+<createdTime>2023-04-29 21:10:48 UTC</createdTime>
+<generatorID>ADF83D34-D533-2A4E-A4A8-880553E92223</generatorID>
+<ownerDesignName>coursework_2</ownerDesignName>
+<engineerTo>
+<item key="A9083D8E-C123-0C2C-B83C-727B97DD9F3D" value="true"/>
+</engineerTo>
+<sourcePk>07B367CC-2440-9ADF-39F1-F47461DC0B05</sourcePk>
+<arc>0E83D320-140F-179C-BECF-C76B72A7D7E5</arc>
+<identifying>false</identifying>
+<nameOnSource> </nameOnSource>
+<nameOnTarget>HAS ONE TEAM</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>EAE04AFD-60D8-2C8C-F393-AEB5766A8AF5</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>0C5812E2-7A88-FE67-63D6-0B76617E4167</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

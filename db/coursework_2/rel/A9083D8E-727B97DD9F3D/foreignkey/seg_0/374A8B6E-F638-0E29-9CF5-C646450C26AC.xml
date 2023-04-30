@@ -1,0 +1,17 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="374A8B6E-F638-0E29-9CF5-C646450C26AC" containerWithKeyObject="516351C6-202C-5BAB-4CA2-E1421FAF3D3B" localFKIndex="A0E77134-938F-B3A0-698E-D38B2B943575" name="EVENT_DISTRIBUTION_POSITION_FK">
+<createdBy>Good-</createdBy>
+<createdTime>2023-04-29 21:12:02 UTC</createdTime>
+<generatorID>A9730025-11EE-327E-B89B-0CA7B3231360</generatorID>
+<ownerDesignName>coursework_2</ownerDesignName>
+<referredTableLongName>POSITION</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>5460D57C-CCEA-AC50-397C-E5A549364D66</referredTableID>
+<keyObject>9B1F8411-59ED-B321-AEE5-25747FDAE635</keyObject>
+<referredKeyID>9B1F8411-59ED-B321-AEE5-25747FDAE635</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>ID</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

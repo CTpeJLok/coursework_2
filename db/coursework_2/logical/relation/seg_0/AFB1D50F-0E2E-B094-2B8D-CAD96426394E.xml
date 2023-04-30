@@ -1,0 +1,21 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="PLACE SPORT TYPE PLACE FK" directorySegmentName="seg_0" id="AFB1D50F-0E2E-B094-2B8D-CAD96426394E">
+<createdBy>Good-</createdBy>
+<createdTime>2023-04-29 20:17:09 UTC</createdTime>
+<ownerDesignName>coursework_2</ownerDesignName>
+<engineerTo>
+<item key="A9083D8E-C123-0C2C-B83C-727B97DD9F3D" value="true"/>
+</engineerTo>
+<sourcePk>09441921-89A3-6E5F-D73D-132BA51B6C47</sourcePk>
+<identifying>true</identifying>
+<nameOnSource>HAS SEVERAL SPORT_TYPE</nameOnSource>
+<nameOnTarget> </nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>F85D669E-518D-C784-06A1-F0E527862F60</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>5CC2055D-2940-3DCD-27F2-080D39E90F24</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>
