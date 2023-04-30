@@ -27,9 +27,18 @@
             </div>
 
             <div class="inputBox">
-                <input type="text" th:field="*{createDate}" tabindex="3" required onfocus="(this.type='date')" onblur="if(!this.value)this.type='text'">
+                <input type="text" th:field="*{createDate}" tabindex="3" required onfocus="(this.type='date')"
+                       onblur="if(!this.value)this.type='text'">
                 <span>Дата создания</span>
                 <i></i>
+            </div>
+
+            <div class="dropdownBox">
+                <select name="sportType" th:field="*{sportType}">
+                    <option th:each="type : ${sportTypes}" th:value="${type.id}" th:text="${type.name}"
+                            th:selected="${type.id == obj.sportType.id}"></option>
+                </select>
+                <span>Вид спорта</span>
             </div>
         </div>
 

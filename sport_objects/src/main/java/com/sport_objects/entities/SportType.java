@@ -2,6 +2,7 @@ package com.sport_objects.entities;
 
 import jakarta.persistence.*;
 
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -12,9 +13,8 @@ public class SportType {
     private long id;
     private String name;
 
-    @Transient
-    @ManyToMany(mappedBy = "sport_types")
-    private Set<Team> teams;
+    @OneToMany(mappedBy = "sportType")
+    private List<Team> teamList;
 
     public SportType() {
 
@@ -45,12 +45,11 @@ public class SportType {
         this.name = name;
     }
 
-    public Set<Team> getTeams() {
-        return teams;
+    public List<Team> getTeamList() {
+        return teamList;
     }
 
-    public void setTeams(Set<Team> teams) {
-        this.teams = teams;
+    public void setTeamList(List<Team> teamList) {
+        this.teamList = teamList;
     }
-
 }

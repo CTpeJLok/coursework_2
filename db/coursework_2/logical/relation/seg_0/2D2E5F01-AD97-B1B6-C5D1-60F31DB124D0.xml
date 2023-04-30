@@ -7,7 +7,7 @@
 <item key="A9083D8E-C123-0C2C-B83C-727B97DD9F3D" value="true"/>
 </engineerTo>
 <sourcePk>6B1782AE-06D4-C59F-2F41-42E7E770B03C</sourcePk>
-<identifying>true</identifying>
+<identifying>false</identifying>
 <nameOnSource>HAS SEVERAL TEAMS</nameOnSource>
 <nameOnTarget> </nameOnTarget>
 <optionalSource>true</optionalSource>
@@ -15,7 +15,7 @@
 <sourceCardinality>1</sourceCardinality>
 <sourceEntity>BF1C0873-CC94-AC13-BA91-B04A546229E4</sourceEntity>
 <targetCardinalityString>*</targetCardinalityString>
-<targetEntity>CE5768F6-AD36-01CB-592E-EE0CEEA628ED</targetEntity>
+<targetEntity>EAE04AFD-60D8-2C8C-F393-AEB5766A8AF5</targetEntity>
 <transferable>true</transferable>
 <deleteRule>NO ACTION</deleteRule>
 </Relation>

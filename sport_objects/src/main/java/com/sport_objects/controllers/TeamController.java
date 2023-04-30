@@ -1,6 +1,8 @@
 package com.sport_objects.controllers;
 
+import com.sport_objects.entities.SportType;
 import com.sport_objects.entities.Team;
+import com.sport_objects.services.SportTypeService;
 import com.sport_objects.services.TeamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
@@ -19,6 +21,9 @@ public class TeamController {
 
     @Autowired
     private TeamService service;
+
+    @Autowired
+    private SportTypeService sportTypeService;
 
     @RequestMapping("/team")
     public String SportType(Model model, @Param("searchKeyword") String searchKeyword) {
@@ -39,7 +44,10 @@ public class TeamController {
     @RequestMapping("/team/create")
     public String create(Model model) {
         Team team = new Team();
+        List<SportType> sportTypes = sportTypeService.findAll();
+
         model.addAttribute("obj", team);
+        model.addAttribute("sportTypes", sportTypes);
 
         return "team-create";
     }
@@ -50,7 +58,11 @@ public class TeamController {
         Team team = service.get(id);
         mav.addObject("obj", team);
 
+        List<SportType> sportTypes = sportTypeService.findAll();
+
         mav.getModelMap().addAttribute("title", "Админ | Редактирование команды " + id);
+        mav.getModelMap().addAttribute("sportTypes", sportTypes);
+
         return mav;
     }
 

@@ -136,6 +136,44 @@ $exit_color: #dc3b3b;
       }
     }
 
+    .dropdownBox {
+      position: relative;
+      width: $input_w;
+      margin-top: 35px;
+
+      select {
+        position: relative;
+        width: 100%;
+        padding: 0 10px;
+        background: $primary_color;
+        border: none;
+        outline: none;
+        color: $font_color;
+        font-size: 1em;
+        letter-spacing: 0.05em;
+        z-index: 10;
+        border-radius: 4px;
+        margin-top: 10px;
+        height: 44px;
+
+        option {
+          color: #000;
+        }
+      }
+
+      span {
+        position: absolute;
+        left: 0;
+        padding: 20px 0 10px;
+        font-size: 0.75em;
+        color: $primary_color;
+        pointer-events: none;
+        letter-spacing: 0.05em;
+        transition: 0.5s;
+        transform: translateY(-34px);
+      }
+    }
+
     .buttons {
       input {
         border: none;

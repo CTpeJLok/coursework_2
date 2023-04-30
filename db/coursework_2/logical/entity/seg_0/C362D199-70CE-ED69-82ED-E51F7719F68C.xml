@@ -29,10 +29,10 @@
 <logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="TEAM ID" id="2311A6DB-0202-E16B-DEDE-5E7DB9F1A74E">
+<Attribute name="TEAM_ID" id="C60F6982-0566-454A-4661-ABB379394AD0">
 <createdBy>Good-</createdBy>
-<createdTime>2023-04-29 20:20:46 UTC</createdTime>
-<generatorID>8621131E-CF83-6276-CB53-D6F3CFC3EA57</generatorID>
+<createdTime>2023-04-30 18:00:52 UTC</createdTime>
+<generatorID>A43BEC0F-18E1-B165-D575-C3AA39C890F2</generatorID>
 <ownerDesignName>coursework_2</ownerDesignName>
 <engineerTo>
 <item key="A9083D8E-C123-0C2C-B83C-727B97DD9F3D" value="true"/>
@@ -79,9 +79,10 @@
 <item key="A9083D8E-C123-0C2C-B83C-727B97DD9F3D" value="false"/>
 </engineerTo>
 <pk>true</pk>
+<newElementsIDs>99567F51-4934-EBEC-2C17-94BF509BB3E8,A43BEC0F-18E1-B165-D575-C3AA39C890F2</newElementsIDs>
 <usedAttributes>
-<attributeRef>2311A6DB-0202-E16B-DEDE-5E7DB9F1A74E</attributeRef>
 <attributeRef>F021F950-93F5-723E-E772-DE99278CA721</attributeRef>
+<attributeRef>C60F6982-0566-454A-4661-ABB379394AD0</attributeRef>
 </usedAttributes>
 </identifier>
 </identifiers>

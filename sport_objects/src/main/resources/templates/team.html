@@ -12,7 +12,8 @@
     <div class="row d-flex justify-content-center align-items-center mb-3">
         <h5 class="text-center">Поиск по любому критерию:</h5>
         <form th:action="@{/team}" class="d-flex justify-content-center align-items-center gap-3">
-            <input type="text" class="text-black" name="searchKeyword" id="searchKeyword" size="30" th:value="${searchKeyword}" required/>
+            <input type="text" class="text-black" name="searchKeyword" id="searchKeyword" size="30"
+                   th:value="${searchKeyword}" required/>
             <input type="submit" class="btn btn-success btn-sm" value="Поиск"/>
             <a href="/team" class="btn btn-danger btn-sm">Очистить</a>
         </form>
@@ -33,10 +34,15 @@
                 <th scope="col">ID</th>
                 <th scope="col">Название</th>
                 <th scope="col">Дата создания</th>
+                <th scope="col">Вид спорта</th>
                 <td></td>
             </tr>
 
             <tr>
+                <th scope="col">
+                    <input type="button" class="btn btn-primary btn-sm sort" value="SORT"/>
+                </th>
+
                 <th scope="col">
                     <input type="button" class="btn btn-primary btn-sm sort" value="SORT"/>
                 </th>
@@ -56,6 +62,7 @@
                 <th scope="row" class="table-th text-white" th:text="${obj.id}">отстутсвует</th>
                 <th scope="row" class="table-th text-white" th:text="${obj.name}">отстутсвует</th>
                 <th scope="row" class="table-th text-white" th:text="${obj.createDate}">отстутсвует</th>
+                <th scope="row" class="table-th text-white" th:text="${obj.sportType.name}">отстутсвует</th>
                 <td>
                     <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{'/team/edit/'+${obj.id}}">
                         <button type="button" class="btn btn-warning">Редактировать</button>
@@ -73,9 +80,14 @@
         <div class="container">
             <canvas id="dates" width="600" height="400"></canvas>
         </div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
+        <div class="container">
+            <canvas id="sport-types" width="600" height="400"></canvas>
+        </div>
     </div>
 </div>
-</div>
+
 </body>
 
 <script src='https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.0.2/tablesort.min.js'></script>
@@ -87,14 +99,7 @@
     let table = document.getElementById('1')
     let tBody = table.querySelector('tbody')
     const count = tBody.querySelectorAll('tr').length;
-    document.querySelector('.row-count').innerHTML = 'Количество видов: ' + count;
-</script>
-
-<script type="text/javascript">
-    let table = document.getElementById('1')
-    let tBody = table.querySelector('tbody')
-    const count = tBody.querySelectorAll('tr').length;
-    document.querySelector('.row-count').innerHTML = 'Количество пользователей: ' + count;
+    document.querySelector('.row-count').innerHTML = 'Количество команд: ' + count;
 </script>
 
 <script th:inline="javascript">
@@ -171,6 +176,84 @@
                     scaleLabel: {
                         display: true,
                         labelString: 'Дата',
+                        fontSize: 18,
+                    },
+                }],
+            },
+        },
+    });
+</script>
+
+<script th:inline="javascript">
+    labels = []
+    data = []
+    tr = document.getElementsByClassName('table-tr');
+    for (let i = 0; i < tr.length; i++) {
+        let t = tr[i].getElementsByClassName('table-th')[3].textContent.split(' ')[0];
+
+        if (!labels.includes(t)) {
+            let ind = Math.max(labels.length, 0);
+            labels[ind] = t;
+            data[ind] = 1;
+        } else {
+            let ind = labels.indexOf(t);
+            data[ind] += 1;
+        }
+    }
+
+    colors = [];
+    for (let i = 0; i < labels.length; i++) {
+        let temp = 'rgb(' + getRandomInt(0, 256) + ', ' + getRandomInt(0, 256) + ', ' + getRandomInt(0, 256) + ')';
+        while (colors.includes(temp)) {
+            temp = 'rgb(' + getRandomInt(0, 256) + ', ' + getRandomInt(0, 256) + ', ' + getRandomInt(0, 256) + ')';
+        }
+
+        colors[i] = temp;
+    }
+
+    dataset = {
+        label: 'Количество команд',
+        data: data,
+        backgroundColor: colors,
+        borderWidth: 1,
+    }
+
+    Chart.defaults.global.defaultFontColor = 'white';
+
+    ctx = document.getElementById('sport-types').getContext('2d');
+    myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [dataset],
+        },
+        options: {
+            legend: {
+                display: false,
+            },
+            title: {
+                display: true,
+                text: 'Количество команд по виду спорта',
+                position: 'top',
+                fontSize: 24,
+                padding: 20,
+            },
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true,
+                        stepSize: 1,
+                    },
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Количество команд',
+                        fontSize: 18,
+                    },
+                }],
+                xAxes: [{
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Вид спорта',
                         fontSize: 18,
                     },
                 }],

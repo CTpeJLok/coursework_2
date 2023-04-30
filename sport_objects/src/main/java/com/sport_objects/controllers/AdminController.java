@@ -53,7 +53,6 @@ public class AdminController {
             }
             user.setPhone(html_phone.toString());
         }
-        System.out.println(user.getPassword());
 
         mav.addObject("user", user);
 
@@ -74,7 +73,6 @@ public class AdminController {
         String[] phone = user.getPhone().replace("-", "").split(" ");
         phone[1] = phone[1].replace("(", "").replace(")", "");
         user.setPhone(String.join("", phone));
-        System.out.println(user.getPassword());
 
         userService.updateUser(user);
         return "redirect:/admin/users";

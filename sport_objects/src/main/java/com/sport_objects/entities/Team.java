@@ -3,8 +3,6 @@ package com.sport_objects.entities;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 
-import java.util.Set;
-
 @Entity
 public class Team {
 
@@ -16,8 +14,8 @@ public class Team {
     @JsonFormat(pattern = "yyyy-MM-dd", shape = JsonFormat.Shape.STRING)
     private String createDate;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    private Set<SportType> sportTypes;
+    @ManyToOne
+    private SportType sportType;
 
     public Long getId() {
         return id;
@@ -35,19 +33,19 @@ public class Team {
         this.name = name;
     }
 
-    public Set<SportType> getSportTypes() {
-        return sportTypes;
-    }
-
-    public void setSportTypes(Set<SportType> sportTypes) {
-        this.sportTypes = sportTypes;
-    }
-
     public String getCreateDate() {
         return createDate;
     }
 
     public void setCreateDate(String createDate) {
         this.createDate = createDate;
+    }
+
+    public SportType getSportType() {
+        return sportType;
+    }
+
+    public void setSportType(SportType sportType) {
+        this.sportType = sportType;
     }
 }

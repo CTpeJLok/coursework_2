@@ -99,6 +99,11 @@
         <div class="container">
             <canvas id="roles" width="600" height="400"></canvas>
         </div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
+        <div class="container">
+            <canvas id="b-dates" width="600" height="400"></canvas>
+        </div>
     </div>
 </div>
 </div>
@@ -170,6 +175,84 @@
             title: {
                 display: true,
                 text: 'Количество пользователей по ролям',
+                position: 'top',
+                fontSize: 24,
+                padding: 20,
+            },
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true,
+                        stepSize: 1,
+                    },
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Количество пользователей',
+                        fontSize: 18,
+                    },
+                }],
+                xAxes: [{
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Роли',
+                        fontSize: 18,
+                    },
+                }],
+            },
+        },
+    });
+</script>
+
+<script th:inline="javascript">
+    labels = []
+    data = []
+    tr = document.getElementsByClassName('table-tr');
+    for (let i = 0; i < tr.length; i++) {
+        let t = tr[i].getElementsByClassName('table-th')[4].textContent.split('-')[0];
+
+        if (!labels.includes(t)) {
+            let ind = Math.max(labels.length, 0);
+            labels[ind] = t;
+            data[ind] = 1;
+        } else {
+            let ind = labels.indexOf(t);
+            data[ind] += 1;
+        }
+    }
+
+    colors = [];
+    for (let i = 0; i < labels.length; i++) {
+        let temp = 'rgb(' + getRandomInt(0, 256) + ', ' + getRandomInt(0, 256) + ', ' + getRandomInt(0, 256) + ')';
+        while (colors.includes(temp)) {
+            temp = 'rgb(' + getRandomInt(0, 256) + ', ' + getRandomInt(0, 256) + ', ' + getRandomInt(0, 256) + ')';
+        }
+
+        colors[i] = temp;
+    }
+
+    dataset = {
+        label: 'Количество пользователей',
+        data: data,
+        backgroundColor: colors,
+        borderWidth: 1,
+    }
+
+    Chart.defaults.global.defaultFontColor = 'white';
+
+    ctx = document.getElementById('b-dates').getContext('2d');
+    myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [dataset],
+        },
+        options: {
+            legend: {
+                display: false,
+            },
+            title: {
+                display: true,
+                text: 'Количество пользователей по году рождения',
                 position: 'top',
                 fontSize: 24,
                 padding: 20,

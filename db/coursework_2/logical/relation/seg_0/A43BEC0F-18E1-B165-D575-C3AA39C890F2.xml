@@ -1,21 +1,21 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="TEAM SPORT TYPE TEAM FK" directorySegmentName="seg_0" id="9AE9A1EE-7001-6C3F-0052-AB80BAFFB5CE">
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_15" directorySegmentName="seg_0" id="A43BEC0F-18E1-B165-D575-C3AA39C890F2">
 <createdBy>Good-</createdBy>
-<createdTime>2023-04-29 20:07:37 UTC</createdTime>
+<createdTime>2023-04-30 18:00:52 UTC</createdTime>
 <ownerDesignName>coursework_2</ownerDesignName>
 <engineerTo>
 <item key="A9083D8E-C123-0C2C-B83C-727B97DD9F3D" value="true"/>
 </engineerTo>
 <sourcePk>07B367CC-2440-9ADF-39F1-F47461DC0B05</sourcePk>
 <identifying>true</identifying>
-<nameOnSource>HAS SEVERAL SPORT_TYPE</nameOnSource>
+<nameOnSource>HAS SEVERAL USER</nameOnSource>
 <nameOnTarget> </nameOnTarget>
 <optionalSource>true</optionalSource>
 <optionalTarget>false</optionalTarget>
 <sourceCardinality>1</sourceCardinality>
 <sourceEntity>EAE04AFD-60D8-2C8C-F393-AEB5766A8AF5</sourceEntity>
 <targetCardinalityString>*</targetCardinalityString>
-<targetEntity>CE5768F6-AD36-01CB-592E-EE0CEEA628ED</targetEntity>
+<targetEntity>C362D199-70CE-ED69-82ED-E51F7719F68C</targetEntity>
 <transferable>true</transferable>
 <deleteRule>NO ACTION</deleteRule>
 </Relation>

@@ -32,6 +32,13 @@
                 <span>Дата создания</span>
                 <i></i>
             </div>
+
+            <div class="dropdownBox">
+                <select name="sportType" th:field="*{sportType}">
+                    <option th:each="type : ${sportTypes}" th:value="${type.id}" th:text="${type.name}"></option>
+                </select>
+                <span>Вид спорта</span>
+            </div>
         </div>
 
         <div class="buttons d-flex justify-content-between align-items-center">

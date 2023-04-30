@@ -27,6 +27,20 @@
 <logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
+<Attribute name="SPORT_TYPE_ID" id="9FD05313-4E30-6A8B-3839-B8157ADA029F">
+<createdBy>Good-</createdBy>
+<createdTime>2023-04-30 17:58:55 UTC</createdTime>
+<generatorID>2D2E5F01-AD97-B1B6-C5D1-60F31DB124D0</generatorID>
+<ownerDesignName>coursework_2</ownerDesignName>
+<engineerTo>
+<item key="A9083D8E-C123-0C2C-B83C-727B97DD9F3D" value="true"/>
+</engineerTo>
+<referedAttribute>F63ED709-69D4-8B9B-0B53-342177CB6C8E</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
 <Attribute name="NAME" id="5448BD19-0613-856D-1D98-13D75A88C09C">
 <createdBy>Good-</createdBy>
 <createdTime>2023-04-29 19:53:33 UTC</createdTime>
