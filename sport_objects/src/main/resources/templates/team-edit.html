@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml" lang="ru">
 
 <head th:insert="~{base :: html_head_p (~{::link})}">
-    <link rel="stylesheet" th:href="@{/css/sport-type-edit.css}">
+    <link rel="stylesheet" th:href="@{/css/team-edit.css}">
 </head>
 
 <body class="d-flex flex-column justify-content-center align-items-center gap-3">
@@ -10,12 +10,12 @@
 </div>
 
 <div class="box">
-    <form action="#" th:action="@{/sport-type/save}" th:object="${obj}" method="post" class="form">
+    <form action="#" th:action="@{/team/save}" th:object="${obj}" method="post" class="form">
         <h2>Редактирование</h2>
 
         <div class="inputs">
             <div class="inputBox">
-                <input type="text" class="num" th:field="*{id}" pattern="\d+" tabindex="1" required>
+                <input type="text" class="active" th:field="*{id}" tabindex="1" readonly>
                 <span>ID</span>
                 <i></i>
             </div>
@@ -25,25 +25,21 @@
                 <span>Название</span>
                 <i></i>
             </div>
+
+            <div class="inputBox">
+                <input type="text" th:field="*{createDate}" tabindex="3" required onfocus="(this.type='date')" onblur="if(!this.value)this.type='text'">
+                <span>Дата создания</span>
+                <i></i>
+            </div>
         </div>
 
         <div class="buttons d-flex justify-content-between align-items-center">
-            <a href="/sport-type" class="button btn-primary text-decoration-none back">Назад</a>
+            <a href="/team" class="button btn-primary text-decoration-none back">Назад</a>
             <input type="submit" value="Сохранить" class="go" autocomplete="off">
         </div>
     </form>
 </div>
 
 </body>
-
-<script>
-    let inp = document.querySelector('.num');
-
-    inp.addEventListener('keydown', e => {
-        if (e.key == 'Backspace') {
-        } else if (!/\d/.test(e.key))
-            e.preventDefault();
-    })
-</script>
 
 </html>

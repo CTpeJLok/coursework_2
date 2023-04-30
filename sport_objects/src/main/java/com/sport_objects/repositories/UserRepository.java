@@ -1,5 +1,6 @@
-package com.example.sport_objects;
+package com.sport_objects.repositories;
 
+import com.sport_objects.entities.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;

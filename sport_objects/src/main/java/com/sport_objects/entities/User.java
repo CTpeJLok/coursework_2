@@ -1,4 +1,4 @@
-package com.example.sport_objects;
+package com.sport_objects.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonFormat.Shape;

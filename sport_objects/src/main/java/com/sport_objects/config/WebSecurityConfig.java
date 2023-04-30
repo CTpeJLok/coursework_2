@@ -1,5 +1,6 @@
-package com.example.sport_objects;
+package com.sport_objects.config;
 
+import com.sport_objects.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -30,6 +31,7 @@ public class WebSecurityConfig {
                 .requestMatchers("/registration").permitAll()
                 .requestMatchers("/").permitAll()
                 .requestMatchers("/sport-type").permitAll()
+                .requestMatchers("/team").permitAll()
 
                 .requestMatchers("/admin/**").hasRole("ADMIN")
                 .requestMatchers("/sport-type/**").hasRole("ADMIN")

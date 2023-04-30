@@ -1,5 +1,7 @@
-package com.example.sport_objects;
+package com.sport_objects.controllers;
 
+import com.sport_objects.entities.Team;
+import com.sport_objects.services.TeamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
@@ -13,14 +15,14 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.List;
 
 @Controller
-public class SportTypeController {
+public class TeamController {
 
     @Autowired
-    private SportTypeService service;
+    private TeamService service;
 
-    @RequestMapping("/sport-type")
+    @RequestMapping("/team")
     public String SportType(Model model, @Param("searchKeyword") String searchKeyword) {
-        List<SportType> list = null;
+        List<Team> list = null;
 
         if (searchKeyword != null)
             list = service.findAll(searchKeyword);
@@ -28,39 +30,40 @@ public class SportTypeController {
             list = service.findAll();
 
         model.addAttribute("List", list);
-        model.addAttribute("title", "Виды спорта");
+        model.addAttribute("searchKeyword", searchKeyword);
+        model.addAttribute("title", "Команды");
 
-        return "sport-type";
+        return "team";
     }
 
-    @RequestMapping("/sport-type/create")
+    @RequestMapping("/team/create")
     public String create(Model model) {
-        SportType sportType = new SportType();
-        model.addAttribute("obj", sportType);
+        Team team = new Team();
+        model.addAttribute("obj", team);
 
-        return "sport-type-create";
+        return "team-create";
     }
 
-    @RequestMapping("/sport-type/edit/{id}")
+    @RequestMapping("/team/edit/{id}")
     public ModelAndView edit(@PathVariable(name = "id") Long id) {
-        ModelAndView mav = new ModelAndView("sport-type-edit");
-        SportType sportType = service.get(id);
-        mav.addObject("obj", sportType);
+        ModelAndView mav = new ModelAndView("team-edit");
+        Team team = service.get(id);
+        mav.addObject("obj", team);
 
-        mav.getModelMap().addAttribute("title", "Админ | Редактирование вида спорта " + id);
+        mav.getModelMap().addAttribute("title", "Админ | Редактирование команды " + id);
         return mav;
     }
 
-    @RequestMapping(value = "/sport-type/save", method = RequestMethod.POST)
-    public String save(@ModelAttribute("obj") SportType sportType) {
-        service.save(sportType);
-        return "redirect:/sport-type";
+    @RequestMapping(value = "/team/save", method = RequestMethod.POST)
+    public String save(@ModelAttribute("obj") Team team) {
+        service.save(team);
+        return "redirect:/team";
     }
 
-    @RequestMapping("/sport-type/delete/{id}")
+    @RequestMapping("/team/delete/{id}")
     public String delete(@PathVariable(name = "id") Long id) {
         service.del(id);
-        return "redirect:/sport-type";
+        return "redirect:/team";
     }
 
 }

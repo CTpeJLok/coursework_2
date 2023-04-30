@@ -1,18 +1,17 @@
-package com.example.sport_objects;
+package com.sport_objects.services;
 
+import com.sport_objects.entities.SportType;
+import com.sport_objects.repositories.SportTypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Random;
 
 @Service
 public class SportTypeService {
 
     @Autowired
     private SportTypeRepository rep;
-
-    private final Random rnd = new Random();
 
     public List<SportType> findAll() {
         return rep.findAll();

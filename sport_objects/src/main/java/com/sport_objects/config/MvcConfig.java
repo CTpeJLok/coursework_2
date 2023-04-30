@@ -1,4 +1,4 @@
-package com.example.sport_objects;
+package com.sport_objects.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;

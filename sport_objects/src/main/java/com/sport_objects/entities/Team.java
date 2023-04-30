@@ -1,4 +1,4 @@
-package com.example.sport_objects;
+package com.sport_objects.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
@@ -43,4 +43,11 @@ public class Team {
         this.sportTypes = sportTypes;
     }
 
+    public String getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(String createDate) {
+        this.createDate = createDate;
+    }
 }

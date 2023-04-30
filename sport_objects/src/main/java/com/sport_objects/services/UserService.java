@@ -1,5 +1,8 @@
-package com.example.sport_objects;
+package com.sport_objects.services;
 
+import com.sport_objects.entities.Role;
+import com.sport_objects.entities.User;
+import com.sport_objects.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

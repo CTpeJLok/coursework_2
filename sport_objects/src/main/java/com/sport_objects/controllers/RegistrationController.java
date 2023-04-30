@@ -1,5 +1,7 @@
-package com.example.sport_objects;
+package com.sport_objects.controllers;
 
+import com.sport_objects.entities.User;
+import com.sport_objects.services.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

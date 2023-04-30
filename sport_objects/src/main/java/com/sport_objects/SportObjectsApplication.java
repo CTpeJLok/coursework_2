@@ -1,4 +1,4 @@
-package com.example.sport_objects;
+package com.sport_objects;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
