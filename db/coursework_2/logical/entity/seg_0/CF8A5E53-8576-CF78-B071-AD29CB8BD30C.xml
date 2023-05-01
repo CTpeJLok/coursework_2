@@ -40,7 +40,7 @@
 <dataTypeSize>50</dataTypeSize>
 <ownDataTypeParameters>50,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="CREATE" id="B0A6B54B-9E19-CA17-EFEC-23F7DEE30F90">
+<Attribute name="CREATE_DATE" id="B0A6B54B-9E19-CA17-EFEC-23F7DEE30F90">
 <createdBy>Good-</createdBy>
 <createdTime>2023-04-29 19:39:56 UTC</createdTime>
 <ownerDesignName>coursework_2</ownerDesignName>
@@ -52,7 +52,7 @@
 <logicalDatatype>LOGDT008</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="UPDATE" id="C0238487-8D02-9D35-E231-0EA564DBF746">
+<Attribute name="UPDATE_DATE" id="C0238487-8D02-9D35-E231-0EA564DBF746">
 <createdBy>Good-</createdBy>
 <createdTime>2023-04-29 19:54:06 UTC</createdTime>
 <ownerDesignName>coursework_2</ownerDesignName>
@@ -65,7 +65,7 @@
 <logicalDatatype>LOGDT008</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="CANCEL" id="68357919-909C-D2DD-4AF1-CF5992A7DB47">
+<Attribute name="CANCEL_DATE" id="68357919-909C-D2DD-4AF1-CF5992A7DB47">
 <createdBy>Good-</createdBy>
 <createdTime>2023-04-29 19:42:21 UTC</createdTime>
 <ownerDesignName>coursework_2</ownerDesignName>
@@ -78,7 +78,7 @@
 <logicalDatatype>LOGDT008</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="START" id="B38445FB-0EAE-31F1-1A38-C5ABB373525C">
+<Attribute name="START_DATE" id="B38445FB-0EAE-31F1-1A38-C5ABB373525C">
 <createdBy>Good-</createdBy>
 <createdTime>2023-04-29 20:31:05 UTC</createdTime>
 <ownerDesignName>coursework_2</ownerDesignName>
@@ -91,7 +91,7 @@
 <logicalDatatype>LOGDT008</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="END" id="4D03776C-7687-206E-15F0-88DB716929BD">
+<Attribute name="END_DATE" id="4D03776C-7687-206E-15F0-88DB716929BD">
 <createdBy>Good-</createdBy>
 <createdTime>2023-04-29 20:32:18 UTC</createdTime>
 <ownerDesignName>coursework_2</ownerDesignName>

@@ -95,12 +95,12 @@
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
         <div class="container">
-            <canvas id="dates" width="600" height="400"></canvas>
+            <canvas id="create-date" width="600" height="400"></canvas>
         </div>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
         <div class="container">
-            <canvas id="sport-types" width="600" height="400"></canvas>
+            <canvas id="start-date" width="600" height="400"></canvas>
         </div>
     </div>
 </div>
@@ -151,7 +151,7 @@
     }
 
     let dataset = {
-        label: 'Количество команд',
+        label: 'Количество событий',
         data: data,
         backgroundColor: colors,
         borderWidth: 1,
@@ -159,7 +159,7 @@
 
     Chart.defaults.global.defaultFontColor = 'white';
 
-    let ctx = document.getElementById('dates').getContext('2d');
+    let ctx = document.getElementById('create-date').getContext('2d');
     let myChart = new Chart(ctx, {
         type: 'bar',
         data: {
@@ -172,7 +172,7 @@
             },
             title: {
                 display: true,
-                text: 'Количество команд по дате создания',
+                text: 'Количество событий по дате создания',
                 position: 'top',
                 fontSize: 24,
                 padding: 20,
@@ -185,7 +185,7 @@
                     },
                     scaleLabel: {
                         display: true,
-                        labelString: 'Количество команд',
+                        labelString: 'Количество событий',
                         fontSize: 18,
                     },
                 }],
@@ -206,7 +206,7 @@
     data = []
     tr = document.getElementsByClassName('table-tr');
     for (let i = 0; i < tr.length; i++) {
-        let t = tr[i].getElementsByClassName('table-th')[3].textContent.split(' ')[0];
+        let t = tr[i].getElementsByClassName('table-th')[5].textContent.split(' ')[0];
 
         if (!labels.includes(t)) {
             let ind = Math.max(labels.length, 0);
@@ -229,7 +229,7 @@
     }
 
     dataset = {
-        label: 'Количество команд',
+        label: 'Количество событий',
         data: data,
         backgroundColor: colors,
         borderWidth: 1,
@@ -237,7 +237,7 @@
 
     Chart.defaults.global.defaultFontColor = 'white';
 
-    ctx = document.getElementById('sport-types').getContext('2d');
+    ctx = document.getElementById('start-date').getContext('2d');
     myChart = new Chart(ctx, {
         type: 'bar',
         data: {
@@ -250,7 +250,7 @@
             },
             title: {
                 display: true,
-                text: 'Количество команд по виду спорта',
+                text: 'Количество событий по дате начала',
                 position: 'top',
                 fontSize: 24,
                 padding: 20,
@@ -263,14 +263,14 @@
                     },
                     scaleLabel: {
                         display: true,
-                        labelString: 'Количество команд',
+                        labelString: 'Количество событий',
                         fontSize: 18,
                     },
                 }],
                 xAxes: [{
                     scaleLabel: {
                         display: true,
-                        labelString: 'Вид спорта',
+                        labelString: 'Дата',
                         fontSize: 18,
                     },
                 }],

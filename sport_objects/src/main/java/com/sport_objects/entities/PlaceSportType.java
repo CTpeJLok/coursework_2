@@ -1,8 +1,9 @@
 package com.sport_objects.entities;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @NoArgsConstructor
 @Entity
@@ -20,6 +21,9 @@ public class PlaceSportType {
     private Place place;
 
     private String size;
+
+    @OneToMany(mappedBy = "placeSportType", cascade = CascadeType.ALL)
+    private List<EventPlace> eventPlaces;
 
     public PlaceSportType(Place place) {
         this.place = place;
@@ -55,5 +59,17 @@ public class PlaceSportType {
 
     public void setSize(String size) {
         this.size = size;
+    }
+
+    public List<EventPlace> getEventPlaces() {
+        return eventPlaces;
+    }
+
+    public void setEventPlaces(List<EventPlace> eventPlaces) {
+        this.eventPlaces = eventPlaces;
+    }
+
+    public String toString() {
+        return sportType.getName() + " - " + place.getName();
     }
 }

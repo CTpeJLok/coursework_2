@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml" lang="ru">
+
+<head th:insert="~{base :: html_head_p (~{::link})}">
+    <link rel="stylesheet" th:href="@{/css/event-place/event-place-edit.css}">
+</head>
+
+<body class="d-flex flex-column justify-content-center align-items-center gap-3">
+<div th:replace="~{base :: header}" class="container">
+</div>
+
+<div class="box">
+    <form action="#" th:action="@{'/event-place/' + ${eventId} + '/save'}" th:object="${obj}" method="post"
+          class="form">
+        <h2>Редактирование</h2>
+
+        <div class="inputs">
+            <div class="inputBox">
+                <input type="text" class="active" th:field="*{id}" tabindex="1" readonly>
+                <span>ID</span>
+                <i></i>
+            </div>
+
+            <div class="inputBox">
+                <input type="text" class="active" th:field="*{event.id}" tabindex="2" readonly>
+                <span>ID события</span>
+                <i></i>
+            </div>
+
+            <div class="inputBox">
+                <input type="text" th:field="*{eventDate}" tabindex="3" required
+                       pattern="\d{4}\.\d{2}\.\d{2} \d{2}:\d{2}:\d{2}"
+                       onfocus="(this.classList.add('active'))"
+                       onblur="if (!this.value) this.classList.remove('active')">
+                <span>Дата</span>
+                <i></i>
+            </div>
+
+            <div class="inputBox">
+                <input type="text" class="active" th:field="*{duration}" tabindex="4"
+                       pattern="(\d{2}:\d{2}:\d{2}|)"
+                       onfocus="(this.classList.add('active'))"
+                       onblur="if (!this.value) this.classList.remove('active')">
+                <span>Длительность</span>
+                <i></i>
+            </div>
+
+            <div class="dropdownBox full">
+                <select name="sportType" th:field="*{placeSportType.id}" required>
+                    <option th:each="placeSportType : ${placeSportTypes}" th:value="${placeSportType.id}"
+                            th:text="${placeSportType.toString()}">
+                    </option>
+                </select>
+                <span>Спортивное место</span>
+            </div>
+        </div>
+
+        <div class="buttons d-flex justify-content-between align-items-center">
+            <a th:href="@{'/event-place/' + ${eventId}}"
+               class="button btn-primary text-decoration-none back">Назад</a>
+            <input type="submit" value="Сохранить" class="go" autocomplete="off">
+        </div>
+    </form>
+</div>
+
+</body>
+
+<script>
+    let inp = document.getElementsByClassName('active');
+    let i = 0;
+    while (i < inp.length) {
+        if (inp[i].value == "")
+            inp[i].classList.remove('active');
+        else
+            i += 1;
+    }
+</script>
+
+</html>

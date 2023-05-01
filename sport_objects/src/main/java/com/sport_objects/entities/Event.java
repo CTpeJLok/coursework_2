@@ -3,7 +3,6 @@ package com.sport_objects.entities;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -31,6 +30,9 @@ public class Event {
     private String endDate;
 
     private String description;
+
+    @OneToMany(mappedBy = "event", cascade = CascadeType.ALL)
+    private List<EventPlace> eventPlaces;
 
     public Long getId() {
         return id;
@@ -94,5 +96,13 @@ public class Event {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public List<EventPlace> getEventPlaces() {
+        return eventPlaces;
+    }
+
+    public void setEventPlaces(List<EventPlace> eventPlaces) {
+        this.eventPlaces = eventPlaces;
     }
 }
