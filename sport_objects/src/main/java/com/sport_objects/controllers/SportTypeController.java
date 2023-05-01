@@ -15,12 +15,13 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.List;
 
 @Controller
+@RequestMapping("/sport-type")
 public class SportTypeController {
 
     @Autowired
     private SportTypeService service;
 
-    @RequestMapping("/sport-type")
+    @RequestMapping("")
     public String SportType(Model model, @Param("searchKeyword") String searchKeyword) {
         List<SportType> list = null;
 
@@ -33,20 +34,20 @@ public class SportTypeController {
         model.addAttribute("searchKeyword", searchKeyword);
         model.addAttribute("title", "Виды спорта");
 
-        return "sport-type";
+        return "sport-type/index";
     }
 
-    @RequestMapping("/sport-type/create")
+    @RequestMapping("/create")
     public String create(Model model) {
         SportType sportType = new SportType();
         model.addAttribute("obj", sportType);
 
-        return "sport-type-create";
+        return "sport-type/create";
     }
 
-    @RequestMapping("/sport-type/edit/{id}")
+    @RequestMapping("/edit/{id}")
     public ModelAndView edit(@PathVariable(name = "id") Long id) {
-        ModelAndView mav = new ModelAndView("sport-type-edit");
+        ModelAndView mav = new ModelAndView("sport-type/edit");
         SportType sportType = service.get(id);
         mav.addObject("obj", sportType);
 
@@ -54,13 +55,13 @@ public class SportTypeController {
         return mav;
     }
 
-    @RequestMapping(value = "/sport-type/save", method = RequestMethod.POST)
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
     public String save(@ModelAttribute("obj") SportType sportType) {
         service.save(sportType);
         return "redirect:/sport-type";
     }
 
-    @RequestMapping("/sport-type/delete/{id}")
+    @RequestMapping("/delete/{id}")
     public String delete(@PathVariable(name = "id") Long id) {
         service.del(id);
         return "redirect:/sport-type";

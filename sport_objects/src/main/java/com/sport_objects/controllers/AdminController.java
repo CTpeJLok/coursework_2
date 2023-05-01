@@ -13,12 +13,13 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.List;
 
 @Controller
+@RequestMapping("/admin")
 public class AdminController {
 
     @Autowired
     private UserService userService;
 
-    @RequestMapping("/admin/users")
+    @RequestMapping("/users")
     public String makeAdmin(Model model, @Param("searchKeyword") String searchKeyword) {
         List<User> list = null;
 
@@ -28,14 +29,15 @@ public class AdminController {
             list = userService.allUsers();
 
         model.addAttribute("userList", list);
+        model.addAttribute("searchKeyword", searchKeyword);
         model.addAttribute("title", "Админ | Пользователи");
 
-        return "admin-users";
+        return "admin/users";
     }
 
-    @RequestMapping("/admin/users/edit/{id}")
+    @RequestMapping("/users/edit/{id}")
     public ModelAndView editUser(@PathVariable(name = "id") Long id) {
-        ModelAndView mav = new ModelAndView("admin-edit-user");
+        ModelAndView mav = new ModelAndView("admin/edit-user");
         User user = userService.findUserById(id);
 
         if (user.getPhone() != null) {
@@ -60,7 +62,7 @@ public class AdminController {
         return mav;
     }
 
-    @RequestMapping(value = "/admin/users/save", method = RequestMethod.POST)
+    @RequestMapping(value = "/users/save", method = RequestMethod.POST)
     public String saveUser(@ModelAttribute("user") User user) {
         List<Role> newRoles = user.getRoles().stream().toList();
 

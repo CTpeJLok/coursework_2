@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml" lang="ru">
 
 <head th:insert="~{base :: html_head_p (~{::link})}">
-    <link rel="stylesheet" th:href="@{/css/sport-type-edit.css}">
+    <link rel="stylesheet" th:href="@{/css/sport-type/sport-type-edit.css}">
 </head>
 
 <body class="d-flex flex-column justify-content-center align-items-center gap-3">
@@ -15,7 +15,7 @@
 
         <div class="inputs">
             <div class="inputBox">
-                <input type="text" class="num" th:field="*{id}" pattern="\d+" tabindex="1" required>
+                <input type="text" class="active" th:field="*{id}" pattern="\d+" tabindex="1" readonly>
                 <span>ID</span>
                 <i></i>
             </div>
@@ -27,23 +27,10 @@
             </div>
         </div>
 
-        <div class="buttons d-flex justify-content-between align-items-center">
-            <a href="/sport-type" class="button btn-primary text-decoration-none back">Назад</a>
-            <input type="submit" value="Сохранить" class="go" autocomplete="off">
-        </div>
+        <div th:replace="~{base :: edit_buttons ('/sport-type')}"></div>
     </form>
 </div>
 
 </body>
-
-<script>
-    let inp = document.querySelector('.num');
-
-    inp.addEventListener('keydown', e => {
-        if (e.key == 'Backspace') {
-        } else if (!/\d/.test(e.key))
-            e.preventDefault();
-    })
-</script>
 
 </html>

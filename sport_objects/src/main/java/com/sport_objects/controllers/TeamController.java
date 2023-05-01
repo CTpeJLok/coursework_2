@@ -8,15 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
 @Controller
+@RequestMapping("/team")
 public class TeamController {
 
     @Autowired
@@ -25,7 +23,7 @@ public class TeamController {
     @Autowired
     private SportTypeService sportTypeService;
 
-    @RequestMapping("/team")
+    @RequestMapping("")
     public String SportType(Model model, @Param("searchKeyword") String searchKeyword) {
         List<Team> list = null;
 
@@ -38,10 +36,10 @@ public class TeamController {
         model.addAttribute("searchKeyword", searchKeyword);
         model.addAttribute("title", "Команды");
 
-        return "team";
+        return "team/index";
     }
 
-    @RequestMapping("/team/create")
+    @RequestMapping("/create")
     public String create(Model model) {
         Team team = new Team();
         List<SportType> sportTypes = sportTypeService.findAll();
@@ -49,12 +47,12 @@ public class TeamController {
         model.addAttribute("obj", team);
         model.addAttribute("sportTypes", sportTypes);
 
-        return "team-create";
+        return "team/create";
     }
 
-    @RequestMapping("/team/edit/{id}")
+    @RequestMapping("/edit/{id}")
     public ModelAndView edit(@PathVariable(name = "id") Long id) {
-        ModelAndView mav = new ModelAndView("team-edit");
+        ModelAndView mav = new ModelAndView("team/edit");
         Team team = service.get(id);
         mav.addObject("obj", team);
 
@@ -66,13 +64,13 @@ public class TeamController {
         return mav;
     }
 
-    @RequestMapping(value = "/team/save", method = RequestMethod.POST)
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
     public String save(@ModelAttribute("obj") Team team) {
         service.save(team);
         return "redirect:/team";
     }
 
-    @RequestMapping("/team/delete/{id}")
+    @RequestMapping("/delete/{id}")
     public String delete(@PathVariable(name = "id") Long id) {
         service.del(id);
         return "redirect:/team";

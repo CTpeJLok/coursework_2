@@ -3,6 +3,8 @@ package com.sport_objects.entities;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 public class Team {
 
@@ -16,6 +18,9 @@ public class Team {
 
     @ManyToOne
     private SportType sportType;
+
+    @ManyToMany(mappedBy = "teamList")
+    private List<User> userList;
 
     public Long getId() {
         return id;
@@ -47,5 +52,13 @@ public class Team {
 
     public void setSportType(SportType sportType) {
         this.sportType = sportType;
+    }
+
+    public List<User> getUserList() {
+        return userList;
+    }
+
+    public void setUserList(List<User> userList) {
+        this.userList = userList;
     }
 }
