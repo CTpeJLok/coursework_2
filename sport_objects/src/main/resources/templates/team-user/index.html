@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml" lang="ru">
+
+<head th:replace="~{base :: html_head}"></head>
+
+<body class="d-flex flex-column justify-content-center align-items-center gap-3">
+<div th:replace="~{base :: header}"></div>
+
+<div class="container">
+    <div class="d-flex justify-content-center align-items-center gap-3 mb-3">
+        <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{'/team-user/' + ${teamId} + '/add'}"
+           class="btn btn-primary btn-sm">Добавить запись</a>
+    </div>
+
+    <div class="row d-flex flex-column justify-content-center gap-2">
+        <div class="row">
+            <p class="text-white fw-bold row-count"></p>
+        </div>
+
+        <table id="1" class="table table-hover table-sm text-white">
+            <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">ID команды</th>
+                <th scope="col">Дата регистрации</th>
+                <th scope="col">Дата выхода</th>
+                <th scope="col">Пользователь</th>
+                <td></td>
+            </tr>
+
+            <tr>
+                <th scope="col">
+                    <input type="button" class="btn btn-primary btn-sm sort" value="SORT"/>
+                </th>
+
+                <th scope="col">
+                    <input type="button" class="btn btn-primary btn-sm sort" value="SORT"/>
+                </th>
+
+                <th scope="col">
+                    <input type="button" class="btn btn-primary btn-sm sort" value="SORT"/>
+                </th>
+
+                <th scope="col">
+                    <input type="button" class="btn btn-primary btn-sm sort" value="SORT"/>
+                </th>
+
+                <th scope="col">
+                    <input type="button" class="btn btn-primary btn-sm sort" value="SORT"/>
+                </th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr class="table-tr" th:each="obj: ${List}">
+                <th scope="row" class="table-th text-white" th:text="${obj.id}">отстутсвует</th>
+                <th scope="row" class="table-th text-white" th:text="${obj.team.id}">отстутсвует</th>
+                <th scope="row" class="table-th text-white" th:text="${obj.entryDate}">отстутсвует</th>
+                <th scope="row" class="table-th text-white" th:text="${obj.exitDate}">отстутсвует</th>
+                <th scope="row" class="table-th text-white" th:text="${obj.user.toString()}">отстутсвует</th>
+                <td>
+                    <a sec:authorize="hasRole('ROLE_ADMIN')"
+                       th:href="@{'/team-user/' + ${obj.team.id} + '/edit/' + ${obj.user.getId()}}">
+                        <button type="button" class="btn btn-warning">Редактировать</button>
+                    </a>
+
+                    <a sec:authorize="hasRole('ROLE_ADMIN')"
+                       th:href="@{'/team-user/' + ${obj.team.id} + '/delete/' + ${obj.user.getId()}}">
+                        <button type="button" class="btn btn-danger">Удалить</button>
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</body>
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.0.2/tablesort.min.js'></script>
+<script>
+    new Tablesort(document.getElementById('1'));
+</script>
+
+<script type="text/javascript">
+    let table = document.getElementById('1')
+    let tBody = table.querySelector('tbody')
+    const count = tBody.querySelectorAll('tr').length;
+    document.querySelector('.row-count').innerHTML = 'Количество пользователей: ' + count;
+</script>
+
+</html>

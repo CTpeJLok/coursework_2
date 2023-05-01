@@ -23,10 +23,15 @@
                 <th scope="col">Название</th>
                 <th scope="col">Дата создания</th>
                 <th scope="col">Вид спорта</th>
+                <th scope="col">Пользователи</th>
                 <td></td>
             </tr>
 
             <tr>
+                <th scope="col">
+                    <input type="button" class="btn btn-primary btn-sm sort" value="SORT"/>
+                </th>
+
                 <th scope="col">
                     <input type="button" class="btn btn-primary btn-sm sort" value="SORT"/>
                 </th>
@@ -51,7 +56,12 @@
                 <th scope="row" class="table-th text-white" th:text="${obj.name}">отстутсвует</th>
                 <th scope="row" class="table-th text-white" th:text="${obj.createDate}">отстутсвует</th>
                 <th scope="row" class="table-th text-white" th:text="${obj.sportType.name}">отстутсвует</th>
+                <th scope="row" class="table-th text-white" th:text="${obj.usersFromTeamUsers()}">отстутсвует</th>
                 <td>
+                    <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{'/team-user/'+${obj.id}}">
+                        <button type="button" class="btn btn-info">Управление пользователями</button>
+                    </a>
+
                     <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{'/team/edit/'+${obj.id}}">
                         <button type="button" class="btn btn-warning">Редактировать</button>
                     </a>

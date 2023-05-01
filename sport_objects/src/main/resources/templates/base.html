@@ -29,6 +29,11 @@
 
             <a sec:authorize="not hasAnyRole('ROLE_ADMIN','ROLE_USER')"
                class="nav-link text-decoration-none text-light"><b>Привет, гость</b></a>
+
+            <a sec:authorize="not hasAnyRole('ROLE_ADMIN','ROLE_USER')" href="/login" class="btn btn-outline-primary">Войти</a>
+            <a sec:authorize="not hasAnyRole('ROLE_ADMIN','ROLE_USER')" href="/registration" class="btn btn-primary">Регистрация</a>
+
+            <a sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_USER')" href="/logout" class="btn btn-outline-primary">Выйти</a>
         </div>
 
         <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
@@ -39,22 +44,22 @@
                 <a href="/sport-type" class="nav-link px-2">Виды спорта</a>
             </li>
             <li>
+                <a href="/helpful-type" class="nav-link px-2">Полезные категории</a>
+            </li>
+            <li>
                 <a href="/team" class="nav-link px-2">Команды</a>
+            </li>
+            <li>
+                <a href="/place" class="nav-link px-2">Места</a>
+            </li>
+            <li>
+                <a href="/event" class="nav-link px-2">События</a>
             </li>
 
             <li sec:authorize="hasRole('ROLE_ADMIN')">
                 <a href="/admin/users" class="nav-link link-primary px-2">Пользователи</a>
             </li>
         </ul>
-
-        <div sec:authorize="not hasAnyRole('ROLE_ADMIN','ROLE_USER')" class="col-md-3 text-end">
-            <a href="/login" class="btn btn-outline-primary me-2">Войти</a>
-            <a href="/registration" class="btn btn-primary">Регистрация</a>
-        </div>
-
-        <div sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_USER')" class="col-md-3 text-end">
-            <a href="/logout" class="btn btn-outline-primary me-2">Выйти</a>
-        </div>
     </header>
 </div>
 

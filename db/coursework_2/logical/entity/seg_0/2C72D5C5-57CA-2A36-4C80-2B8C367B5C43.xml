@@ -15,6 +15,18 @@
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="ID" id="CAC7CAE9-CB37-547D-9D4E-6A49A902EB55">
+<createdBy>Good-</createdBy>
+<createdTime>2023-05-01 15:30:52 UTC</createdTime>
+<ownerDesignName>coursework_2</ownerDesignName>
+<engineerTo>
+<item key="A9083D8E-C123-0C2C-B83C-727B97DD9F3D" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
 <Attribute name="EVENT ID" id="45CF878E-C06B-A217-3056-927B8D6DE1C3">
 <createdBy>Good-</createdBy>
 <createdTime>2023-04-29 20:29:24 UTC</createdTime>
@@ -29,15 +41,15 @@
 <logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="PLACE ID" id="0750BFD7-9119-4A3B-F09D-A330F8720B74">
+<Attribute name="PLACE_SPORT_TYPE_ID" id="893AD46D-15EC-C99C-6BF2-2536B9DC8A72">
 <createdBy>Good-</createdBy>
-<createdTime>2023-04-29 20:28:55 UTC</createdTime>
+<createdTime>2023-05-01 15:30:20 UTC</createdTime>
 <generatorID>49F2B98E-0D05-5EFA-F0D4-D92662F09CB9</generatorID>
 <ownerDesignName>coursework_2</ownerDesignName>
 <engineerTo>
 <item key="A9083D8E-C123-0C2C-B83C-727B97DD9F3D" value="true"/>
 </engineerTo>
-<referedAttribute>D010B72B-89C8-D63A-C50B-CCF31386177F</referedAttribute>
+<referedAttribute>1114F30F-530F-E9DB-08E8-5E1C87D50DDC</referedAttribute>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT011</logicalDatatype>
@@ -70,18 +82,16 @@
 </Attribute>
 </attributes>
 <identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
-<identifier id="47214518-F9B2-3A87-2D0A-3A946B0BE748" name="EVENT_PLACE_PK">
+<identifier id="8BD8842E-EF8C-0436-8A64-1656B46D60AD" name="EVENT PLACE PK">
 <createdBy>Good-</createdBy>
-<createdTime>2023-04-29 20:29:11 UTC</createdTime>
+<createdTime>2023-05-01 15:30:58 UTC</createdTime>
 <ownerDesignName>coursework_2</ownerDesignName>
-<shouldEngineer>false</shouldEngineer>
 <engineerTo>
-<item key="A9083D8E-C123-0C2C-B83C-727B97DD9F3D" value="false"/>
+<item key="A9083D8E-C123-0C2C-B83C-727B97DD9F3D" value="true"/>
 </engineerTo>
 <pk>true</pk>
 <usedAttributes>
-<attributeRef>0750BFD7-9119-4A3B-F09D-A330F8720B74</attributeRef>
-<attributeRef>45CF878E-C06B-A217-3056-927B8D6DE1C3</attributeRef>
+<attributeRef>CAC7CAE9-CB37-547D-9D4E-6A49A902EB55</attributeRef>
 </usedAttributes>
 </identifier>
 </identifiers>

@@ -1,0 +1,73 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="7429995B-59FB-9F0E-534A-B0FB44C46794" name="PLACE_HELPFUL_TYPE">
+<createdBy>Good-</createdBy>
+<createdTime>2023-05-01 15:23:49 UTC</createdTime>
+<ownerDesignName>coursework_2</ownerDesignName>
+<engineerTo>
+<item key="A9083D8E-C123-0C2C-B83C-727B97DD9F3D" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="ID" id="352DAE4A-0E75-FE6E-E037-66DD8A4E9AF2">
+<createdBy>Good-</createdBy>
+<createdTime>2023-05-01 15:29:47 UTC</createdTime>
+<ownerDesignName>coursework_2</ownerDesignName>
+<engineerTo>
+<item key="A9083D8E-C123-0C2C-B83C-727B97DD9F3D" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="PLACE_ID" id="C4EBAAFD-A823-0407-4FFF-343B801FA0F6">
+<createdBy>Good-</createdBy>
+<createdTime>2023-05-01 15:24:25 UTC</createdTime>
+<generatorID>5EF43AAE-1F17-C5E1-C286-0D650D038505</generatorID>
+<ownerDesignName>coursework_2</ownerDesignName>
+<engineerTo>
+<item key="A9083D8E-C123-0C2C-B83C-727B97DD9F3D" value="true"/>
+</engineerTo>
+<referedAttribute>D010B72B-89C8-D63A-C50B-CCF31386177F</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="HELPFUL_TYPE_ID" id="50E313C6-125C-4E36-1D3F-F1847E5C1884">
+<createdBy>Good-</createdBy>
+<createdTime>2023-05-01 15:24:10 UTC</createdTime>
+<generatorID>ECD8439F-5654-7FBC-2A0B-9405854F798A</generatorID>
+<ownerDesignName>coursework_2</ownerDesignName>
+<engineerTo>
+<item key="A9083D8E-C123-0C2C-B83C-727B97DD9F3D" value="true"/>
+</engineerTo>
+<referedAttribute>F67EF50F-C7AD-5221-EC8E-F85263A40EB3</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="EBB94633-1ED0-EA35-EE40-B1C77E7833FC" name="PLACE_HELPFUL_TYPE PKv1">
+<createdBy>Good-</createdBy>
+<createdTime>2023-05-01 15:29:50 UTC</createdTime>
+<ownerDesignName>coursework_2</ownerDesignName>
+<engineerTo>
+<item key="A9083D8E-C123-0C2C-B83C-727B97DD9F3D" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>352DAE4A-0E75-FE6E-E037-66DD8A4E9AF2</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

@@ -1,0 +1,216 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+$box_w: 700px;
+$box_h: 400px;
+$input_w: 300px;
+$anim_duration: 6s;
+$form_color: #28292D;
+$box_border_color: #1C1C1C;
+$primary_color: #45F3FF;
+$font_color: #23242A;
+$placeholder_color: #000;
+$links_second_color: #000;
+$second_color: #8F8F8F;
+$exit_color: #dc3b3b;
+
+.box {
+  position: relative;
+  width: $box_w;
+  height: $box_h;
+  background: $box_border_color;
+  border-radius: 8px;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: $box_w;
+    height: $box_h;
+    background: linear-gradient(0deg, transparent,
+            $primary_color, $primary_color);
+    transform-origin: bottom right;
+    animation: animate $anim_duration linear infinite;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    rotate: 180deg;
+    width: $box_w;
+    height: $box_h;
+    background: linear-gradient(0deg, transparent,
+            $primary_color, $primary_color);
+    transform-origin: bottom right;
+    animation: animate $anim_duration linear infinite;
+  }
+
+  .form {
+    position: absolute;
+    inset: 2px;
+    border-radius: 8px;
+    background: $form_color;
+    z-index: 10;
+    padding: 50px 40px;
+    display: flex;
+    flex-direction: column;
+
+    h2 {
+      color: $primary_color;
+      font-weight: 500;
+      text-align: center;
+      letter-spacing: 0.1em;
+    }
+
+    .inputs {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+
+      .inputBox {
+        position: relative;
+        width: $input_w;
+        margin-top: 35px;
+
+        input {
+          position: relative;
+          width: 100%;
+          padding: 20px 10px 10px;
+          background: transparent;
+          border: none;
+          outline: none;
+          color: $font_color;
+          font-size: 1em;
+          letter-spacing: 0.05em;
+          z-index: 10;
+        }
+
+        span {
+          position: absolute;
+          left: 0;
+          padding: 20px 0 10px;
+          font-size: 1em;
+          color: $second_color;
+          pointer-events: none;
+          letter-spacing: 0.05em;
+          transition: 0.5s;
+        }
+
+        i {
+          position: absolute;
+          left: 0;
+          bottom: 0;
+          width: 100%;
+          height: 2px;
+          background: $primary_color;
+          border-radius: 4px;
+          transition: 0.5s;
+          pointer-events: none;
+          z-index: 9;
+        }
+
+        input:required:valid ~ span,
+        input:required:focus ~ span {
+          color: $primary_color;
+          transform: translateY(-34px);
+          font-size: 0.75em;
+        }
+
+        input:required:valid ~ i,
+        input:required:focus ~ i {
+          height: 44px;
+        }
+
+        .active ~ span {
+          color: $primary_color;
+          transform: translateY(-34px);
+          font-size: 0.75em;
+        }
+
+        .active ~ i {
+          height: 44px;
+        }
+      }
+    }
+
+    .dropdownBox {
+      position: relative;
+      width: $input_w;
+      margin-top: 35px;
+
+      select {
+        position: relative;
+        width: 100%;
+        padding: 0 10px;
+        background: $primary_color;
+        border: none;
+        outline: none;
+        color: $font_color;
+        font-size: 1em;
+        letter-spacing: 0.05em;
+        z-index: 10;
+        border-radius: 4px;
+        margin-top: 10px;
+        height: 44px;
+
+        option {
+          color: #000;
+        }
+      }
+
+      span {
+        position: absolute;
+        left: 0;
+        padding: 20px 0 10px;
+        font-size: 0.75em;
+        color: $primary_color;
+        pointer-events: none;
+        letter-spacing: 0.05em;
+        transition: 0.5s;
+        transform: translateY(-34px);
+      }
+    }
+
+    .buttons {
+      input {
+        border: none;
+        outline: none;
+        background: $primary_color;
+        padding: 11px 25px;
+        width: 250px;
+        margin-top: 30px;
+        border-radius: 4px;
+        font-weight: 600;
+        cursor: pointer;
+        color: #000;
+
+        &:active {
+          opacity: 0.8;
+        }
+      }
+
+      .back {
+        padding: 11px 25px;
+        width: 250px;
+        margin-top: 30px;
+        border-radius: 4px;
+        font-weight: 600;
+        color: #000;
+        background: $exit_color;
+        text-align: center;
+      }
+    }
+  }
+}
+
+@keyframes animate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

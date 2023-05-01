@@ -40,7 +40,7 @@
 <dataTypeSize>50</dataTypeSize>
 <ownDataTypeParameters>50,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="CREATE DATE" id="B0A6B54B-9E19-CA17-EFEC-23F7DEE30F90">
+<Attribute name="CREATE" id="B0A6B54B-9E19-CA17-EFEC-23F7DEE30F90">
 <createdBy>Good-</createdBy>
 <createdTime>2023-04-29 19:39:56 UTC</createdTime>
 <ownerDesignName>coursework_2</ownerDesignName>
@@ -49,10 +49,10 @@
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT007</logicalDatatype>
+<logicalDatatype>LOGDT008</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="UPDATE DATE" id="C0238487-8D02-9D35-E231-0EA564DBF746">
+<Attribute name="UPDATE" id="C0238487-8D02-9D35-E231-0EA564DBF746">
 <createdBy>Good-</createdBy>
 <createdTime>2023-04-29 19:54:06 UTC</createdTime>
 <ownerDesignName>coursework_2</ownerDesignName>
@@ -62,10 +62,10 @@
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT007</logicalDatatype>
+<logicalDatatype>LOGDT008</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="CANCEL DATE" id="68357919-909C-D2DD-4AF1-CF5992A7DB47">
+<Attribute name="CANCEL" id="68357919-909C-D2DD-4AF1-CF5992A7DB47">
 <createdBy>Good-</createdBy>
 <createdTime>2023-04-29 19:42:21 UTC</createdTime>
 <ownerDesignName>coursework_2</ownerDesignName>
@@ -75,7 +75,7 @@
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT007</logicalDatatype>
+<logicalDatatype>LOGDT008</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 <Attribute name="START" id="B38445FB-0EAE-31F1-1A38-C5ABB373525C">

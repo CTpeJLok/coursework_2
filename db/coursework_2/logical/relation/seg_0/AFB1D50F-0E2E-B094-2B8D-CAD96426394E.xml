@@ -7,7 +7,7 @@
 <item key="A9083D8E-C123-0C2C-B83C-727B97DD9F3D" value="true"/>
 </engineerTo>
 <sourcePk>09441921-89A3-6E5F-D73D-132BA51B6C47</sourcePk>
-<identifying>true</identifying>
+<identifying>false</identifying>
 <nameOnSource>HAS SEVERAL SPORT_TYPE</nameOnSource>
 <nameOnTarget> </nameOnTarget>
 <optionalSource>true</optionalSource>

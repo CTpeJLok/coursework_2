@@ -22,7 +22,7 @@ public class SportTypeController {
     private SportTypeService service;
 
     @RequestMapping("")
-    public String SportType(Model model, @Param("searchKeyword") String searchKeyword) {
+    public String index(Model model, @Param("searchKeyword") String searchKeyword) {
         List<SportType> list = null;
 
         if (searchKeyword != null)
@@ -40,7 +40,9 @@ public class SportTypeController {
     @RequestMapping("/create")
     public String create(Model model) {
         SportType sportType = new SportType();
+
         model.addAttribute("obj", sportType);
+        model.addAttribute("title", "Админ | Создание вида спорта");
 
         return "sport-type/create";
     }

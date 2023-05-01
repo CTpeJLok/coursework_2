@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml" lang="ru">
+
+<head th:replace="~{base :: html_head}"></head>
+
+<body class="d-flex flex-column justify-content-center align-items-center gap-3">
+<div th:replace="~{base :: header}"></div>
+
+<div class="container">
+    <div th:replace="~{base :: search ('/place', ${searchKeyword})}"></div>
+
+    <div sec:authorize="hasRole('ROLE_ADMIN')" th:replace="~{base :: admin_action ('/place/create')}"></div>
+
+    <div class="row d-flex flex-column justify-content-center gap-2">
+        <div class="row">
+            <p class="text-white fw-bold row-count"></p>
+        </div>
+
+        <table id="1" class="table table-hover table-sm text-white">
+            <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Название</th>
+                <th scope="col">Координаты</th>
+                <th scope="col">Описание</th>
+                <th scope="col">Виды спорта</th>
+                <th scope="col">Полезные категории</th>
+                <td></td>
+            </tr>
+
+            <tr>
+                <th scope="col">
+                    <input type="button" class="btn btn-primary btn-sm sort" value="SORT"/>
+                </th>
+
+                <th scope="col">
+                    <input type="button" class="btn btn-primary btn-sm sort" value="SORT"/>
+                </th>
+
+                <th scope="col">
+                    <input type="button" class="btn btn-primary btn-sm sort" value="SORT"/>
+                </th>
+
+                <th scope="col">
+                    <input type="button" class="btn btn-primary btn-sm sort" value="SORT"/>
+                </th>
+
+                <th scope="col">
+                    <input type="button" class="btn btn-primary btn-sm sort" value="SORT"/>
+                </th>
+
+                <th scope="col">
+                    <input type="button" class="btn btn-primary btn-sm sort" value="SORT"/>
+                </th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr class="table-tr" th:each="obj: ${List}">
+                <th scope="row" class="table-th text-white" th:text="${obj.id}">отстутсвует</th>
+                <th scope="row" class="table-th text-white" th:text="${obj.name}">отстутсвует</th>
+                <th scope="row" class="table-th text-white" th:text="${obj.location}">отстутсвует</th>
+                <th scope="row" class="table-th text-white" th:text="${obj.description}">отстутсвует</th>
+                <th scope="row" class="table-th text-white" th:text="${obj.sportTypesFromPlaceSportTypes()}">отстутсвует</th>
+                <th scope="row" class="table-th text-white" th:text="${obj.helpfulTypesFromPlaceHelpfulTypes()}">отстутсвует</th>
+                <td>
+                    <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{'/place-helpful-type/'+${obj.id}}">
+                        <button type="button" class="btn btn-info text-nowrap">Управление полезными категориями</button>
+                    </a>
+                    <br>
+                    <br>
+                    <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{'/place-sport-type/'+${obj.id}}">
+                        <button type="button" class="btn btn-info">Управление видами спорта</button>
+                    </a>
+                    <br>
+                    <br>
+                    <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{'/place/edit/'+${obj.id}}">
+                        <button type="button" class="btn btn-warning">Редактировать</button>
+                    </a>
+
+                    <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{'/place/delete/'+${obj.id}}">
+                        <button type="button" class="btn btn-danger">Удалить</button>
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</body>
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.0.2/tablesort.min.js'></script>
+<script>
+    new Tablesort(document.getElementById('1'));
+</script>
+
+<script type="text/javascript">
+    let table = document.getElementById('1')
+    let tBody = table.querySelector('tbody')
+    const count = tBody.querySelectorAll('tr').length;
+    document.querySelector('.row-count').innerHTML = 'Количество мест: ' + count;
+</script>
+
+</html>

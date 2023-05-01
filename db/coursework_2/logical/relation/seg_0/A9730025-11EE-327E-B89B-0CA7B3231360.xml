@@ -9,8 +9,10 @@
 </engineerTo>
 <sourcePk>0D3F2830-D88F-763A-30AD-18CD28522D9B</sourcePk>
 <identifying>false</identifying>
+<nameOnSource>HAS SEVERAL DISTR</nameOnSource>
+<nameOnTarget> </nameOnTarget>
 <optionalSource>true</optionalSource>
-<optionalTarget>false</optionalTarget>
+<optionalTarget>true</optionalTarget>
 <sourceCardinality>1</sourceCardinality>
 <sourceEntity>06C1D322-5D32-0315-8D18-95982F6A8456</sourceEntity>
 <targetCardinalityString>*</targetCardinalityString>

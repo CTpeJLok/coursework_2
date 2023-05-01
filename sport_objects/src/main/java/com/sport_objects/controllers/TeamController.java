@@ -8,7 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -24,7 +27,7 @@ public class TeamController {
     private SportTypeService sportTypeService;
 
     @RequestMapping("")
-    public String SportType(Model model, @Param("searchKeyword") String searchKeyword) {
+    public String index(Model model, @Param("searchKeyword") String searchKeyword) {
         List<Team> list = null;
 
         if (searchKeyword != null)
@@ -46,6 +49,7 @@ public class TeamController {
 
         model.addAttribute("obj", team);
         model.addAttribute("sportTypes", sportTypes);
+        model.addAttribute("title", "Админ | Создание команды");
 
         return "team/create";
     }

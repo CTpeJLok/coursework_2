@@ -1,21 +1,14 @@
 package com.sport_objects.config;
 
 import com.sport_objects.services.UserService;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.access.AccessDeniedHandler;
-
-import java.io.IOException;
 
 @Configuration
 @EnableWebSecurity
@@ -37,11 +30,24 @@ public class WebSecurityConfig {
 
                 .requestMatchers("/registration").permitAll()
                 .requestMatchers("/").permitAll()
+
                 .requestMatchers("/sport-type").permitAll()
+                .requestMatchers("/helpful-type").permitAll()
                 .requestMatchers("/team").permitAll()
+                .requestMatchers("/place").permitAll()
+                .requestMatchers("/event").permitAll()
 
                 .requestMatchers("/admin/**").hasRole("ADMIN")
+                .requestMatchers("/team-user/**").hasRole("ADMIN")
+                .requestMatchers("/place-sport-type/**").hasRole("ADMIN")
+                .requestMatchers("/place-helpful-type/**").hasRole("ADMIN")
+                .requestMatchers("/event-place/**").hasRole("ADMIN")
+
                 .requestMatchers("/sport-type/**").hasRole("ADMIN")
+                .requestMatchers("/helpful-type/**").hasRole("ADMIN")
+                .requestMatchers("/team/**").hasRole("ADMIN")
+                .requestMatchers("/place/**").hasRole("ADMIN")
+                .requestMatchers("/event/**").hasRole("ADMIN")
 
                 .requestMatchers("/resources/**").permitAll()
                 .requestMatchers("/css/**").permitAll()

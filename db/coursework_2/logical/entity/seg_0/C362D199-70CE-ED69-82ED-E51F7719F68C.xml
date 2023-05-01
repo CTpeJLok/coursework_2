@@ -15,6 +15,18 @@
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="ID" id="34FEF7F1-E6BC-8912-C312-38299F1757F1">
+<createdBy>Good-</createdBy>
+<createdTime>2023-05-01 15:28:30 UTC</createdTime>
+<ownerDesignName>coursework_2</ownerDesignName>
+<engineerTo>
+<item key="A9083D8E-C123-0C2C-B83C-727B97DD9F3D" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
 <Attribute name="USER ID" id="F021F950-93F5-723E-E772-DE99278CA721">
 <createdBy>Good-</createdBy>
 <createdTime>2023-04-29 20:21:17 UTC</createdTime>
@@ -70,19 +82,16 @@
 </Attribute>
 </attributes>
 <identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
-<identifier id="1FB79D9E-66F9-EE12-91C1-7B197641F69B" name="USER_TEAM_PK">
+<identifier id="3926CD79-3859-D441-4D57-DA5DF63544D3" name="USER TEAM PK">
 <createdBy>Good-</createdBy>
-<createdTime>2023-04-29 20:21:03 UTC</createdTime>
+<createdTime>2023-05-01 15:28:41 UTC</createdTime>
 <ownerDesignName>coursework_2</ownerDesignName>
-<shouldEngineer>false</shouldEngineer>
 <engineerTo>
-<item key="A9083D8E-C123-0C2C-B83C-727B97DD9F3D" value="false"/>
+<item key="A9083D8E-C123-0C2C-B83C-727B97DD9F3D" value="true"/>
 </engineerTo>
 <pk>true</pk>
-<newElementsIDs>99567F51-4934-EBEC-2C17-94BF509BB3E8,A43BEC0F-18E1-B165-D575-C3AA39C890F2</newElementsIDs>
 <usedAttributes>
-<attributeRef>F021F950-93F5-723E-E772-DE99278CA721</attributeRef>
-<attributeRef>C60F6982-0566-454A-4661-ABB379394AD0</attributeRef>
+<attributeRef>34FEF7F1-E6BC-8912-C312-38299F1757F1</attributeRef>
 </usedAttributes>
 </identifier>
 </identifiers>

@@ -38,12 +38,8 @@ public class User implements UserDetails {
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> roles;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "team_user",
-            joinColumns = @JoinColumn(name = "team_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id")
-    )
-    private List<Team> teamList;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<TeamUser> teamUsers;
 
     public long getId() {
         return id;
@@ -150,11 +146,15 @@ public class User implements UserDetails {
         this.email = email;
     }
 
-    public List<Team> getTeamList() {
-        return teamList;
+    public List<TeamUser> getTeamUsers() {
+        return teamUsers;
     }
 
-    public void setTeamList(List<Team> teamList) {
-        this.teamList = teamList;
+    public void setTeamUsers(List<TeamUser> teamUsers) {
+        this.teamUsers = teamUsers;
+    }
+
+    public String toString() {
+        return lastName + " " + firstName;
     }
 }

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml" lang="ru">
+
+<head th:insert="~{base :: html_head_p (~{::link})}">
+    <link rel="stylesheet" th:href="@{/css/team-user/team-user-edit.css}">
+</head>
+
+<body class="d-flex flex-column justify-content-center align-items-center gap-3">
+<div th:replace="~{base :: header}" class="container">
+</div>
+
+<div class="box">
+    <form action="#" th:action="@{'/team-user/' + ${teamId} + '/save'}" th:object="${obj}" method="post" class="form">
+        <h2>Добавление пользователя</h2>
+
+        <div class="inputs">
+            <div class="inputBox">
+                <input type="text" class="active" th:field="*{id}" tabindex="1" readonly>
+                <span>ID</span>
+                <i></i>
+            </div>
+
+            <div class="inputBox">
+                <input type="text" class="active" th:field="*{team.id}" tabindex="2" readonly>
+                <span>ID команды</span>
+                <i></i>
+            </div>
+
+            <div class="inputBox">
+                <input type="text" th:field="*{entryDate}" tabindex="3" required onfocus="(this.type='date')"
+                       onblur="if(!this.value)this.type='text'">
+                <span>Дата регистрации в команду</span>
+                <i></i>
+            </div>
+
+            <div class="inputBox">
+                <input type="text" th:field="*{exitDate}" tabindex="4"
+                       onfocus="this.type='date'; this.classList.add('active')"
+                       onblur="if(!this.value) { this.type='text'; this.classList.remove('active') }">
+                <span>Дата выхода из команды</span>
+                <i></i>
+            </div>
+
+            <div class="dropdownBox">
+                <select name="sportType" th:field="*{user.id}" required>
+                    <option th:each="user : ${users}" th:value="${user.id}"
+                            th:text="${user.lastName} + ' ' + ${user.firstName}">
+                    </option>
+                </select>
+                <span>Пользователь</span>
+            </div>
+        </div>
+        <div class="buttons d-flex justify-content-between align-items-center">
+            <a th:href="@{'/team-user/' + ${teamId}}" class="button btn-primary text-decoration-none back">Назад</a>
+            <input type="submit" value="Сохранить" class="go" autocomplete="off">
+        </div>
+    </form>
+</div>
+
+</body>
+
+</html>

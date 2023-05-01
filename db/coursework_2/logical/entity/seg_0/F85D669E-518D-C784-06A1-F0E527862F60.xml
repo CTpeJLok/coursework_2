@@ -27,6 +27,19 @@
 <logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
+<Attribute name="NAME" id="20218233-6EF5-7905-BBFF-B434BE9F1BBD">
+<createdBy>Good-</createdBy>
+<createdTime>2023-05-01 13:44:39 UTC</createdTime>
+<ownerDesignName>coursework_2</ownerDesignName>
+<engineerTo>
+<item key="A9083D8E-C123-0C2C-B83C-727B97DD9F3D" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30</dataTypeSize>
+<ownDataTypeParameters>30,,</ownDataTypeParameters>
+</Attribute>
 <Attribute name="LOCATION" id="D34447BD-1BBD-6783-924E-ADEDCA2F63B9">
 <createdBy>Good-</createdBy>
 <createdTime>2023-04-29 19:34:38 UTC</createdTime>

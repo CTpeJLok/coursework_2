@@ -16,18 +16,8 @@ public class SportType {
     @OneToMany(mappedBy = "sportType")
     private List<Team> teamList;
 
-    public SportType() {
-
-    }
-
-    public SportType(Long id) {
-        this.id = id;
-    }
-
-    public SportType(Long id, String name) {
-        this.id = id;
-        this.name = name;
-    }
+    @OneToMany(mappedBy = "sportType", cascade = CascadeType.ALL)
+    private List<PlaceSportType> placeSportTypes;
 
     public Long getId() {
         return id;
@@ -51,5 +41,9 @@ public class SportType {
 
     public void setTeamList(List<Team> teamList) {
         this.teamList = teamList;
+    }
+
+    public String toString() {
+        return name;
     }
 }
