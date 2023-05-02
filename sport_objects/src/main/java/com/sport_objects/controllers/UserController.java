@@ -2,6 +2,7 @@ package com.sport_objects.controllers;
 
 import com.sport_objects.entities.Role;
 import com.sport_objects.entities.User;
+import com.sport_objects.services.RoleService;
 import com.sport_objects.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
@@ -13,13 +14,16 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.List;
 
 @Controller
-@RequestMapping("/admin")
-public class AdminController {
+@RequestMapping("/user")
+public class UserController {
 
     @Autowired
     private UserService userService;
 
-    @RequestMapping("/users")
+    @Autowired
+    private RoleService roleService;
+
+    @RequestMapping("")
     public String makeAdmin(Model model, @Param("searchKeyword") String searchKeyword) {
         List<User> list = null;
 
@@ -30,14 +34,14 @@ public class AdminController {
 
         model.addAttribute("userList", list);
         model.addAttribute("searchKeyword", searchKeyword);
-        model.addAttribute("title", "Админ | Пользователи");
+        model.addAttribute("title", "Пользователи");
 
-        return "admin/users";
+        return "user/index";
     }
 
-    @RequestMapping("/users/edit/{id}")
+    @RequestMapping("/edit/{id}")
     public ModelAndView editUser(@PathVariable(name = "id") Long id) {
-        ModelAndView mav = new ModelAndView("admin/edit-user");
+        ModelAndView mav = new ModelAndView("user/edit");
         User user = userService.findUserById(id);
 
         if (user.getPhone() != null) {
@@ -58,17 +62,20 @@ public class AdminController {
 
         mav.addObject("user", user);
 
-        mav.getModelMap().addAttribute("title", "Админ | Редактирование пользователя " + id);
+        List<Role> roles = roleService.findAll();
+        mav.getModelMap().addAttribute("rolesList", roles);
+
+        mav.getModelMap().addAttribute("title", "Редактирование пользователя " + id);
         return mav;
     }
 
-    @RequestMapping(value = "/users/save", method = RequestMethod.POST)
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
     public String saveUser(@ModelAttribute("user") User user) {
         List<Role> newRoles = user.getRoles().stream().toList();
 
         for (Role newRole : newRoles) {
             if (newRole == null || (!newRole.toString().equals("ROLE_ADMIN") && !newRole.toString().equals("ROLE_USER"))) {
-                return "redirect:/admin/users";
+                return "redirect:/user";
             }
         }
 
@@ -77,7 +84,7 @@ public class AdminController {
         user.setPhone(String.join("", phone));
 
         userService.updateUser(user);
-        return "redirect:/admin/users";
+        return "redirect:/user";
     }
 
 }

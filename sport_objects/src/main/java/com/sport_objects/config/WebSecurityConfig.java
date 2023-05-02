@@ -31,18 +31,19 @@ public class WebSecurityConfig {
                 .requestMatchers("/registration").permitAll()
                 .requestMatchers("/").permitAll()
 
+                .requestMatchers("/user").permitAll()
                 .requestMatchers("/sport-type").permitAll()
                 .requestMatchers("/helpful-type").permitAll()
                 .requestMatchers("/team").permitAll()
                 .requestMatchers("/place").permitAll()
                 .requestMatchers("/event").permitAll()
 
-                .requestMatchers("/admin/**").hasRole("ADMIN")
                 .requestMatchers("/team-user/**").hasRole("ADMIN")
                 .requestMatchers("/place-sport-type/**").hasRole("ADMIN")
                 .requestMatchers("/place-helpful-type/**").hasRole("ADMIN")
                 .requestMatchers("/event-place/**").hasRole("ADMIN")
 
+                .requestMatchers("/user/**").hasRole("ADMIN")
                 .requestMatchers("/sport-type/**").hasRole("ADMIN")
                 .requestMatchers("/helpful-type/**").hasRole("ADMIN")
                 .requestMatchers("/team/**").hasRole("ADMIN")

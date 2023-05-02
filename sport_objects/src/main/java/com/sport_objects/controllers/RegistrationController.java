@@ -10,20 +10,22 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@RequestMapping("/registration")
 public class RegistrationController {
 
     @Autowired
     private UserService userService;
 
-    @GetMapping("/registration")
+    @GetMapping("")
     public String registration(Model model) {
         model.addAttribute("useForm", new User());
         return "registr";
     }
 
-    @PostMapping("/registration")
+    @PostMapping("")
     public String addUser(@ModelAttribute("useForm") @Valid User userForm, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             return "registr";
@@ -43,7 +45,7 @@ public class RegistrationController {
             return "registr";
         }
 
-        return "redirect:/";
+        return "redirect:/login";
     }
     
 }
