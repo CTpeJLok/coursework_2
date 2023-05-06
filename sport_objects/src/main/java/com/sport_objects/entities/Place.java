@@ -2,7 +2,6 @@ package com.sport_objects.entities;
 
 import jakarta.persistence.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -56,22 +55,6 @@ public class Place {
         this.description = description;
     }
 
-    public List<String> sportTypesFromPlaceSportTypes() {
-        List<String> sport_types = new ArrayList<>();
-        for (PlaceSportType pst : getPlaceSportTypes())
-            sport_types.add(pst.getSportType().getName());
-
-        return sport_types;
-    }
-
-    public List<String> helpfulTypesFromPlaceHelpfulTypes() {
-        List<String> helpfulTypes = new ArrayList<>();
-        for (PlaceHelpfulType pht : getPlaceHelpfulTypes())
-            helpfulTypes.add(pht.getHelpfulType().getName());
-
-        return helpfulTypes;
-    }
-
     public List<PlaceSportType> getPlaceSportTypes() {
         return placeSportTypes;
     }
@@ -87,4 +70,13 @@ public class Place {
     public void setPlaceHelpfulTypes(List<PlaceHelpfulType> placeHelpfulTypes) {
         this.placeHelpfulTypes = placeHelpfulTypes;
     }
+
+    public int sportTypeCount() {
+        return placeSportTypes.size();
+    }
+
+    public int helpfulTypeCount() {
+        return placeHelpfulTypes.size();
+    }
+
 }

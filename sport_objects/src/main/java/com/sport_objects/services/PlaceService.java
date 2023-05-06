@@ -11,30 +11,37 @@ import java.util.List;
 public class PlaceService {
 
     @Autowired
-    private PlaceRepository rep;
-
-    public List<Place> findAll() {
-        return rep.findAll();
-    }
+    private PlaceRepository placeRepository;
 
     public List<Place> findAll(String searchKeyword) {
-        return rep.searchKeyword(searchKeyword);
+        if (searchKeyword == null)
+            return placeRepository.findAll();
+
+        return placeRepository.searchKeyword(searchKeyword);
     }
 
     public void save(Place place) {
-        rep.save(place);
+        try {
+            placeRepository.save(place);
+        } catch (Exception e) {
+
+        }
     }
 
     public void del(Long id) {
-        rep.deleteById(id);
+        placeRepository.deleteById(id);
     }
 
     public Place get(Long id) {
-        return rep.findById(id).get();
+        return placeRepository.findById(id).orElse(new Place());
     }
 
     public void truncate() {
-        rep.deleteAll();
+        placeRepository.deleteAll();
+    }
+
+    public boolean isExist(Long id) {
+        return placeRepository.findById(id).isPresent();
     }
 
 }

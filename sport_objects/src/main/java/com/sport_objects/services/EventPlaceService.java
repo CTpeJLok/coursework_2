@@ -11,30 +11,42 @@ import java.util.List;
 public class EventPlaceService {
 
     @Autowired
-    private EventPlaceRepository rep;
+    private EventPlaceRepository eventPlaceRepository;
 
-    public List<EventPlace> findAll() {
-        return rep.findAll();
+    public List<EventPlace> findAll(String searchKeyword) {
+        if (searchKeyword == null)
+            return eventPlaceRepository.findAll();
+
+        return eventPlaceRepository.searchKeyword(searchKeyword);
     }
 
-    public List<EventPlace> findEventPlacesByEventId(Long id) {
-        return rep.findEventPlacesByEventId(id);
+    public List<EventPlace> findByEventId(Long id) {
+        return eventPlaceRepository.findByEventId(id);
     }
 
     public void save(EventPlace eventPlace) {
-        rep.save(eventPlace);
+        try {
+            eventPlaceRepository.save(eventPlace);
+        } catch (Exception e) {
+
+        }
     }
 
     public void del(Long id) {
-        rep.deleteById(id);
+        eventPlaceRepository.deleteById(id);
     }
 
     public EventPlace get(Long id) {
-        return rep.findById(id).get();
+        return eventPlaceRepository.findById(id).orElse(new EventPlace());
     }
 
     public void truncate() {
-        rep.deleteAll();
+        eventPlaceRepository.deleteAll();
+    }
+
+
+    public boolean isExist(Long id) {
+        return eventPlaceRepository.findById(id).isPresent();
     }
 
 }

@@ -11,30 +11,39 @@ import java.util.List;
 public class PlaceSportTypeService {
 
     @Autowired
-    private PlaceSportTypeRepository rep;
+    private PlaceSportTypeRepository placeSportTypeRepository;
 
     public List<PlaceSportType> findAll() {
-        return rep.findAll();
+        return placeSportTypeRepository.findAll();
     }
 
-    public List<PlaceSportType> findByPlaceID(Long id) {
-        return rep.findPlaceSportTypesByPlaceId(id);
+    public List<PlaceSportType> findByPlaceId(Long id) {
+        return placeSportTypeRepository.findByPlaceId(id);
     }
 
     public void save(PlaceSportType placeSportType) {
-        rep.save(placeSportType);
+        try {
+            placeSportTypeRepository.save(placeSportType);
+        } catch (Exception e) {
+
+        }
     }
 
     public void del(Long id) {
-        rep.deleteById(id);
+        placeSportTypeRepository.deleteById(id);
     }
 
     public PlaceSportType get(Long id) {
-        return rep.findById(id).get();
+        return placeSportTypeRepository.findById(id).orElse(new PlaceSportType());
     }
 
     public void truncate() {
-        rep.deleteAll();
+        placeSportTypeRepository.deleteAll();
+    }
+
+
+    public boolean isExist(Long id) {
+        return placeSportTypeRepository.findById(id).isPresent();
     }
 
 }

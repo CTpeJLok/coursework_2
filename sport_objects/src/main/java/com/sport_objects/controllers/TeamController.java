@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,62 +22,58 @@ import java.util.List;
 public class TeamController {
 
     @Autowired
-    private TeamService service;
+    private TeamService teamService;
 
     @Autowired
     private SportTypeService sportTypeService;
 
     @RequestMapping("")
     public String index(Model model, @Param("searchKeyword") String searchKeyword) {
-        List<Team> list = null;
-
-        if (searchKeyword != null)
-            list = service.findAll(searchKeyword);
-        else
-            list = service.findAll();
-
-        model.addAttribute("List", list);
-        model.addAttribute("searchKeyword", searchKeyword);
         model.addAttribute("title", "Команды");
+        model.addAttribute("searchKeyword", searchKeyword);
+        model.addAttribute("teamList", teamService.findAll(searchKeyword));
 
         return "team/index";
     }
 
     @RequestMapping("/create")
     public String create(Model model) {
-        Team team = new Team();
-        List<SportType> sportTypes = sportTypeService.findAll();
+        model.addAttribute("title", "Создание команды");
+        model.addAttribute("create", true);
+        model.addAttribute("team", new Team());
+        model.addAttribute("sportTypes", sportTypeService.findAll(null));
 
-        model.addAttribute("obj", team);
-        model.addAttribute("sportTypes", sportTypes);
-        model.addAttribute("title", "Админ | Создание команды");
-
-        return "team/create";
+        return "team/create-edit";
     }
 
     @RequestMapping("/edit/{id}")
     public ModelAndView edit(@PathVariable(name = "id") Long id) {
-        ModelAndView mav = new ModelAndView("team/edit");
-        Team team = service.get(id);
-        mav.addObject("obj", team);
+        ModelAndView mav = null;
 
-        List<SportType> sportTypes = sportTypeService.findAll();
-
-        mav.getModelMap().addAttribute("title", "Админ | Редактирование команды " + id);
-        mav.getModelMap().addAttribute("sportTypes", sportTypes);
+        if (teamService.isExist(id)) {
+            mav = new ModelAndView("team/create-edit");
+            mav.getModelMap().addAttribute("title", "Редактирование команды " + id);
+            mav.getModelMap().addAttribute("create", false);
+            mav.addObject("team", teamService.get(id));
+            mav.getModelMap().addAttribute("sportTypes", sportTypeService.findAll(null));
+        } else
+            mav = new ModelAndView("redirect:/team");
 
         return mav;
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public String save(@ModelAttribute("obj") Team team) {
-        service.save(team);
+    public String save(@ModelAttribute("team") Team team, BindingResult bindingResult) {
+        if (bindingResult.hasErrors())
+            return "redirect:/team";
+
+        teamService.save(team);
         return "redirect:/team";
     }
 
     @RequestMapping("/delete/{id}")
     public String delete(@PathVariable(name = "id") Long id) {
-        service.del(id);
+        teamService.del(id);
         return "redirect:/team";
     }
 

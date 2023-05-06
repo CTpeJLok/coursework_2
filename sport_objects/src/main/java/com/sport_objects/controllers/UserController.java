@@ -8,9 +8,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -23,67 +28,75 @@ public class UserController {
     @Autowired
     private RoleService roleService;
 
-    @RequestMapping("")
-    public String makeAdmin(Model model, @Param("searchKeyword") String searchKeyword) {
+    @RequestMapping({"", "/"})
+    public String index(Model model, @Param("searchKeyword") String searchKeyword) {
+        model.addAttribute("title", "Пользователи");
+        model.addAttribute("searchKeyword", searchKeyword);
+
         List<User> list = null;
 
         if (searchKeyword != null)
-            list = userService.allUsers(searchKeyword);
+            list = userService.findAll(searchKeyword);
         else
-            list = userService.allUsers();
+            list = userService.findAll();
 
         model.addAttribute("userList", list);
-        model.addAttribute("searchKeyword", searchKeyword);
-        model.addAttribute("title", "Пользователи");
 
         return "user/index";
     }
 
     @RequestMapping("/edit/{id}")
-    public ModelAndView editUser(@PathVariable(name = "id") Long id) {
-        ModelAndView mav = new ModelAndView("user/edit");
-        User user = userService.findUserById(id);
+    public ModelAndView edit(@PathVariable(name = "id") Long id) {
+        ModelAndView mav = null;
 
-        if (user.getPhone() != null) {
-            String[] phone = user.getPhone().split("");
-            StringBuilder html_phone = new StringBuilder();
-            for (int i = 0; i < phone.length; i++) {
-                if (i == 1)
-                    html_phone.append(phone[i]).append(" (");
-                else if (i == 4)
-                    html_phone.append(phone[i]).append(") ");
-                else if (i == 7 || i == 9)
-                    html_phone.append(phone[i]).append("-");
-                else
-                    html_phone.append(phone[i]);
+        if (userService.isExist(id)) {
+            mav = new ModelAndView("user/edit");
+
+            mav.getModelMap().addAttribute("title", "Редактирование пользователя " + id);
+
+            User user = userService.findById(id);
+
+            if (user.getPhone() != null) {
+                String[] phone = user.getPhone().split("");
+                StringBuilder html_phone = new StringBuilder();
+                for (int i = 0; i < phone.length; i++) {
+                    if (i == 1)
+                        html_phone.append(phone[i]).append(" (");
+                    else if (i == 4)
+                        html_phone.append(phone[i]).append(") ");
+                    else if (i == 7 || i == 9)
+                        html_phone.append(phone[i]).append("-");
+                    else
+                        html_phone.append(phone[i]);
+                }
+                user.setPhone(html_phone.toString());
             }
-            user.setPhone(html_phone.toString());
-        }
 
-        mav.addObject("user", user);
+            mav.addObject("user", user);
 
-        List<Role> roles = roleService.findAll();
-        mav.getModelMap().addAttribute("rolesList", roles);
+            List<Role> roles = roleService.findAll();
+            mav.getModelMap().addAttribute("rolesList", roles);
+        } else
+            mav = new ModelAndView("redirect:/user");
 
-        mav.getModelMap().addAttribute("title", "Редактирование пользователя " + id);
         return mav;
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public String saveUser(@ModelAttribute("user") User user) {
-        List<Role> newRoles = user.getRoles().stream().toList();
+    public String save(@ModelAttribute("user") User user, BindingResult bindingResult) {
+        if (bindingResult.hasErrors())
+            return "redirect:/user";
 
-        for (Role newRole : newRoles) {
-            if (newRole == null || (!newRole.toString().equals("ROLE_ADMIN") && !newRole.toString().equals("ROLE_USER"))) {
+        List<Role> roles = user.getRoles();
+        for (Role role : roles)
+            if (!roleService.isRoleExist(role.getName()))
                 return "redirect:/user";
-            }
-        }
 
         String[] phone = user.getPhone().replace("-", "").split(" ");
         phone[1] = phone[1].replace("(", "").replace(")", "");
         user.setPhone(String.join("", phone));
 
-        userService.updateUser(user);
+        userService.tryUpdate(user);
         return "redirect:/user";
     }
 

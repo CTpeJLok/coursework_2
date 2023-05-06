@@ -2,11 +2,10 @@ package com.sport_objects.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
-import lombok.NoArgsConstructor;
 
-@NoArgsConstructor
 @Entity
 public class TeamUser {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -24,6 +23,10 @@ public class TeamUser {
 
     @JsonFormat(pattern = "yyyy-MM-dd", shape = JsonFormat.Shape.STRING)
     private String exitDate;
+
+    public TeamUser() {
+
+    }
 
     public TeamUser(Team team) {
         this.team = team;
@@ -68,4 +71,5 @@ public class TeamUser {
     public void setExitDate(String exitDate) {
         this.exitDate = exitDate;
     }
+
 }

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <title>[[${title}]]</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <link rel="stylesheet" th:href="@{/css/base.css}">
+
+    <style>
+        html {
+            --box-h: 400px;
+        }
+    </style>
+</head>
+
+<body class="d-flex flex-column justify-content-start align-items-center gap-3">
+<div th:replace="~{base :: header}" class="container"></div>
+
+<div class="box">
+    <form action="#" th:action="@{'/place/save'}" th:object="${place}" method="post" class="form">
+        <input type="text" th:field="*{id}" hidden required readonly>
+
+        <div class="inputs">
+            <div class="inputBox">
+                <input type="text" class="active" th:field="*{name}" pattern="^[А-Яа-яЁё]+$" maxlength="30" required
+                       onblur="if (this.value) this.classList.add('active'); else this.classList.remove('active');">
+                <span>Название</span>
+                <i></i>
+            </div>
+
+            <div class="inputBox">
+                <input type="text" class="active" th:field="*{location}" pattern="^^\d{2}\.\d{6},\d{2}\.\d{6}$" maxlength="19" required
+                       onblur="if (this.value) this.classList.add('active'); else this.classList.remove('active');">
+                <span>Координаты</span>
+                <i></i>
+            </div>
+
+            <div class="inputBox">
+                <input type="text" class="active" th:field="*{description}" pattern="^[А-Яа-яЁё0-9\.,]*$" maxlength="100"
+                       onblur="if (this.value) this.classList.add('active'); else this.classList.remove('active');">
+                <span>Описание</span>
+                <i></i>
+            </div>
+        </div>
+
+        <div th:replace="~{base :: edit_buttons ('/place')}"></div>
+    </form>
+</div>
+
+</body>
+
+<script>
+    let active = document.getElementsByClassName('active');
+    let i = 0;
+    while (i < active.length) {
+        if (active[i].value == "")
+            active[i].classList.remove('active');
+        else
+            i += 1;
+    }
+</script>
+
+</html>

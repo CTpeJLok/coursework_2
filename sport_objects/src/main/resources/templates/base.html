@@ -50,7 +50,7 @@
                 <a href="/team" class="nav-link px-2">Команды</a>
             </li>
             <li>
-                <a href="/place" class="nav-link px-2">Места</a>
+                <a href="/place" class="nav-link px-2">Объекты</a>
             </li>
             <li>
                 <a href="/event" class="nav-link px-2">События</a>
@@ -73,7 +73,11 @@
     </form>
 </div>
 
-<div th:fragment="admin_action (create_link)" class="d-flex justify-content-center align-items-center gap-3 mb-3">
+<div th:fragment="row_count" class="row">
+    <p class="text-white fw-bold row-count"></p>
+</div>
+
+<div th:fragment="admin_actions (create_link)" class="d-flex justify-content-center align-items-center gap-3 mb-3">
     <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="${create_link}" class="btn btn-primary btn-sm">Добавить запись</a>
 </div>
 

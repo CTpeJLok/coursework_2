@@ -11,30 +11,38 @@ import java.util.List;
 public class SportTypeService {
 
     @Autowired
-    private SportTypeRepository rep;
-
-    public List<SportType> findAll() {
-        return rep.findAll();
-    }
+    private SportTypeRepository sportTypeRepository;
 
     public List<SportType> findAll(String searchKeyword) {
-        return rep.searchKeyword(searchKeyword);
+        if (searchKeyword == null)
+            return sportTypeRepository.findAll();
+
+        return sportTypeRepository.searchKeyword(searchKeyword);
     }
 
     public void save(SportType sportType) {
-        rep.save(sportType);
+        try {
+            sportTypeRepository.save(sportType);
+        } catch (Exception e) {
+
+        }
     }
 
     public void del(Long id) {
-        rep.deleteById(id);
+        sportTypeRepository.deleteById(id);
     }
 
     public SportType get(Long id) {
-        return rep.findById(id).get();
+        return sportTypeRepository.findById(id).orElse(new SportType());
     }
 
     public void truncate() {
-        rep.deleteAll();
+        sportTypeRepository.deleteAll();
+    }
+
+
+    public boolean isExist(Long id) {
+        return sportTypeRepository.findById(id).isPresent();
     }
 
 }

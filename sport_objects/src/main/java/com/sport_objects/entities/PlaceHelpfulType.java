@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 public class PlaceHelpfulType {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -45,4 +46,5 @@ public class PlaceHelpfulType {
     public void setHelpfulType(HelpfulType helpfulType) {
         this.helpfulType = helpfulType;
     }
+
 }

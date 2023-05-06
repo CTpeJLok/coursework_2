@@ -11,30 +11,37 @@ import java.util.List;
 public class TeamService {
 
     @Autowired
-    private TeamRepository rep;
-
-    public List<Team> findAll() {
-        return rep.findAll();
-    }
+    private TeamRepository teamRepository;
 
     public List<Team> findAll(String searchKeyword) {
-        return rep.searchKeyword(searchKeyword);
+        if (searchKeyword == null)
+            return teamRepository.findAll();
+
+        return teamRepository.searchKeyword(searchKeyword);
     }
 
     public void save(Team team) {
-        rep.save(team);
+        try {
+            teamRepository.save(team);
+        } catch (Exception e) {
+            
+        }
     }
 
     public void del(Long id) {
-        rep.deleteById(id);
+        teamRepository.deleteById(id);
     }
 
     public Team get(Long id) {
-        return rep.findById(id).get();
+        return teamRepository.findById(id).orElse(new Team());
     }
 
     public void truncate() {
-        rep.deleteAll();
+        teamRepository.deleteAll();
+    }
+
+    public boolean isExist(Long id) {
+        return teamRepository.findById(id).isPresent();
     }
 
 }

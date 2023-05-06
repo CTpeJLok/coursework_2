@@ -3,7 +3,6 @@ package com.sport_objects.entities;
 import jakarta.persistence.*;
 
 import java.util.List;
-import java.util.Set;
 
 @Entity
 public class SportType {
@@ -46,4 +45,13 @@ public class SportType {
     public String toString() {
         return name;
     }
+
+    public List<PlaceSportType> getPlaceSportTypes() {
+        return placeSportTypes;
+    }
+
+    public void setPlaceSportTypes(List<PlaceSportType> placeSportTypes) {
+        this.placeSportTypes = placeSportTypes;
+    }
+
 }

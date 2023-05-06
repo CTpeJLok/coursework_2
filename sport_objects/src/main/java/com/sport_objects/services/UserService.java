@@ -10,7 +10,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,6 +19,9 @@ public class UserService implements UserDetailsService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private RoleService roleService;
 
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -33,68 +36,55 @@ public class UserService implements UserDetailsService {
         return user;
     }
 
-    public User findUserById(Long userId) {
+    public User findById(Long userId) {
         Optional<User> userFromDb = userRepository.findById(userId);
         return userFromDb.orElse(new User());
     }
 
-    public List<User> allUsers() {
+    public List<User> findAll() {
         return userRepository.findAll();
     }
 
-    public List<User> allUsers(String searchKeyword) {
+    public List<User> findAll(String searchKeyword) {
         return userRepository.searchKeyword(searchKeyword);
     }
 
-    public boolean updateUser(User user) {
-        User userFromDb = userRepository.findByUsername(user.getUsername());
-
-        if (userFromDb != null) {
-            userFromDb.setFirstName(user.getFirstName());
-            userFromDb.setLastName(user.getLastName());
-            userFromDb.setBirthday(user.getBirthday());
-            userFromDb.setPhone(user.getPhone());
-            userFromDb.setEmail(user.getEmail());
-            userFromDb.setRoles(user.getRoles());
-            userRepository.save(userFromDb);
-            return true;
-        }
-
-        return false;
-    }
-
-    public boolean saveUser(User user) {
-        User userFromDb = userRepository.findByUsername(user.getUsername());
-
-        if (userFromDb != null) {
+    public boolean save(User user) {
+        if (userRepository.findByUsername(user.getUsername()) != null)
             return false;
-        }
 
-        user.setRoles(Collections.singleton(new Role(1L, "ROLE_USER")));
+        List<Role> roles = new ArrayList<>();
+        roles.add(roleService.getUserRoleOrCreate());
+        user.setRoles(roles);
+
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+
         userRepository.save(user);
         return true;
     }
 
-    public boolean saveAdmin(User user) {
-        User userFromDb = userRepository.findByUsername(user.getUsername());
+    public void tryUpdate(User user) {
+        User oldInfo = userRepository.findByUsername(user.getUsername());
 
-        if (userFromDb != null) {
-            return false;
+        if (oldInfo != null) {
+            oldInfo.setFirstName(user.getFirstName());
+            oldInfo.setLastName(user.getLastName());
+            oldInfo.setBirthday(user.getBirthday());
+            oldInfo.setPhone(user.getPhone());
+            oldInfo.setEmail(user.getEmail());
+            oldInfo.setRoles(user.getRoles());
+
+            userRepository.save(oldInfo);
         }
-
-        user.setRoles(Collections.singleton(new Role(2L, "ROLE_ADMIN")));
-        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        userRepository.save(user);
-        return true;
     }
 
-    public boolean deleteUser(Long userId) {
-        if (userRepository.findById(userId).isPresent()) {
+    public void tryDelete(Long userId) {
+        if (userRepository.findById(userId).isPresent())
             userRepository.deleteById(userId);
-            return true;
-        }
-        return false;
+    }
+
+    public boolean isExist(Long id) {
+        return userRepository.findById(id).isPresent();
     }
 
 }

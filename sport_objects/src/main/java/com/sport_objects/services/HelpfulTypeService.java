@@ -11,30 +11,38 @@ import java.util.List;
 public class HelpfulTypeService {
 
     @Autowired
-    private HelpfulTypeRepository rep;
-
-    public List<HelpfulType> findAll() {
-        return rep.findAll();
-    }
+    private HelpfulTypeRepository helpfulTypeRepository;
 
     public List<HelpfulType> findAll(String searchKeyword) {
-        return rep.searchKeyword(searchKeyword);
+        if (searchKeyword == null)
+            return helpfulTypeRepository.findAll();
+
+        return helpfulTypeRepository.searchKeyword(searchKeyword);
     }
 
     public void save(HelpfulType helpfulType) {
-        rep.save(helpfulType);
+        try {
+            helpfulTypeRepository.save(helpfulType);
+        } catch (Exception e) {
+
+        }
     }
 
     public void del(Long id) {
-        rep.deleteById(id);
+        helpfulTypeRepository.deleteById(id);
     }
 
     public HelpfulType get(Long id) {
-        return rep.findById(id).get();
+        return helpfulTypeRepository.findById(id).orElse(new HelpfulType());
     }
 
     public void truncate() {
-        rep.deleteAll();
+        helpfulTypeRepository.deleteAll();
+    }
+
+
+    public boolean isExist(Long id) {
+        return helpfulTypeRepository.findById(id).isPresent();
     }
 
 }

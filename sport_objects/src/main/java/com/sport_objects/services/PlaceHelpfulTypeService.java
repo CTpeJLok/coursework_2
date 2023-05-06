@@ -11,30 +11,39 @@ import java.util.List;
 public class PlaceHelpfulTypeService {
 
     @Autowired
-    private PlaceHelpfulTypeRepository rep;
+    private PlaceHelpfulTypeRepository placeHelpfulTypeRepository;
 
     public List<PlaceHelpfulType> findAll() {
-        return rep.findAll();
+        return placeHelpfulTypeRepository.findAll();
     }
 
-    public List<PlaceHelpfulType> findPlaceHelpfulTypesByPlaceId(Long id) {
-        return rep.findPlaceHelpfulTypesByPlaceId(id);
+    public List<PlaceHelpfulType> findByPlaceId(Long id) {
+        return placeHelpfulTypeRepository.findByPlaceId(id);
     }
 
     public void save(PlaceHelpfulType placeHelpfulType) {
-        rep.save(placeHelpfulType);
+        try {
+            placeHelpfulTypeRepository.save(placeHelpfulType);
+        } catch (Exception e) {
+
+        }
     }
 
     public void del(Long id) {
-        rep.deleteById(id);
+        placeHelpfulTypeRepository.deleteById(id);
     }
 
     public PlaceHelpfulType get(Long id) {
-        return rep.findById(id).get();
+        return placeHelpfulTypeRepository.findById(id).orElse(new PlaceHelpfulType());
     }
 
     public void truncate() {
-        rep.deleteAll();
+        placeHelpfulTypeRepository.deleteAll();
+    }
+
+
+    public boolean isExist(Long id) {
+        return placeHelpfulTypeRepository.findById(id).isPresent();
     }
 
 }

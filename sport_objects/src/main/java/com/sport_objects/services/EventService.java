@@ -1,9 +1,7 @@
 package com.sport_objects.services;
 
 import com.sport_objects.entities.Event;
-import com.sport_objects.entities.Team;
 import com.sport_objects.repositories.EventRepository;
-import com.sport_objects.repositories.TeamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,30 +11,37 @@ import java.util.List;
 public class EventService {
 
     @Autowired
-    private EventRepository rep;
-
-    public List<Event> findAll() {
-        return rep.findAll();
-    }
+    private EventRepository eventRepository;
 
     public List<Event> findAll(String searchKeyword) {
-        return rep.searchKeyword(searchKeyword);
+        if (searchKeyword == null)
+            return eventRepository.findAll();
+
+        return eventRepository.searchKeyword(searchKeyword);
     }
 
     public void save(Event event) {
-        rep.save(event);
+        try {
+            eventRepository.save(event);
+        } catch (Exception e) {
+
+        }
     }
 
     public void del(Long id) {
-        rep.deleteById(id);
+        eventRepository.deleteById(id);
     }
 
     public Event get(Long id) {
-        return rep.findById(id).get();
+        return eventRepository.findById(id).orElse(new Event());
     }
 
     public void truncate() {
-        rep.deleteAll();
+        eventRepository.deleteAll();
+    }
+
+    public boolean isExist(Long id) {
+        return eventRepository.findById(id).isPresent();
     }
 
 }

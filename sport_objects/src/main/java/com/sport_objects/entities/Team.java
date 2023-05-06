@@ -70,4 +70,19 @@ public class Team {
 
         return users;
     }
+
+    public int usersCount() {
+        return teamUsers.size();
+    }
+
+    public int activeUsersCount() {
+        int count = 0;
+
+        for (TeamUser tu : teamUsers) {
+            if (tu.getExitDate().equals(""))
+                count += 1;
+        }
+
+        return count;
+    }
 }

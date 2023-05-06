@@ -105,4 +105,5 @@ public class Event {
     public void setEventPlaces(List<EventPlace> eventPlaces) {
         this.eventPlaces = eventPlaces;
     }
+
 }

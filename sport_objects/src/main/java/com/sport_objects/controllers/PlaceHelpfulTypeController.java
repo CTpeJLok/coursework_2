@@ -8,13 +8,13 @@ import com.sport_objects.services.PlaceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -22,7 +22,7 @@ import java.util.List;
 public class PlaceHelpfulTypeController {
 
     @Autowired
-    private PlaceHelpfulTypeService service;
+    private PlaceHelpfulTypeService placeHelpfulTypeService;
 
     @Autowired
     private PlaceService placeService;
@@ -30,64 +30,47 @@ public class PlaceHelpfulTypeController {
     @Autowired
     private HelpfulTypeService helpfulTypeService;
 
-    @RequestMapping("{id}")
-    public String index(Model model, @PathVariable(name = "id") Long id) {
-        List<PlaceHelpfulType> placeHelpfulTypes = service.findPlaceHelpfulTypesByPlaceId(id);
-
-        model.addAttribute("placeId", id);
-        model.addAttribute("List", placeHelpfulTypes);
-        model.addAttribute("title", "Админ | Полезные категории места  " + id);
+    @RequestMapping("{place_id}")
+    public String index(Model model, @PathVariable(name = "place_id") Long place_id) {
+        model.addAttribute("title", "Полезные категории объекта " + place_id);
+        model.addAttribute("place_id", place_id);
+        model.addAttribute("placeHelpfulTypeList", placeHelpfulTypeService.findByPlaceId(place_id));
 
         return "place-helpful-type/index";
     }
 
-    @RequestMapping("{id}/add")
-    public ModelAndView add(@PathVariable(name = "id") Long id) {
-        ModelAndView mav = new ModelAndView("place-helpful-type/add");
-        PlaceHelpfulType placeHelpfulType = new PlaceHelpfulType(placeService.get(id));
-        mav.addObject("obj", placeHelpfulType);
+    @RequestMapping("{place_id}/create")
+    public ModelAndView create(@PathVariable(name = "place_id") Long place_id) {
+        ModelAndView mav = new ModelAndView("place-helpful-type/create");
+        mav.getModelMap().addAttribute("title", "Добавить полезную категорию объекту " +
+                place_id);
+        mav.getModelMap().addAttribute("place_id", place_id);
+        mav.getModelMap().addAttribute("create", true);
+        mav.addObject("placeHelpfulType", new PlaceHelpfulType(placeService.get(place_id)));
 
-        List<HelpfulType> helpfulTypes = helpfulTypeService.findAll();
-        List<Long> helpfulTypesID = new ArrayList<>();
-        for (HelpfulType ht : helpfulTypes)
-            helpfulTypesID.add(ht.getId());
-
-        List<PlaceHelpfulType> placeHelpfulTypes = service.findPlaceHelpfulTypesByPlaceId(id);
-        for (PlaceHelpfulType pht : placeHelpfulTypes) {
-            long current_id = pht.getPlace().getId();
-
-            if (helpfulTypesID.contains(current_id)) {
-                int index = helpfulTypesID.indexOf(current_id);
-                helpfulTypes.remove(index);
-                helpfulTypesID.remove(index);
-            }
-        }
-
-        mav.getModelMap().addAttribute("placeId", id);
-        mav.getModelMap().addAttribute("title", "Админ | Добавить полезную категорию для места");
-        mav.getModelMap().addAttribute("helpful_types", helpfulTypes);
+        List<HelpfulType> helpfulTypeList = helpfulTypeService.findAll(null);
+        mav.getModelMap().addAttribute("helpfulTypeList", helpfulTypeList);
 
         return mav;
     }
 
-    @RequestMapping(value = "{id}/save", method = RequestMethod.POST)
-    public String save(@ModelAttribute("obj") PlaceHelpfulType placeHelpfulType, @PathVariable(name = "id") Long id) {
-        service.save(placeHelpfulType);
+    @RequestMapping(value = "{place_id}/save", method = RequestMethod.POST)
+    public String save(@ModelAttribute("placeHelpfulType") PlaceHelpfulType placeHelpfulType,
+                       @PathVariable(name = "place_id") Long place_id, BindingResult bindingResult) {
+        if (bindingResult.hasErrors())
+            return "redirect:/place-helpful-type/" + place_id;
 
-        return "redirect:/place-helpful-type/" + id;
+        placeHelpfulTypeService.save(placeHelpfulType);
+
+        return "redirect:/place-helpful-type/" + place_id;
     }
 
-    @RequestMapping("{id}/delete/{helpful_type_id}")
-    public String delete(@PathVariable(name = "id") Long id, @PathVariable(name = "helpful_type_id") Long helpful_type_id) {
-        List<PlaceHelpfulType> placeHelpfulTypes = service.findPlaceHelpfulTypesByPlaceId(id);
-        for (PlaceHelpfulType pht : placeHelpfulTypes) {
-            if (pht.getHelpfulType().getId() == helpful_type_id) {
-                service.del(pht.getId());
-                break;
-            }
-        }
+    @RequestMapping("{place_id}/delete/{place_helpful_type_id}")
+    public String delete(@PathVariable(name = "place_id") Long place_id,
+                         @PathVariable(name = "place_helpful_type_id") Long place_helpful_type_id) {
+        placeHelpfulTypeService.del(place_helpful_type_id);
 
-        return "redirect:/place-helpful-type/" + id;
+        return "redirect:/place-helpful-type/" + place_id;
     }
 
 }

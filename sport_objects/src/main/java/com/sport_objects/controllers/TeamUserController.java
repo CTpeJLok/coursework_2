@@ -6,15 +6,16 @@ import com.sport_objects.services.TeamService;
 import com.sport_objects.services.TeamUserService;
 import com.sport_objects.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -22,7 +23,7 @@ import java.util.List;
 public class TeamUserController {
 
     @Autowired
-    private TeamUserService service;
+    private TeamUserService teamUserService;
 
     @Autowired
     private TeamService teamService;
@@ -30,81 +31,72 @@ public class TeamUserController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping("{id}")
-    public String index(Model model, @PathVariable(name = "id") Long id) {
-        List<TeamUser> teamUsers = service.findByTeamID(id);
+    @RequestMapping("{team_id}")
+    public String index(Model model, @PathVariable(name = "team_id") Long team_id,
+                        @Param("searchKeyword") String searchKeyword) {
+        model.addAttribute("title", "Пользователи команды " + team_id);
+        model.addAttribute("searchKeyword", searchKeyword);
+        model.addAttribute("team_id", team_id);
 
-        model.addAttribute("teamId", id);
-        model.addAttribute("List", teamUsers);
-        model.addAttribute("title", "Админ | Пользователи команды " + id);
+        List<TeamUser> teamUserList = teamUserService.findByTeamId(team_id, searchKeyword);
+        model.addAttribute("teamUserList", teamUserList);
 
         return "team-user/index";
     }
 
-    @RequestMapping("{id}/add")
-    public ModelAndView addUser(@PathVariable(name = "id") Long id) {
-        ModelAndView mav = new ModelAndView("team-user/add");
-        TeamUser teamUser = new TeamUser(teamService.get(id));
-        mav.addObject("obj", teamUser);
+    @RequestMapping("{team_id}/create")
+    public ModelAndView create(@PathVariable(name = "team_id") Long team_id) {
+        ModelAndView mav = new ModelAndView("team-user/create-edit");
+        mav.getModelMap().addAttribute("title", "Добавить пользователя команде " + team_id);
+        mav.getModelMap().addAttribute("team_id", team_id);
+        mav.getModelMap().addAttribute("create", true);
 
-        List<User> users = userService.allUsers();
-        List<Long> usersID = new ArrayList<>();
-        for (User u : users)
-            usersID.add(u.getId());
 
-        List<TeamUser> teamUsers = service.findByTeamID(id);
-        for (TeamUser tu : teamUsers) {
-            long current_id = tu.getUser().getId();
+        TeamUser teamUser = new TeamUser(teamService.get(team_id));
+        mav.addObject("teamUser", teamUser);
 
-            if (usersID.contains(current_id)) {
-                int index = usersID.indexOf(current_id);
-                users.remove(index);
-                usersID.remove(index);
-            }
-        }
-
-        mav.getModelMap().addAttribute("teamId", id);
-        mav.getModelMap().addAttribute("title", "Админ | Добавить пользователя команды");
-        mav.getModelMap().addAttribute("users", users);
+        List<User> userList = userService.findAll();
+        mav.getModelMap().addAttribute("userList", userList);
 
         return mav;
     }
 
-    @RequestMapping("{id}/edit/{user_id}")
-    public ModelAndView addUser(@PathVariable(name = "id") Long id, @PathVariable(name = "user_id") Long user_id) {
-        ModelAndView mav = new ModelAndView("team-user/edit");
-        List<TeamUser> teamUsers = service.findByTeamID(id);
-        for (TeamUser tu : teamUsers) {
-            if (tu.getUser().getId() == user_id) {
-                mav.addObject("obj", tu);
-                break;
-            }
-        }
+    @RequestMapping("{team_id}/edit/{team_user_id}")
+    public ModelAndView edit(@PathVariable(name = "team_id") Long team_id,
+                             @PathVariable(name = "team_user_id") Long team_user_id) {
+        ModelAndView mav = null;
 
-        mav.getModelMap().addAttribute("teamId", id);
-        mav.getModelMap().addAttribute("title", "Админ | Редактирование пользователя команды");
+        if (teamUserService.isExist(team_user_id)) {
+            mav = new ModelAndView("team-user/create-edit");
+            mav.getModelMap().addAttribute("title",
+                    "Редактирование пользователя команды " + team_id);
+            mav.getModelMap().addAttribute("team_id", team_id);
+            mav.getModelMap().addAttribute("create", false);
+
+            TeamUser teamUser = teamUserService.findById(team_user_id);
+            mav.addObject("teamUser", teamUser);
+
+        } else
+            mav = new ModelAndView("redirect:/team-user/" + team_id);
 
         return mav;
     }
 
-    @RequestMapping(value = "{id}/save", method = RequestMethod.POST)
-    public String save(@ModelAttribute("obj") TeamUser teamUser, @PathVariable(name = "id") Long id) {
-        service.save(teamUser);
+    @RequestMapping(value = "{team_id}/save", method = RequestMethod.POST)
+    public String save(@ModelAttribute("teamUser") TeamUser teamUser, @PathVariable(name = "team_id") Long team_id,
+                       BindingResult bindingResult) {
+        if (bindingResult.hasErrors())
+            return "redirect:/team-user/" + team_id;
 
-        return "redirect:/team-user/" + id;
+        teamUserService.save(teamUser);
+        return "redirect:/team-user/" + team_id;
     }
 
-    @RequestMapping("{id}/delete/{user_id}")
-    public String delete(@PathVariable(name = "id") Long id, @PathVariable(name = "user_id") Long user_id) {
-        List<TeamUser> teamUsers = service.findByTeamID(id);
-        for (TeamUser tu : teamUsers) {
-            if (tu.getUser().getId() == user_id) {
-                service.del(tu.getId());
-                break;
-            }
-        }
-
-        return "redirect:/team-user/" + id;
+    @RequestMapping("{team_id}/delete/{team_user_id}")
+    public String delete(@PathVariable(name = "team_id") Long team_id,
+                         @PathVariable(name = "team_user_id") Long team_user_id) {
+        teamUserService.del(team_user_id);
+        return "redirect:/team-user/" + team_id;
     }
 
 }

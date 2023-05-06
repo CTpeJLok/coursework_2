@@ -50,8 +50,8 @@
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
-<dataTypeSize>60</dataTypeSize>
-<ownDataTypeParameters>60,,</ownDataTypeParameters>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
 </Attribute>
 <Attribute name="FIRST NAME" id="D642F638-3BDE-AD5A-2778-183168F25EAE">
 <createdBy>Good-</createdBy>

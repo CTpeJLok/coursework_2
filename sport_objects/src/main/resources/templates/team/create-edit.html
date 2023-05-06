@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml" lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <title>[[${title}]]</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <link rel="stylesheet" th:href="@{/css/base.css}">
+
+    <style>
+        html {
+            --box-h: 400px;
+        }
+    </style>
+</head>
+
+<body class="d-flex flex-column justify-content-start align-items-center gap-3">
+<div th:replace="~{base :: header}" class="container"></div>
+
+<div class="box">
+    <form action="#" th:action="@{/team/save}" th:object="${team}" method="post" class="form">
+        <input type="text" th:field="*{id}" hidden required readonly>
+
+        <div class="inputs">
+            <div class="inputBox">
+                <input type="text" class="active" th:field="*{name}" pattern="^[А-Яа-яЁёA-Za-z0-9]+$" maxlength="30"
+                       required onfocus="this.classList.add('active');"
+                       onblur="if (!this.value) this.classList.remove('active');">
+                <span>Название</span>
+                <i></i>
+            </div>
+
+            <div class="inputBox">
+                <input th:if="${create}" type="text" class="active" th:field="*{createDate}" required
+                       onfocus="this.type='date';"
+                       onblur="if (!this.value) this.type='text';">
+                <input th:if="not ${create}" type="text" class="active" th:field="*{createDate}" readonly>
+                <span>Дата создания</span>
+                <i></i>
+            </div>
+
+            <div class="dropdownBox">
+                <select th:field="*{sportType}">
+                    <option th:each="type : ${sportTypes}" th:value="${type.id}" th:text="${type.name}"></option>
+                </select>
+                <span>Вид спорта</span>
+            </div>
+        </div>
+
+        <div th:replace="~{base :: edit_buttons ('/team')}"></div>
+    </form>
+</div>
+
+</body>
+
+<script>
+    let active = document.getElementsByClassName('active');
+    let i = 0;
+    while (i < active.length) {
+        if (active[i].value == "")
+            active[i].classList.remove('active');
+        else
+            i += 1;
+    }
+</script>
+
+</html>

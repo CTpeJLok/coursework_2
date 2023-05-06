@@ -1,6 +1,7 @@
 package com.sport_objects.controllers;
 
 import com.sport_objects.entities.User;
+import com.sport_objects.services.RoleService;
 import com.sport_objects.services.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,13 +20,18 @@ public class RegistrationController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("")
+    @Autowired
+    private RoleService roleService;
+
+    @GetMapping({"", "/"})
     public String registration(Model model) {
+        roleService.generateDefaultIfNotExitst();
+
         model.addAttribute("useForm", new User());
         return "registr";
     }
 
-    @PostMapping("")
+    @PostMapping({"", "/"})
     public String addUser(@ModelAttribute("useForm") @Valid User userForm, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             return "registr";
@@ -40,7 +46,7 @@ public class RegistrationController {
         phone[1] = phone[1].replace("(", "").replace(")", "");
         userForm.setPhone(String.join("", phone));
 
-        if (!userService.saveUser(userForm)) {
+        if (!userService.save(userForm)) {
             model.addAttribute("Error", "Пользователь с таким именем уже существует");
             return "registr";
         }

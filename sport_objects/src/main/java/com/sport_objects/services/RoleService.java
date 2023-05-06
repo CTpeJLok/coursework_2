@@ -35,4 +35,37 @@ public class RoleService {
         rep.deleteAll();
     }
 
+    public void generateDefaultIfNotExitst() {
+        String[] names = {"ROLE_USER", "ROLE_ADMIN"};
+
+        for (String name : names) {
+            if (rep.findByName(name) == null)
+                rep.save(new Role(name));
+        }
+    }
+
+    public Role getUserRoleOrCreate() {
+        if (rep.findByName("ROLE_USER") == null)
+            rep.save(new Role("ROLE_USER"));
+
+        return rep.findByName("ROLE_USER");
+    }
+
+    public Role getAdminRoleOrCreate() {
+        if (rep.findByName("ROLE_ADMIN") == null)
+            rep.save(new Role("ROLE_ADMIN"));
+
+        return rep.findByName("ROLE_ADMIN");
+    }
+
+    public boolean isRoleExist(String name) {
+        List<Role> roles = rep.findAll();
+
+        for (Role role : roles)
+            if (role.getName().equals(name))
+                return true;
+
+        return false;
+    }
+
 }

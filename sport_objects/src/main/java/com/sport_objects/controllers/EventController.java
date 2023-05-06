@@ -6,67 +6,63 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.List;
-
 @Controller
 @RequestMapping("/event")
 public class EventController {
 
     @Autowired
-    private EventService service;
+    private EventService eventService;
 
     @RequestMapping("")
     public String index(Model model, @Param("searchKeyword") String searchKeyword) {
-        List<Event> list = null;
-
-        if (searchKeyword != null)
-            list = service.findAll(searchKeyword);
-        else
-            list = service.findAll();
-
-        model.addAttribute("List", list);
-        model.addAttribute("searchKeyword", searchKeyword);
         model.addAttribute("title", "События");
+        model.addAttribute("searchKeyword", searchKeyword);
+        model.addAttribute("eventList", eventService.findAll(searchKeyword));
 
         return "event/index";
     }
 
     @RequestMapping("/create")
     public String create(Model model) {
-        Event event = new Event();
+        model.addAttribute("title", "Создание события");
+        model.addAttribute("event", new Event());
 
-        model.addAttribute("obj", event);
-        model.addAttribute("title", "Админ | Создание события");
-
-        return "event/create";
+        return "event/create-edit";
     }
 
     @RequestMapping("/edit/{id}")
     public ModelAndView edit(@PathVariable(name = "id") Long id) {
-        ModelAndView mav = new ModelAndView("event/edit");
-        Event event = service.get(id);
-        mav.addObject("obj", event);
+        ModelAndView mav = null;
 
-        mav.getModelMap().addAttribute("title", "Админ | Редактирование события " + id);
+        if (eventService.isExist(id)) {
+            mav = new ModelAndView("event/create-edit");
+            mav.getModelMap().addAttribute("title", "Редактирование события " + id);
+            mav.addObject("event", eventService.get(id));
+        } else
+            mav = new ModelAndView("redirect:/event");
 
         return mav;
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public String save(@ModelAttribute("obj") Event event) {
-        service.save(event);
+    public String save(@ModelAttribute("event") Event event, BindingResult bindingResult) {
+        if (bindingResult.hasErrors())
+            return "redirect:/event";
+
+        eventService.save(event);
         return "redirect:/event";
     }
 
     @RequestMapping("/delete/{id}")
     public String delete(@PathVariable(name = "id") Long id) {
-        service.del(id);
+        eventService.del(id);
         return "redirect:/event";
     }
 

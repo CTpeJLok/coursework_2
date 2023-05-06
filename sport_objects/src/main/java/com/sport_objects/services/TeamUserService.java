@@ -11,30 +11,42 @@ import java.util.List;
 public class TeamUserService {
 
     @Autowired
-    private TeamUserRepository rep;
+    private TeamUserRepository teamUserRepository;
 
-    public List<TeamUser> findAll() {
-        return rep.findAll();
+    public TeamUser findById(Long id) {
+        return teamUserRepository.findById(id).orElse(new TeamUser());
     }
 
-    public List<TeamUser> findByTeamID(Long id) {
-        return rep.findTeamUsersByTeamId(id);
+    public List<TeamUser> findByTeamId(Long id, String searchKeyword) {
+        if (searchKeyword == null)
+            return teamUserRepository.findByTeamId(id);
+
+        return teamUserRepository.findByTeamIdSearch(id, searchKeyword);
     }
 
     public void save(TeamUser teamUser) {
-        rep.save(teamUser);
+        try {
+            teamUserRepository.save(teamUser);
+        } catch (Exception e) {
+            
+        }
     }
 
     public void del(Long id) {
-        rep.deleteById(id);
+        teamUserRepository.deleteById(id);
     }
 
     public TeamUser get(Long id) {
-        return rep.findById(id).get();
+        return teamUserRepository.findById(id).orElse(new TeamUser());
     }
 
     public void truncate() {
-        rep.deleteAll();
+        teamUserRepository.deleteAll();
+    }
+
+
+    public boolean isExist(Long id) {
+        return teamUserRepository.findById(id).isPresent();
     }
 
 }

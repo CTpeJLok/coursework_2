@@ -3,9 +3,11 @@ package com.sport_objects.repositories;
 import com.sport_objects.entities.Event;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public interface EventRepository extends JpaRepository<Event, Long> {
 
     @Query("SELECT e FROM Event e WHERE CONCAT(LOWER(e.name), ' ', LOWER(e.createDate), ' ', LOWER(e.updateDate), ' ', LOWER(e.cancelDate), ' ', LOWER(e.startDate), ' ', LOWER(e.endDate), ' ', LOWER(e.description)) LIKE %?1%")

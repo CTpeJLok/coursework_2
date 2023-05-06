@@ -1,27 +1,25 @@
 package com.sport_objects.controllers;
 
 import com.sport_objects.entities.EventPlace;
-import com.sport_objects.entities.PlaceSportType;
 import com.sport_objects.services.EventPlaceService;
 import com.sport_objects.services.EventService;
 import com.sport_objects.services.PlaceSportTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.List;
-
 @Controller
 @RequestMapping("/event-place")
 public class EventPlaceController {
 
     @Autowired
-    private EventPlaceService service;
+    private EventPlaceService eventPlaceService;
 
     @Autowired
     private PlaceSportTypeService placeSportTypeService;
@@ -29,70 +27,58 @@ public class EventPlaceController {
     @Autowired
     private EventService eventService;
 
-    @RequestMapping("{id}")
-    public String index(Model model, @PathVariable(name = "id") Long id) {
-        List<EventPlace> eventPlaces = service.findEventPlacesByEventId(id);
-
-        model.addAttribute("eventId", id);
-        model.addAttribute("List", eventPlaces);
-        model.addAttribute("title", "Админ | места события " + id);
+    @RequestMapping("{event_id}")
+    public String index(Model model, @PathVariable(name = "event_id") Long event_id) {
+        model.addAttribute("title", "Места события " + event_id);
+        model.addAttribute("event_id", event_id);
+        model.addAttribute("eventPlaceList", eventPlaceService.findByEventId(event_id));
 
         return "event-place/index";
     }
 
-    @RequestMapping("{id}/add")
-    public ModelAndView add(@PathVariable(name = "id") Long id) {
-        ModelAndView mav = new ModelAndView("event-place/add");
-        EventPlace eventPlace = new EventPlace(eventService.get(id));
-        mav.addObject("obj", eventPlace);
-
-        List<PlaceSportType> placeSportTypes = placeSportTypeService.findAll();
-
-        mav.getModelMap().addAttribute("eventId", id);
-        mav.getModelMap().addAttribute("title", "Админ | Добавить место для события");
-        mav.getModelMap().addAttribute("placeSportTypes", placeSportTypes);
+    @RequestMapping("{event_id}/create")
+    public ModelAndView create(@PathVariable(name = "event_id") Long event_id) {
+        ModelAndView mav = new ModelAndView("event-place/create-edit");
+        mav.getModelMap().addAttribute("title", "Добавить место событию " + event_id);
+        mav.getModelMap().addAttribute("event_id", event_id);
+        mav.addObject("eventPlace", new EventPlace(eventService.get(event_id)));
+        mav.getModelMap().addAttribute("placeSportTypes", placeSportTypeService.findAll());
 
         return mav;
     }
 
-    @RequestMapping("{id}/edit/{place_sport_type_id}")
-    public ModelAndView addUser(@PathVariable(name = "id") Long id, @PathVariable(name = "place_sport_type_id") Long place_sport_type_id) {
-        ModelAndView mav = new ModelAndView("event-place/edit");
-        List<EventPlace> eventPlaces = service.findEventPlacesByEventId(id);
-        for (EventPlace ep : eventPlaces) {
-            if (ep.getPlaceSportType().getPlace().getId() == place_sport_type_id) {
-                mav.addObject("obj", ep);
-                break;
-            }
-        }
+    @RequestMapping("{event_id}/edit/{event_place_id}")
+    public ModelAndView edit(@PathVariable(name = "event_id") Long event_id,
+                             @PathVariable(name = "event_place_id") Long event_place_id) {
+        ModelAndView mav = null;
 
-        List<PlaceSportType> placeSportTypes = placeSportTypeService.findAll();
-
-        mav.getModelMap().addAttribute("eventId", id);
-        mav.getModelMap().addAttribute("title", "Админ | Редактирование места для события");
-        mav.getModelMap().addAttribute("placeSportTypes", placeSportTypes);
+        if (eventPlaceService.isExist(event_place_id)) {
+            mav = new ModelAndView("event-place/create-edit");
+            mav.getModelMap().addAttribute("title", "Редактирование места события " + event_id);
+            mav.getModelMap().addAttribute("event_id", event_id);
+            mav.addObject("eventPlace", eventPlaceService.get(event_place_id));
+            mav.getModelMap().addAttribute("placeSportTypes", placeSportTypeService.findAll());
+        } else
+            mav = new ModelAndView("redirect:/event-place/" + event_id);
 
         return mav;
     }
 
-    @RequestMapping(value = "{id}/save", method = RequestMethod.POST)
-    public String save(@ModelAttribute("obj") EventPlace eventPlace, @PathVariable(name = "id") Long id) {
-        service.save(eventPlace);
+    @RequestMapping(value = "{event_id}/save", method = RequestMethod.POST)
+    public String save(@ModelAttribute("eventPlace") EventPlace eventPlace,
+                       @PathVariable(name = "event_id") Long event_id, BindingResult bindingResult) {
+        if (bindingResult.hasErrors())
+            return "redirect:/event-place/" + event_id;
 
-        return "redirect:/event-place/" + id;
+        eventPlaceService.save(eventPlace);
+        return "redirect:/event-place/" + event_id;
     }
 
-    @RequestMapping("{id}/delete/{place_sport_type_id}")
-    public String delete(@PathVariable(name = "id") Long id, @PathVariable(name = "place_sport_type_id") Long place_sport_type_id) {
-        List<EventPlace> eventPlaces = service.findEventPlacesByEventId(id);
-        for (EventPlace ep : eventPlaces) {
-            if (ep.getPlaceSportType().getPlace().getId() == place_sport_type_id) {
-                service.del(ep.getId());
-                break;
-            }
-        }
-
-        return "redirect:/event-place/" + id;
+    @RequestMapping("{event_id}/delete/{event_place_id}")
+    public String delete(@PathVariable(name = "event_id") Long event_id,
+                         @PathVariable(name = "event_place_id") Long event_place_id) {
+        eventPlaceService.del(event_place_id);
+        return "redirect:/event-place/" + event_id;
     }
 
 }

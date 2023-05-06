@@ -23,7 +23,7 @@ public class EventPlace {
     private String eventDate;
 
     @JsonFormat(pattern = "HH:mm:ss", shape = JsonFormat.Shape.STRING)
-    private String Duration;
+    private String duration;
 
     public EventPlace(Event event) {
         this.event = event;
@@ -54,11 +54,11 @@ public class EventPlace {
     }
 
     public String getDuration() {
-        return Duration;
+        return duration;
     }
 
     public void setDuration(String duration) {
-        Duration = duration;
+        this.duration = duration;
     }
 
     public PlaceSportType getPlaceSportType() {
