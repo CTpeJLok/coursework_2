@@ -155,6 +155,6 @@ public class User implements UserDetails {
     }
 
     public String toString() {
-        return lastName + " " + firstName;
+        return firstName == null ? "" : firstName + " " + lastName;
     }
 }

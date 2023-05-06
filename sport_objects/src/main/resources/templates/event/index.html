@@ -57,6 +57,11 @@
                 <th scope="row" class="table-th text-white" th:text="${event.endDate}">отстутсвует</th>
                 <th scope="row" class="table-th text-white" th:text="${event.description}">отстутсвует</th>
                 <td>
+                    <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{'/event-distribution/'+${event.id}}">
+                        <button type="button" class="btn btn-info">Результаты</button>
+                    </a>
+                    <br>
+                    <br>
                     <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{'/event-place/'+${event.id}}">
                         <button type="button" class="btn btn-info">Управление местами</button>
                     </a>

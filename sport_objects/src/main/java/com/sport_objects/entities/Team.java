@@ -85,4 +85,8 @@ public class Team {
 
         return count;
     }
+
+    public String toString() {
+        return name == null ? "" : name;
+    }
 }

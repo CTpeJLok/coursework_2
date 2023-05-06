@@ -12,7 +12,7 @@
 <nameOnSource>HAS SEVERAL DISTR</nameOnSource>
 <nameOnTarget> </nameOnTarget>
 <optionalSource>true</optionalSource>
-<optionalTarget>true</optionalTarget>
+<optionalTarget>false</optionalTarget>
 <sourceCardinality>1</sourceCardinality>
 <sourceEntity>06C1D322-5D32-0315-8D18-95982F6A8456</sourceEntity>
 <targetCardinalityString>*</targetCardinalityString>
