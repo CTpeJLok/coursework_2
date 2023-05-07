@@ -88,13 +88,22 @@ public class EventDistributionController {
         if (bindingResult.hasErrors())
             return "redirect:/event-distribution/" + event_id;
 
-        eventDistributionService.save(eventDistribution);
+        try {
+            eventDistributionService.save(eventDistribution);
 
-        Date dateNow = new Date();
-        SimpleDateFormat formatForDateNow = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-        Event event = eventService.get(event_id);
-        event.setUpdateDate(formatForDateNow.format(dateNow));
-        eventService.save(event);
+            Date dateNow = new Date();
+            SimpleDateFormat formatForDateNow = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+            Event event = eventService.get(event_id);
+            event.setUpdateDate(formatForDateNow.format(dateNow));
+
+            try {
+                eventService.save(event);
+            } catch (Exception e) {
+
+            }
+        } catch (Exception e) {
+
+        }
 
         return "redirect:/event-distribution/" + event_id;
     }
@@ -108,7 +117,12 @@ public class EventDistributionController {
         SimpleDateFormat formatForDateNow = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         Event event = eventService.get(event_id);
         event.setUpdateDate(formatForDateNow.format(dateNow));
-        eventService.save(event);
+
+        try {
+            eventService.save(event);
+        } catch (Exception e) {
+
+        }
 
         return "redirect:/event-distribution/" + event_id;
     }

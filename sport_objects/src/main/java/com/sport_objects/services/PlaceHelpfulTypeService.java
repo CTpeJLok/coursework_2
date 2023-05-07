@@ -1,6 +1,9 @@
 package com.sport_objects.services;
 
 import com.sport_objects.entities.PlaceHelpfulType;
+import com.sport_objects.exceptions.CreateException;
+import com.sport_objects.exceptions.NotFoundException;
+import com.sport_objects.models.PlaceHelpfulTypeModel;
 import com.sport_objects.repositories.PlaceHelpfulTypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,11 +24,11 @@ public class PlaceHelpfulTypeService {
         return placeHelpfulTypeRepository.findByPlaceId(id);
     }
 
-    public void save(PlaceHelpfulType placeHelpfulType) {
+    public void save(PlaceHelpfulType placeHelpfulType) throws CreateException {
         try {
             placeHelpfulTypeRepository.save(placeHelpfulType);
         } catch (Exception e) {
-
+            throw new CreateException();
         }
     }
 
@@ -41,9 +44,22 @@ public class PlaceHelpfulTypeService {
         placeHelpfulTypeRepository.deleteAll();
     }
 
-
     public boolean isExist(Long id) {
         return placeHelpfulTypeRepository.findById(id).isPresent();
+    }
+
+    public List<PlaceHelpfulTypeModel> getAll() {
+        List<PlaceHelpfulType> placeHelpfulTypes = placeHelpfulTypeRepository.findAll();
+        return placeHelpfulTypes.stream().map(PlaceHelpfulTypeModel::toModel).toList();
+    }
+
+    public PlaceHelpfulTypeModel getOne(Long id) throws NotFoundException {
+        PlaceHelpfulType placeHelpfulType = placeHelpfulTypeRepository.findById(id).get();
+
+        if (placeHelpfulType == null)
+            throw new NotFoundException();
+
+        return PlaceHelpfulTypeModel.toModel(placeHelpfulType);
     }
 
 }

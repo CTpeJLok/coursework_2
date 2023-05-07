@@ -16,13 +16,13 @@
             <h2>Авторизация</h2>
 
             <div class="inputBox">
-                <input type="text" name="username" required>
+                <input type="text" name="username" pattern="^[A-Za-z0-9]+$" maxlength="20" required>
                 <span>Логин</span>
                 <i></i>
             </div>
 
             <div class="inputBox">
-                <input type="password" name="password" required>
+                <input type="password" name="password" pattern="^[A-Za-z0-9]+$" maxlength="20" required>
                 <span>Пароль</span>
                 <i></i>
             </div>

@@ -56,7 +56,12 @@ public class HelpfulTypeController {
         if (bindingResult.hasErrors())
             return "redirect:/helpful-type";
 
-        helpfulTypeService.save(helpfulType);
+        try {
+            helpfulTypeService.save(helpfulType);
+        } catch (Exception e) {
+
+        }
+
         return "redirect:/helpful-type";
     }
 

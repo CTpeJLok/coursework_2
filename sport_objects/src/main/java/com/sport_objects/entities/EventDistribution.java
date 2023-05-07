@@ -80,4 +80,5 @@ public class EventDistribution {
     public void setPrize(int prize) {
         this.prize = prize;
     }
+
 }

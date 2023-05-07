@@ -2,6 +2,8 @@ package com.sport_objects.services;
 
 import com.sport_objects.entities.Role;
 import com.sport_objects.entities.User;
+import com.sport_objects.exceptions.NotFoundException;
+import com.sport_objects.models.UserModel;
 import com.sport_objects.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -85,6 +87,20 @@ public class UserService implements UserDetailsService {
 
     public boolean isExist(Long id) {
         return userRepository.findById(id).isPresent();
+    }
+
+    public List<UserModel> getAll() {
+        List<User> users = userRepository.findAll();
+        return users.stream().map(UserModel::toModel).toList();
+    }
+
+    public UserModel getOne(Long id) throws NotFoundException {
+        User user = userRepository.findById(id).get();
+
+        if (user == null)
+            throw new NotFoundException();
+
+        return UserModel.toModel(user);
     }
 
 }

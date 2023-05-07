@@ -18,6 +18,7 @@ public class Role implements GrantedAuthority {
     private Set<User> users;
 
     public Role() {
+
     }
 
     public Role(Long id) {

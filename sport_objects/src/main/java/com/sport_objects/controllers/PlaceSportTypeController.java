@@ -80,7 +80,11 @@ public class PlaceSportTypeController {
         if (bindingResult.hasErrors())
             return "redirect:/place-sport-type/" + place_id;
 
-        placeSportTypeService.save(placeSportType);
+        try {
+            placeSportTypeService.save(placeSportType);
+        } catch (Exception e) {
+
+        }
 
         return "redirect:/place-sport-type/" + place_id;
     }
@@ -89,7 +93,6 @@ public class PlaceSportTypeController {
     public String delete(@PathVariable(name = "place_id") Long place_id,
                          @PathVariable(name = "place_sport_type_id") Long place_sport_type_id) {
         placeSportTypeService.del(place_sport_type_id);
-
         return "redirect:/place-sport-type/" + place_id;
     }
 

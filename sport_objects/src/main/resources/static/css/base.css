@@ -11,14 +11,31 @@
 
 html {
   --box-h: 400px;
+  height: 100vh;
 }
 
 body {
+  height: 100vh;
   background: #23242A;
 }
 
 .nav a {
   cursor: pointer;
+}
+
+.about-me {
+  overflow-y: scroll;
+}
+.about-me h1 {
+  text-align: center;
+}
+.about-me img {
+  width: 500px;
+  height: 375px;
+  border-radius: 20px;
+}
+.about-me::-webkit-scrollbar {
+  display: none;
 }
 
 .box {

@@ -1,13 +1,12 @@
 package com.sport_objects.entities;
 
 import jakarta.persistence.*;
-import lombok.NoArgsConstructor;
 
 import java.util.List;
 
-@NoArgsConstructor
 @Entity
 public class PlaceSportType {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -24,6 +23,10 @@ public class PlaceSportType {
 
     @OneToMany(mappedBy = "placeSportType", cascade = CascadeType.ALL)
     private List<EventPlace> eventPlaces;
+
+    public PlaceSportType() {
+
+    }
 
     public PlaceSportType(Place place) {
         this.place = place;
@@ -72,4 +75,5 @@ public class PlaceSportType {
     public String toString() {
         return sportType.getName() + " - " + place.getName();
     }
+
 }

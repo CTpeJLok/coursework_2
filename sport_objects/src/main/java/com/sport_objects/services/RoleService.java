@@ -1,9 +1,7 @@
 package com.sport_objects.services;
 
 import com.sport_objects.entities.Role;
-import com.sport_objects.entities.Team;
 import com.sport_objects.repositories.RoleRepository;
-import com.sport_objects.repositories.TeamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

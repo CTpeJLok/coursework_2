@@ -56,7 +56,12 @@ public class EventController {
         if (bindingResult.hasErrors())
             return "redirect:/event";
 
-        eventService.save(event);
+        try {
+            eventService.save(event);
+        } catch (Exception e) {
+
+        }
+
         return "redirect:/event";
     }
 

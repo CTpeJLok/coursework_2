@@ -13,8 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.List;
-
 @Controller
 @RequestMapping("/sport-type")
 public class SportTypeController {
@@ -58,7 +56,12 @@ public class SportTypeController {
         if (bindingResult.hasErrors())
             return "redirect:/sport-type";
 
-        sportTypeService.save(sportType);
+        try {
+            sportTypeService.save(sportType);
+        } catch (Exception e) {
+
+        }
+
         return "redirect:/sport-type";
     }
 

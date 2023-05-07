@@ -1,6 +1,9 @@
 package com.sport_objects.services;
 
 import com.sport_objects.entities.EventDistribution;
+import com.sport_objects.exceptions.CreateException;
+import com.sport_objects.exceptions.NotFoundException;
+import com.sport_objects.models.EventDistributionModel;
 import com.sport_objects.repositories.EventDistributionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,11 +36,11 @@ public class EventDistributionService {
         return eventDistributionRepository.findByPositionId(id);
     }
 
-    public void save(EventDistribution eventDistribution) {
+    public void save(EventDistribution eventDistribution) throws CreateException {
         try {
             eventDistributionRepository.save(eventDistribution);
         } catch (Exception e) {
-
+            throw new CreateException();
         }
     }
 
@@ -53,9 +56,22 @@ public class EventDistributionService {
         eventDistributionRepository.deleteAll();
     }
 
-
     public boolean isExist(Long id) {
         return eventDistributionRepository.findById(id).isPresent();
+    }
+
+    public List<EventDistributionModel> getAll() {
+        List<EventDistribution> eventDistributions = eventDistributionRepository.findAll();
+        return eventDistributions.stream().map(EventDistributionModel::toModel).toList();
+    }
+
+    public EventDistributionModel getOne(Long id) throws NotFoundException {
+        EventDistribution eventDistribution = eventDistributionRepository.findById(id).get();
+
+        if (eventDistribution == null)
+            throw new NotFoundException();
+
+        return EventDistributionModel.toModel(eventDistribution);
     }
 
 }

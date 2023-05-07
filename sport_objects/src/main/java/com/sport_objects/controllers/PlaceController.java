@@ -57,7 +57,12 @@ public class PlaceController {
         if (bindingResult.hasErrors())
             return "redirect:/place";
 
-        placeService.save(place);
+        try {
+            placeService.save(place);
+        } catch (Exception e) {
+
+        }
+
         return "redirect:/place";
     }
 

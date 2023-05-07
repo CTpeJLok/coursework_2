@@ -1,9 +1,7 @@
 package com.sport_objects.entities;
 
 import jakarta.persistence.*;
-import lombok.NoArgsConstructor;
 
-@NoArgsConstructor
 @Entity
 public class PlaceHelpfulType {
 
@@ -18,6 +16,10 @@ public class PlaceHelpfulType {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "place_id")
     private Place place;
+
+    public PlaceHelpfulType() {
+        
+    }
 
     public PlaceHelpfulType(Place place) {
         this.place = place;

@@ -2,9 +2,7 @@ package com.sport_objects.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
-import lombok.NoArgsConstructor;
 
-@NoArgsConstructor
 @Entity
 public class EventPlace {
     @Id
@@ -24,6 +22,10 @@ public class EventPlace {
 
     @JsonFormat(pattern = "HH:mm:ss", shape = JsonFormat.Shape.STRING)
     private String duration;
+
+    public EventPlace() {
+
+    }
 
     public EventPlace(Event event) {
         this.event = event;
@@ -68,4 +70,5 @@ public class EventPlace {
     public void setPlaceSportType(PlaceSportType placeSportType) {
         this.placeSportType = placeSportType;
     }
+
 }

@@ -88,7 +88,12 @@ public class TeamUserController {
         if (bindingResult.hasErrors())
             return "redirect:/team-user/" + team_id;
 
-        teamUserService.save(teamUser);
+        try {
+            teamUserService.save(teamUser);
+        } catch (Exception e) {
+
+        }
+
         return "redirect:/team-user/" + team_id;
     }
 

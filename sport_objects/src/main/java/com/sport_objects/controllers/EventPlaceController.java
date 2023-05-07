@@ -70,7 +70,12 @@ public class EventPlaceController {
         if (bindingResult.hasErrors())
             return "redirect:/event-place/" + event_id;
 
-        eventPlaceService.save(eventPlace);
+        try {
+            eventPlaceService.save(eventPlace);
+        } catch (Exception e) {
+
+        }
+
         return "redirect:/event-place/" + event_id;
     }
 

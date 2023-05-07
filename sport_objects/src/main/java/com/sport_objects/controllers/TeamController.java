@@ -1,6 +1,5 @@
 package com.sport_objects.controllers;
 
-import com.sport_objects.entities.SportType;
 import com.sport_objects.entities.Team;
 import com.sport_objects.services.SportTypeService;
 import com.sport_objects.services.TeamService;
@@ -14,8 +13,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-
-import java.util.List;
 
 @Controller
 @RequestMapping("/team")
@@ -67,7 +64,12 @@ public class TeamController {
         if (bindingResult.hasErrors())
             return "redirect:/team";
 
-        teamService.save(team);
+        try {
+            teamService.save(team);
+        } catch (Exception e) {
+
+        }
+
         return "redirect:/team";
     }
 

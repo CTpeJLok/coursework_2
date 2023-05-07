@@ -1,6 +1,9 @@
 package com.sport_objects.services;
 
 import com.sport_objects.entities.Event;
+import com.sport_objects.exceptions.NotFoundException;
+import com.sport_objects.exceptions.CreateException;
+import com.sport_objects.models.EventModel;
 import com.sport_objects.repositories.EventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,11 +23,11 @@ public class EventService {
         return eventRepository.searchKeyword(searchKeyword);
     }
 
-    public void save(Event event) {
+    public void save(Event event) throws CreateException {
         try {
             eventRepository.save(event);
         } catch (Exception e) {
-
+            throw new CreateException();
         }
     }
 
@@ -42,6 +45,20 @@ public class EventService {
 
     public boolean isExist(Long id) {
         return eventRepository.findById(id).isPresent();
+    }
+
+    public List<EventModel> getAll() {
+        List<Event> events = eventRepository.findAll();
+        return events.stream().map(EventModel::toModel).toList();
+    }
+
+    public EventModel getOne(Long id) throws NotFoundException {
+        Event event = eventRepository.findById(id).get();
+
+        if (event == null)
+            throw new NotFoundException();
+
+        return EventModel.toModel(event);
     }
 
 }

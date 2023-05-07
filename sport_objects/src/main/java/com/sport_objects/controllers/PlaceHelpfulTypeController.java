@@ -60,7 +60,11 @@ public class PlaceHelpfulTypeController {
         if (bindingResult.hasErrors())
             return "redirect:/place-helpful-type/" + place_id;
 
-        placeHelpfulTypeService.save(placeHelpfulType);
+        try {
+            placeHelpfulTypeService.save(placeHelpfulType);
+        } catch (Exception e) {
+
+        }
 
         return "redirect:/place-helpful-type/" + place_id;
     }
@@ -69,7 +73,6 @@ public class PlaceHelpfulTypeController {
     public String delete(@PathVariable(name = "place_id") Long place_id,
                          @PathVariable(name = "place_helpful_type_id") Long place_helpful_type_id) {
         placeHelpfulTypeService.del(place_helpful_type_id);
-
         return "redirect:/place-helpful-type/" + place_id;
     }
 

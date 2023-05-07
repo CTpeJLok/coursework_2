@@ -54,7 +54,12 @@ public class PositionController {
         if (bindingResult.hasErrors())
             return "redirect:/position";
 
-        positionService.save(position);
+        try {
+            positionService.save(position);
+        } catch (Exception e) {
+
+        }
+
         return "redirect:/position";
     }
 

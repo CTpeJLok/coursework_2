@@ -10,7 +10,8 @@ import java.util.List;
 @Repository
 public interface EventPlaceRepository extends JpaRepository<EventPlace, Long> {
 
-    @Query("SELECT e FROM EventPlace e WHERE CONCAT(LOWER(e.event.name), ' ', LOWER(e.placeSportType.sportType.name), ' ', LOWER(e.eventDate), ' ', LOWER(e.duration)) LIKE %?1%")
+    @Query("SELECT e FROM EventPlace e WHERE CONCAT(LOWER(e.event.name), ' ', " +
+            "LOWER(e.placeSportType.sportType.name), ' ', LOWER(e.eventDate), ' ', LOWER(e.duration)) LIKE %?1%")
     List<EventPlace> searchKeyword(String searchKeyword);
 
     List<EventPlace> findByEventId(Long id);

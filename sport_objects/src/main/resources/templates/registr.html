@@ -17,49 +17,51 @@
 
         <div class="inputs">
             <div class="inputBox">
-                <input type="text" th:field="*{username}" tabindex="1" required>
+                <input type="text" th:field="*{username}" pattern="^[A-Za-z0-9]+$" maxlength="20" required>
                 <span>Логин *</span>
                 <i></i>
             </div>
 
             <div class="inputBox">
-                <input type="password" th:field="*{password}" tabindex="2" required>
+                <input type="password" th:field="*{password}" pattern="^[A-Za-z0-9]+$" maxlength="20" required>
                 <span>Пароль *</span>
                 <i></i>
             </div>
 
             <div class="inputBox">
-                <input type="text" th:field="*{firstName}" tabindex="4" required>
+                <input type="text" th:field="*{firstName}" pattern="^[А-Яа-яЁё]+$" maxlength="20" required>
                 <span>Имя *</span>
                 <i></i>
             </div>
 
             <div class="inputBox">
-                <input type="password" th:field="*{passwordConfirm}" tabindex="3" required>
+                <input type="password" th:field="*{passwordConfirm}" pattern="^[A-Za-z0-9]+$" maxlength="20" required>
                 <span>Подтверждение пароля *</span>
                 <i></i>
             </div>
 
             <div class="inputBox">
-                <input type="text" th:field="*{lastName}" tabindex="5" required>
+                <input type="text" th:field="*{lastName}" pattern="^[А-Яа-яЁё]+$" maxlength="20" required>
                 <span>Фамилия *</span>
                 <i></i>
             </div>
 
             <div class="inputBox">
-                <input type="text" class="phone" th:field="*{phone}" tabindex="6" pattern="\+7 \([0-9]{3}\) [0-9]{3}-[0-9]{2}-[0-9]{2}" maxlength="18" required>
+                <input type="text" class="phone" th:field="*{phone}"
+                       pattern="\+7 \([0-9]{3}\) [0-9]{3}-[0-9]{2}-[0-9]{2}" maxlength="18" required>
                 <span>Телефон *</span>
                 <i></i>
             </div>
 
             <div class="inputBox">
-                <input type="text" th:field="*{birthday}" tabindex="8" required onfocus="(this.type='date')" onblur="if(!this.value)this.type='text'">
+                <input type="text" th:field="*{birthday}" required onfocus="(this.type='date')"
+                       onblur="if(!this.value)this.type='text'">
                 <span>Дата рождения *</span>
                 <i></i>
             </div>
 
             <div class="inputBox">
-                <input type="text" class="email-field" th:field="*{email}" maxlength="30" pattern="(.+@.+\..+|)" tabindex="7">
+                <input type="text" class="email-field" th:field="*{email}" maxlength="30" pattern="(.+@.+\..+|)">
                 <span>Почта</span>
                 <i></i>
             </div>
@@ -119,7 +121,7 @@
                 inp.value = inp.value.substring(0, inp.value.length - 1);
             }
         }
-        if(!/\d/.test(e.key))
+        if (!/\d/.test(e.key))
             e.preventDefault();
         else {
             if (l == 0) {

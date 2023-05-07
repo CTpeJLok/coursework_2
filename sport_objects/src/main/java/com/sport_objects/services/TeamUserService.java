@@ -1,6 +1,9 @@
 package com.sport_objects.services;
 
 import com.sport_objects.entities.TeamUser;
+import com.sport_objects.exceptions.CreateException;
+import com.sport_objects.exceptions.NotFoundException;
+import com.sport_objects.models.TeamUserModel;
 import com.sport_objects.repositories.TeamUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,11 +27,11 @@ public class TeamUserService {
         return teamUserRepository.findByTeamIdSearch(id, searchKeyword);
     }
 
-    public void save(TeamUser teamUser) {
+    public void save(TeamUser teamUser) throws CreateException {
         try {
             teamUserRepository.save(teamUser);
         } catch (Exception e) {
-            
+            throw new CreateException();
         }
     }
 
@@ -44,9 +47,22 @@ public class TeamUserService {
         teamUserRepository.deleteAll();
     }
 
-
     public boolean isExist(Long id) {
         return teamUserRepository.findById(id).isPresent();
+    }
+
+    public List<TeamUserModel> getAll() {
+        List<TeamUser> teamUsers = teamUserRepository.findAll();
+        return teamUsers.stream().map(TeamUserModel::toModel).toList();
+    }
+
+    public TeamUserModel getOne(Long id) throws NotFoundException {
+        TeamUser teamUser = teamUserRepository.findById(id).get();
+
+        if (teamUser == null)
+            throw new NotFoundException();
+
+        return TeamUserModel.toModel(teamUser);
     }
 
 }

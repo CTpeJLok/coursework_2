@@ -15,4 +15,5 @@ public class ErrorControllerHandler implements ErrorController {
 
         return "error";
     }
+
 }

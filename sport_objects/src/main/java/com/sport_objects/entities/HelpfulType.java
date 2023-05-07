@@ -42,4 +42,5 @@ public class HelpfulType {
     public void setPlaceHelpfulTypes(List<PlaceHelpfulType> placeHelpfulTypes) {
         this.placeHelpfulTypes = placeHelpfulTypes;
     }
+
 }

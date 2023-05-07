@@ -14,15 +14,36 @@ $body_color: #23242A;
 
 html {
   --box-h: 400px;
+
+  height: 100vh;
 }
 
 body {
+  height: 100vh;
   background: $body_color;
 }
 
 .nav {
   a {
     cursor: pointer;
+  }
+}
+
+.about-me {
+  overflow-y: scroll;
+
+  h1 {
+    text-align: center;
+  }
+
+  img {
+    width: 500px;
+    height: 375px;
+    border-radius: 20px;
+  }
+
+  &::-webkit-scrollbar {
+    display: none;
   }
 }
 
