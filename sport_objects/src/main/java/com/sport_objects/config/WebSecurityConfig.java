@@ -28,36 +28,35 @@ public class WebSecurityConfig {
                 .csrf().disable()
                 .authorizeHttpRequests()
 
-                .requestMatchers("/**").permitAll()
+                .requestMatchers("/registration").permitAll()
+                .requestMatchers("/").permitAll()
+                .requestMatchers("/api/**").permitAll()
 
-//                .requestMatchers("/registration").permitAll()
-//                .requestMatchers("/").permitAll()
-//
-//                .requestMatchers("/user").permitAll()
-//                .requestMatchers("/sport-type").permitAll()
-//                .requestMatchers("/helpful-type").permitAll()
-//                .requestMatchers("/team").permitAll()
-//                .requestMatchers("/place").permitAll()
-//                .requestMatchers("/event").permitAll()
-//
-//                .requestMatchers("/api/**").authenticated()
-//
-//                .requestMatchers("/team-user/**").hasRole("ADMIN")
-//                .requestMatchers("/place-sport-type/**").hasRole("ADMIN")
-//                .requestMatchers("/place-helpful-type/**").hasRole("ADMIN")
-//                .requestMatchers("/event-place/**").hasRole("ADMIN")
-//
-//                .requestMatchers("/user/**").hasRole("ADMIN")
-//                .requestMatchers("/sport-type/**").hasRole("ADMIN")
-//                .requestMatchers("/helpful-type/**").hasRole("ADMIN")
-//                .requestMatchers("/team/**").hasRole("ADMIN")
-//                .requestMatchers("/place/**").hasRole("ADMIN")
-//                .requestMatchers("/event/**").hasRole("ADMIN")
-//
-//                .requestMatchers("/resources/**").permitAll()
-//                .requestMatchers("/css/**").permitAll()
-//
-//                .anyRequest().permitAll()
+                .requestMatchers("/user").permitAll()
+                .requestMatchers("/sport-type").permitAll()
+                .requestMatchers("/helpful-type").permitAll()
+                .requestMatchers("/team").permitAll()
+                .requestMatchers("/place").permitAll()
+                .requestMatchers("/event").permitAll()
+
+                .requestMatchers("/team-user/**").hasRole("ADMIN")
+                .requestMatchers("/place-sport-type/**").hasRole("ADMIN")
+                .requestMatchers("/place-helpful-type/**").hasRole("ADMIN")
+                .requestMatchers("/event-place/**").hasRole("ADMIN")
+
+                .requestMatchers("/user/**").hasRole("ADMIN")
+                .requestMatchers("/sport-type/**").hasRole("ADMIN")
+                .requestMatchers("/helpful-type/**").hasRole("ADMIN")
+                .requestMatchers("/team/**").hasRole("ADMIN")
+                .requestMatchers("/place/**").hasRole("ADMIN")
+                .requestMatchers("/event/**").hasRole("ADMIN")
+
+                .requestMatchers("/resources/**").permitAll()
+                .requestMatchers("/css/**").permitAll()
+                .requestMatchers("/img/**").permitAll()
+                .requestMatchers("/js/**").permitAll()
+
+                .anyRequest().authenticated()
 
                 .and()
                 .formLogin().loginPage("/login").defaultSuccessUrl("/").permitAll()
